@@ -1,0 +1,25 @@
+@startuml
+
+left to right direction
+scale 2/3
+
+rectangle Pingdom
+rectangle PagerDuty
+rectangle Slack
+rectangle Statuspage.io
+
+Pingdom --> (Health API) : ✓
+Pingdom --> (vets.gov) : ✓
+Pingdom --> (Claims API) : ✓
+Pingdom --> (Appeals API) : ✓
+Pingdom --> (Documents API) : ✓
+Pingdom --> (Facilities API) : ✓
+Pingdom --> (Address Validation API) : ✓
+Pingdom --> (Community Care) : ✓
+Pingdom --> (... API) : ✓
+
+Pingdom -up-> PagerDuty : alerts
+Pingdom -up-> Slack : notifications
+Pingdom -up-> Statuspage.io : status
+
+@enduml
