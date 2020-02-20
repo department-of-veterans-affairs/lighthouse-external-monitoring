@@ -64,4 +64,4 @@ Pingdom will be integrated with
   per [Pingdom Check API](https://docs.pingdom.com/api/#tag/Checks/paths/~1checks/post).
 - This repository will provide the tooling to apply Pingdom configuration changes via Jenkins or 
   AWS CodeBuild.
-- Secret management and substitution will be provided (mechanism TBD)
+- Secret management and substitution will be provided via AWS Parameter Store
