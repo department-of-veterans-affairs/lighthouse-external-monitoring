@@ -13,7 +13,8 @@ Configuration and tooling for automated configuration for monitoring APIs from a
 - Increased resiliency by reducing the number of components.
 - Simplify maintenance with a focused repository that is not co-mingled with unrelated items. 
 - Broader external perspective. Monitor APIs from outside of the VA and AWS networks.
-- Configuration changes must be applied to different environments at different times.
+- Configuration changes must be applied to different environments at different times, e.g.
+  monitoring changes may be applied to dev-api.va.gov before they are applied to api.va.gov.
 
 #### Is/Is Not
 This repository
