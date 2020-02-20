@@ -37,6 +37,7 @@ It mimics external usage.
 - Ability to verify response content by string comparison (contains/not contains)
 - Ability to include sensitive information via secret management, e.g. client key, in configuration.
 - Ability to specify frequency, time for down, alert frequency.
+- Ability to specify arbitrary tags on checks to enable searching or grouping.
 
 ---
 
