@@ -19,7 +19,9 @@ Configuration and tooling for automated configuration for monitoring APIs from a
 #### Is/Is Not
 This repository
 - IS responsible for automated configuration of health checks.
-- IS NOT responsible for Statuspage, PagerDuty, or Slack configuration.
+- IS NOT responsible for Statuspage, PagerDuty, or Slack configuration,
+  e.g. this repository would link check api.va.gov/services/fhir/v0/dstu2/metadata to the
+  _on-call-support_ escalation policy in PagerDuty, but not define the escalation policy itself. 
 - IS NOT responsible for _in VA network_ checks, e.g. DNS look up of internal assets.
 
 #### Check Requirements
@@ -33,7 +35,7 @@ It mimics external usage.
 - Ability to specify query parameters.
 - Ability to verify expected status codes.
 - Ability to verify response content by string comparison (contains/not contains)
-- Ability to include sensitive information, e.g. client key, in configuration.
+- Ability to include sensitive information via secret management, e.g. client key, in configuration.
 - Ability to specify frequency, time for down, alert frequency.
 
 ---
