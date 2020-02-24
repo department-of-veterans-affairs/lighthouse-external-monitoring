@@ -1,0 +1,20 @@
+{
+  "name": "$name",
+  "type": "http",
+  "host": "$host",
+  "port": 443,
+  "url": "$url",
+  "requestheaders": {
+    "Accept": "application/json+fhir",
+    "Authorization": "Bearer $authorization_token",
+  }
+  "encryption": true,
+  "verify_certificate": true,
+  "resolution": 1,
+  "responsetime_threshold": 10000,
+  "sendnotificationwhendown": 6,
+  "notifyagainevery": 0,
+  "notifywhenbackup": true,
+  "tags" : [ "managed", "health-api" ],
+  "integrationids": [ $integrationids_csv ]
+}

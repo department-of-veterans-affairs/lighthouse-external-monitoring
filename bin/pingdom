@@ -18,14 +18,32 @@ usage() {
 $0 <command> [options]
 
 Options:
---token <api-token>  Specify Pingdom API token with Read-Write permission (env PINGDOM_TOKEN)
---secrets <file>     Bash file that will be sourced if present (env SECRETS_FILE=$SECRETS_FILE)
-
+--debug                Enable debugging output
+--token <api-token>    Specify Pingdom API token with Read-Write permission (env PINGDOM_TOKEN)
+--secrets <file>       Bash file that will be sourced if present (env SECRETS_FILE=$SECRETS_FILE)
+-a, --template-args <key=value>
+                       Specify a template argument substitution parameter
 Commands:
-get-checks
 get-check <check-id>
-
+  Get details for a specific check.
+get-checks
+  Get a listing of all checks.
+process-template <template> --template-args key=value ...
+  Process a template, but do not save.
+save-check <template> --template-args key=value ...
+  Process a template and save it, creating a new one or updating an existing entry by the same check name.
 ${1:-}
+
+Example:
+$0 save-check https-public-200 \\
+  -a name=dstu2-metadata \\
+  -a url=/services/fhir/v0/dstu2/metadata \\
+  -a resolution=1 \\
+  -a group=health-apis \\
+  -a responsetime_threshold=5000 \\
+  -a port=443 \\
+  -a host=api.va.gov \\
+  -a integrationids_csv=100343
 EOF
   exit 1
 }
@@ -57,8 +75,8 @@ processCommandLine() {
     shift
   done
   COMMAND="${1:-}"
+  if [ -z "$COMMAND" ]; then usage "Command not specified"; fi
   shift
-  if [ -z "$COMMAND" ];then usage "Command not specified"; fi
   if [ -f "$SECRETS_FILE" ]; then . $SECRETS_FILE; fi
   case "$COMMAND" in
     get-checks) getChecks;;
@@ -108,7 +126,7 @@ processTemplate() {
   local templateName="$1"
   local output="$2"
   if [ -z "$templateName" ]; then usage "Template not specified"; fi
-  local templateFile=$TEMPLATE_DIR/$templateName.jq
+  local templateFile=$TEMPLATE_DIR/$templateName.json
   if [ ! -f "$templateFile" ]; then usage "Template not found"; fi
   local requiredTemplateArgs=$(grep -oE '\$[-a-zA-Z0-0_]+' $templateFile|tr -d \$)
   local missingArguments=false
