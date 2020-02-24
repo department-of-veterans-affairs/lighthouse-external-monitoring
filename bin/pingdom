@@ -21,6 +21,7 @@ Options:
 --debug                Enable debugging output
 --token <api-token>    Specify Pingdom API token with Read-Write permission (env PINGDOM_TOKEN)
 --secrets <file>       Bash file that will be sourced if present (env SECRETS_FILE=$SECRETS_FILE)
+--template <name>      The name of the template (in ./templates) to apply
 -a, --template-args <key=value>
                        Specify a template argument substitution parameter
 Commands:
@@ -28,22 +29,23 @@ get-check <check-id>
   Get details for a specific check.
 get-checks
   Get a listing of all checks.
-process-template <template> --template-args key=value ...
+process-template --template <template> --template-args key=value ...
   Process a template, but do not save.
-save-check <template> --template-args key=value ...
+save-check --template <template> --template-args key=value ...
   Process a template and save it, creating a new one or updating an existing entry by the same check name.
-${1:-}
 
 Example:
-$0 save-check https-public-200 \\
-  -a name=dstu2-metadata \\
-  -a url=/services/fhir/v0/dstu2/metadata \\
-  -a resolution=1 \\
-  -a group=health-apis \\
-  -a responsetime_threshold=5000 \\
-  -a port=443 \\
-  -a host=api.va.gov \\
-  -a integrationids_csv=100343
+$0 save-check \
+  --template fhir-resource \
+  -a name=production-dstu2-medication-statement \
+  -a host=api.va.gov \
+  -a url="/services/fhir/v0/dstu2/MedicationStatement?patient=1011537977V693883" \
+  -a authorization_token="\$ARGONAUT_TOKEN" \
+  -a integrationids_csv="\$HEALTH_APIS_SLACK_ID"
+
+
+${1:-}
+
 EOF
   exit 1
 }
@@ -54,10 +56,15 @@ initialize() {
   mkdir -p $WORK_DIR
 }
 
+fail() {
+  echo -e "$1" > /dev/stderr
+  exit 1
+}
+
 processCommandLine() {
   local args
   if ! args=$(getopt -n "application" \
-    -l "debug,token:,secrets:,template-arg:" \
+    -l "debug,token:,secrets:,template:,template-arg:" \
     -o "a:" -- "$@")
   then
     usage
@@ -66,14 +73,16 @@ processCommandLine() {
   while true
   do
     case "$1" in
-      --debug) set -x; CURL_VERBOSE=-v;;
+      --debug) DEBUG=true;;
       --token) PINGDOM_TOKEN="$2";;
       --secrets) SECRETS_FILE="$2";;
+      --template) TEMPLATE_NAME="$2";;
       -a|--template-arg) addTemplateArg "$2";;
       --) shift; break;;
     esac
     shift
   done
+  if [ "${DEBUG:-false}" == "true" ]; then set -x; CURL_VERBOSE=-v; fi
   COMMAND="${1:-}"
   if [ -z "$COMMAND" ]; then usage "Command not specified"; fi
   shift
@@ -81,8 +90,8 @@ processCommandLine() {
   case "$COMMAND" in
     get-checks) getChecks;;
     get-check) getCheck "${1:-}";;
-    process-template) processTemplate "${1:-}" /dev/stdout;;
-    save-check) saveCheck "${1:-}";;
+    process-template) processTemplate /dev/stdout;;
+    save-check) saveCheck;;
     *) usage "Unknown command: $COMMAND";;
   esac
 }
@@ -99,17 +108,28 @@ tokenOrDie() {
   if [ -z "${PINGDOM_TOKEN:-}" ]; then usage "Token not specified"; fi
 }
 
+templateOrDie() {
+  if [ -z "${TEMPLATE_NAME:-}" ]; then usage "Template not specified"; fi
+}
 
 curlPingdom() {
   local path="$1"
   tokenOrDie
   shift
-  curl \
+  local output=$(mktemp -p $WORK_DIR)
+  local status=$(curl \
     $CURL_VERBOSE \
+    -w '%{http_code}' \
+    -o $output \
     -H "Authorization: Bearer $PINGDOM_TOKEN" \
     -H "Accept: application/json" \
     "$@" \
-    $PINGDOM$path
+    $PINGDOM$path)
+  cat $output
+  if [[ $status != 2?? ]]
+  then
+    fail "\nFailed to request $path: $status"
+  fi
 }
 
 getChecks() {
@@ -123,10 +143,10 @@ getCheck() {
 }
 
 processTemplate() {
-  local templateName="$1"
-  local output="$2"
-  if [ -z "$templateName" ]; then usage "Template not specified"; fi
-  local templateFile=$TEMPLATE_DIR/$templateName.json
+  templateOrDie
+  local output="$1"
+  if [ -z "$TEMPLATE_NAME" ]; then usage "Template not specified"; fi
+  local templateFile=$TEMPLATE_DIR/$TEMPLATE_NAME.json
   if [ ! -f "$templateFile" ]; then usage "Template not found"; fi
   local requiredTemplateArgs=$(grep -oE '\$[-a-zA-Z0-0_]+' $templateFile|tr -d \$)
   local missingArguments=false
@@ -141,7 +161,7 @@ processTemplate() {
       subst+=" -e s${SED_SEPARATOR}\\\$$arg${SED_SEPARATOR}${TEMPLATE_ARGS[$arg]}${SED_SEPARATOR}g"
     fi
   done
-  if [ $missingArguments == true ]; then exit 1; fi
+  if [ $missingArguments == true ]; then fail "Missing parameters for template: $TEMPLATE_NAME"; fi
   sed $subst $templateFile > $output
 }
 
@@ -157,26 +177,27 @@ removeType() {
 }
 
 saveCheck() {
-  local templateName="$1"
   local output=$(mktemp -p $WORK_DIR check.XXXXX)
-  processTemplate $templateName $output
+  processTemplate $output
   # All checks must have a name.
   local name="$(jq -r .name $output)"
+  if [ -z "$name" ]; then fail "Check $1 is missing a name."; fi
   local id=$(getExistingCheckIdForName $name)
   if [ -n "$id" ]
   then
     echo "Updating check $name ($id)";
     removeType $output
-    cat $output
+    if [ "${DEBUG:-false}" == "true" ]; then cat $output; fi
     curlPingdom /checks/$id -X PUT -d @$output -H "Content-Type: application/json"
   else
     echo "Creating check $name"
-    cat $output
+    if [ "${DEBUG:-false}" == "true" ]; then cat $output; fi
     curlPingdom /checks -X POST -d @$output -H "Content-Type: application/json"
   fi
+  printf "\n\n"
 }
 
 #============================================================
 initialize
 processCommandLine $@
-exit 0
+
