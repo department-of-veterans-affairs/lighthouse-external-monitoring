@@ -9,11 +9,41 @@ if [ -f ./secrets.conf ];then . secrets.conf; fi
 
 
 export PATH=$WORKSPACE/bin:$PATH
+if [ "${DEBUG:-false}" == "true" ]; then export DEBUG; fi
 
 
 HEALTH_APIS_SLACK_ID=100343
 OAUTH_SLACK_ID=100343
 SSL_EXPIRATION_SLACK_ID=100343
+FACILITIES_SLACK_ID=100343
+ADDRESS_VALIDATION_SLACK_ID=100343
+
+
+#
+# Address Validation
+#
+pingdom save-check \
+  --template post-request-with-apikey \
+  -a name=production-address-validation \
+  -a host=api.va.gov \
+  -a url="/services/address_validation/v1/candidate" \
+  -a group=address-validation \
+  -a apikey="$PRODUCTION_HEALTH_CHECK_API_KEY" \
+  -a postdata="$(escape-json '{"requestAddress": {"addressLine1": "1600 Pennsylvania Ave", "city": "Washington", "stateProvince": {"name": "DC"}, "requestCountry": {"countryName": "USA"}}}')" \
+  -a integrationids_csv="$ADDRESS_VALIDATION_SLACK_ID"
+
+#
+# Facilities
+#
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=production-facilities \
+  -a host=api.va.gov \
+  -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
+  -a group=facilities \
+  -a apikey="$PRODUCTION_HEALTH_CHECK_API_KEY" \
+  -a integrationids_csv="$FACILITIES_SLACK_ID"
+
 
 #
 # SSL Checks

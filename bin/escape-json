@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# This jq hack will put the escaped value inside quotes which will
+# mess things ups as we try to stuff it in other payloads.
+echo "$1" | jq @json | sed -e 's/^"//' -e 's/"$//'

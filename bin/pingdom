@@ -50,7 +50,6 @@ EOF
   exit 1
 }
 
-
 initialize() {
   if [ -d $WORK_DIR ]; then rm -rf $WORK_DIR; fi
   mkdir -p $WORK_DIR
@@ -61,6 +60,11 @@ fail() {
   exit 1
 }
 
+isDebug() {
+  if [ "${DEBUG:-false}" == true ]; then return 0; fi
+  return 1
+}
+
 processCommandLine() {
   local args
   if ! args=$(getopt -n "application" \
@@ -68,7 +72,7 @@ processCommandLine() {
     -o "a:" -- "$@")
   then
     usage
-   fi
+  fi
   eval set -- "$args"
   while true
   do
@@ -82,7 +86,7 @@ processCommandLine() {
     esac
     shift
   done
-  if [ "${DEBUG:-false}" == "true" ]; then set -x; CURL_VERBOSE=-v; fi
+  if isDebug; then set -x; CURL_VERBOSE=-v; fi
   COMMAND="${1:-}"
   if [ -z "$COMMAND" ]; then usage "Command not specified"; fi
   shift
@@ -144,25 +148,34 @@ getCheck() {
 
 processTemplate() {
   templateOrDie
-  local output="$1"
+  local output="$1" # could be /dev/stdout
+  local workInProgress=$(mktemp -p $WORK_DIR)
   if [ -z "$TEMPLATE_NAME" ]; then usage "Template not specified"; fi
   local templateFile=$TEMPLATE_DIR/$TEMPLATE_NAME.json
   if [ ! -f "$templateFile" ]; then usage "Template not found"; fi
+  if isDebug; then cat $templateFile; fi
+  cp $templateFile $workInProgress
   local requiredTemplateArgs=$(grep -oE '\$[-a-zA-Z0-0_]+' $templateFile|tr -d \$)
   local missingArguments=false
-  local subst=
   for arg in $requiredTemplateArgs
   do
-    if [ -z "${TEMPLATE_ARGS[$arg]:-}" ]
+    local value="${TEMPLATE_ARGS[$arg]:-}"
+    if [ -z "$value" ]
     then
       missingArguments=true
       echo "Missing template argument: $arg"
     else
-      subst+=" -e s${SED_SEPARATOR}\\\$$arg${SED_SEPARATOR}${TEMPLATE_ARGS[$arg]}${SED_SEPARATOR}g"
+      # protect sed sensitive characters
+      local escapedArgs="${value}"
+      escapedArgs="${escapedArgs//&/\\&}"
+      escapedArgs="${escapedArgs//\\/\\\\}"
+      escapedArgs="${escapedArgs//${SED_SEPARATOR}/\\${SED_SEPARATOR}}"
+      sed -i "s${SED_SEPARATOR}\\\$$arg${SED_SEPARATOR}${escapedArgs}${SED_SEPARATOR}g" $workInProgress
     fi
   done
   if [ $missingArguments == true ]; then fail "Missing parameters for template: $TEMPLATE_NAME"; fi
-  sed $subst $templateFile > $output
+  if isDebug; then cat $workInProgress; fi
+  cat $workInProgress > $output
 }
 
 
@@ -187,17 +200,18 @@ saveCheck() {
   then
     echo "Updating check $name ($id)";
     removeType $output
-    if [ "${DEBUG:-false}" == "true" ]; then cat $output; fi
+    if isDebug; then cat $output; fi
     curlPingdom /checks/$id -X PUT -d @$output -H "Content-Type: application/json"
   else
     echo "Creating check $name"
-    if [ "${DEBUG:-false}" == "true" ]; then cat $output; fi
+    if isDebug; then cat $output; fi
     curlPingdom /checks -X POST -d @$output -H "Content-Type: application/json"
   fi
   printf "\n\n"
 }
 
 #============================================================
+if isDebug; then set -x; CURL_VERBOSE=-v; fi
 initialize
-processCommandLine $@
+processCommandLine "$@"
 

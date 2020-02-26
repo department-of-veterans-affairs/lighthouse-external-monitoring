@@ -1,0 +1,18 @@
+{
+  "name": "$name",
+  "type": "http",
+  "host": "$host",
+  "port": 443,
+  "url": "$url",
+  "requestheaderApiKey":"apikey:$apikey",
+  "requestheaderAccept":"Accept:application/json+fhir",
+  "encryption": true,
+  "verify_certificate": true,
+  "resolution": 1,
+  "responsetime_threshold": 10000,
+  "sendnotificationwhendown": 6,
+  "notifyagainevery": 0,
+  "notifywhenbackup": true,
+  "tags" : [ "managed", "$group" ],
+  "integrationids": [ $integrationids_csv ]
+}
