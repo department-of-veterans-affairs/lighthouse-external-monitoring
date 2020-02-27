@@ -204,6 +204,7 @@ saveCheck() {
   # All checks must have a name.
   local name="$(jq -r .name $output)"
   if [ -z "$name" ]; then fail "Check $TEMPLATE_NAME is missing a name."; fi
+  echo "Looking for existing $name check..."
   local id=$(getExistingCheckIdForName $name)
   if [ -n "$id" ]
   then
