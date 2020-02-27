@@ -121,7 +121,7 @@ curlPingdom() {
   shift
   local output=$(mktemp -p $WORK_DIR)
   local status
-  if ! status=$(curl \
+  if ! status=$(curl -k \
     $CURL_VERBOSE \
     -w '%{http_code}' \
     -o $output \
