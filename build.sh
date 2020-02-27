@@ -32,6 +32,7 @@ pingdom save-check \
   -a postdata="$(escape-json '{"requestAddress": {"addressLine1": "1600 Pennsylvania Ave", "city": "Washington", "stateProvince": {"name": "DC"}, "requestCountry": {"countryName": "USA"}}}')" \
   -a integrationids_csv="$ADDRESS_VALIDATION_SLACK_ID"
 
+
 #
 # Facilities
 #
@@ -161,8 +162,6 @@ pingdom save-check \
 # api.va.gov/services/claims/v1/healthcheck
 # api.va.gov/services/vba_documents/v0/healthcheck
 # api.va.gov/services/vba_documents/v1/healthcheck
-# api.va.gov/services/va_facilities/v0/facilities?lat=41.881832&long=87.6233&limit=1
-# api.va.gov/services/address_validation/v1/candidate
 # api.va.gov/services/fhir/v0/r4/metadata
 # api.va.gov/services/fhir/v0/r4/openapi.json
 # api.va.gov/services/fhir/v0/dstu2/metadata
@@ -171,3 +170,8 @@ pingdom save-check \
 # api.va.gov/services/fhir/v0/argonaut/dataquery/openapi.json
 # api.va.gov/services/communitycare/v0/eligibility/openapi.json
 #
+
+
+# DONE
+# api.va.gov/services/va_facilities/v0/facilities?lat=41.881832&long=87.6233&limit=1
+# api.va.gov/services/address_validation/v1/candidate

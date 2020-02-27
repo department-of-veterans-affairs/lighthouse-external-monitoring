@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 
 BASE_DIR=$(dirname $(readlink -f $0))/..
@@ -25,7 +24,7 @@ Options:
 -a, --template-args <key=value>
                        Specify a template argument substitution parameter
 Commands:
-get-check <check-id>
+get-check <check-id|check-name>
   Get details for a specific check.
 get-checks
   Get a listing of all checks.
@@ -143,6 +142,11 @@ getChecks() {
 getCheck() {
   local checkId="$1"
   if [ -z "${checkId}" ]; then usage "Check ID not specified"; fi
+  if [[ "${checkId}" =~ [a-zA-Z]+ ]]
+  then
+    checkId=$(getExistingCheckIdForName $checkId)
+    if [ -z "${checkId}" ]; then usage "Check not found for name: $1"; fi
+  fi
   curlPingdom /checks/$checkId
 }
 
@@ -150,7 +154,6 @@ processTemplate() {
   templateOrDie
   local output="$1" # could be /dev/stdout
   local workInProgress=$(mktemp -p $WORK_DIR)
-  if [ -z "$TEMPLATE_NAME" ]; then usage "Template not specified"; fi
   local templateFile=$TEMPLATE_DIR/$TEMPLATE_NAME.json
   if [ ! -f "$templateFile" ]; then usage "Template not found"; fi
   if isDebug; then cat $templateFile; fi
@@ -167,14 +170,20 @@ processTemplate() {
     else
       # protect sed sensitive characters
       local escapedArgs="${value}"
-      escapedArgs="${escapedArgs//&/\\&}"
       escapedArgs="${escapedArgs//\\/\\\\}"
+      escapedArgs="${escapedArgs//&/\\&}"
       escapedArgs="${escapedArgs//${SED_SEPARATOR}/\\${SED_SEPARATOR}}"
       sed -i "s${SED_SEPARATOR}\\\$$arg${SED_SEPARATOR}${escapedArgs}${SED_SEPARATOR}g" $workInProgress
     fi
   done
   if [ $missingArguments == true ]; then fail "Missing parameters for template: $TEMPLATE_NAME"; fi
   if isDebug; then cat $workInProgress; fi
+  if ! jq . $workInProgress > $WORK_DIR/template-errors 2>&1
+  then
+    cat $WORK_DIR/template-errors
+    echo "Processed template is invalid. See $workInProgress"
+    return 1
+  fi
   cat $workInProgress > $output
 }
 
@@ -194,7 +203,7 @@ saveCheck() {
   processTemplate $output
   # All checks must have a name.
   local name="$(jq -r .name $output)"
-  if [ -z "$name" ]; then fail "Check $1 is missing a name."; fi
+  if [ -z "$name" ]; then fail "Check $TEMPLATE_NAME is missing a name."; fi
   local id=$(getExistingCheckIdForName $name)
   if [ -n "$id" ]
   then

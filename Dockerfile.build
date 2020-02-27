@@ -1,13 +1,1 @@
-FROM centos:7
-
-#
-# Install VA certs
-#
-RUN test 200 == "$(curl -sw %{http_code} \
-  http://aia.pki.va.gov/PKI/AIA/VA/VA-Internal-S2-RCA1-v1.cer \
-  -o /etc/pki/ca-trust/source/anchors/VA-Internal-S2-RCA1-v1.cer)" \
-  && update-ca-trust extract
-
-RUN yum install -y -q https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm  \
-    && yum install -y -q https://rhel7.iuscommunity.org/ius-release.rpm
-RUN yum install -y -q jq git216
+FROM vasdvp/health-apis-dev-tools:mvn-3.6-jdk-12

@@ -15,5 +15,6 @@
   "notifyagainevery": 0,
   "notifywhenbackup": true,
   "tags" : [ "managed", "$group" ],
-  "integrationids": [ $integrationids_csv ]
+  "integrationids": [ $integrationids_csv ],
+  "probe_filters": [ "region: NA" ]
 }
