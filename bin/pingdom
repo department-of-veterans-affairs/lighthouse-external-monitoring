@@ -120,7 +120,8 @@ curlPingdom() {
   tokenOrDie
   shift
   local output=$(mktemp -p $WORK_DIR)
-  local status=$(curl \
+  local status
+  if ! status=$(curl \
     $CURL_VERBOSE \
     -w '%{http_code}' \
     -o $output \
@@ -128,6 +129,9 @@ curlPingdom() {
     -H "Accept: application/json" \
     "$@" \
     $PINGDOM$path)
+  then
+    fail "\Failed to request $path: $status"
+  fi
   cat $output
   if [[ $status != 2?? ]]
   then
