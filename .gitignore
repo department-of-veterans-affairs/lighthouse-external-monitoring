@@ -26,7 +26,6 @@
 
 target/
 
-secrets.conf
 *.pem
 secrets.conf
 work/

@@ -1,17 +1,35 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-#
-# For local test, create a secrets file and set environment variables typically
-# created as Jenkins secrets.
-#
-if [ -f ./secrets.conf ];then . secrets.conf; fi
+# Disable debugging to prevent secrets from being leaked in the build log
+set +x
 
 
-export PATH=$WORKSPACE/bin:$PATH
+export PATH=${WORKSPACE:-.}/bin:$PATH
 if [ "${DEBUG:-false}" == "true" ]; then export DEBUG; fi
 
 
+#
+# PINGDOM_TOKEN will be used by the pingdom script as the Pingdom API key.
+#
+export PINGDOM_TOKEN=$(get-secret "/monitoring/pingdom-token")
+
+#
+# Load secrets early to make sure we have all the secrets we need before attempting to
+# create checks. We can also eliminate duplicate secret fetches.
+#
+PRODUCTION_HEALTH_CHECK_API_KEY=$(get-secret "/production/api-gateway/health-check-api-key")
+
+PRODUCTION_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/production/oauth/basic-auth-token")
+PRODUCTION_OAUTH_REFRESH_TOKEN=$(get-secret "/production/oauth/refresh-token")
+DEV_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/dev/oauth/basic-auth-token")
+DEV_OAUTH_REFRESH_TOKEN=$(get-secret "/dev/oauth/refresh-token")
+HEALTH_APIS_STATIC_ACCESS_TOKEN=$(get-secret "/production/health/static-access-token")
+
+#
+# These are Slack integrtion IDs. Unfortunately, there is no Pingdom API for determining these
+# at run time and must be configured here.
+#
 HEALTH_APIS_SLACK_ID=100343
 OAUTH_SLACK_ID=100343
 SSL_EXPIRATION_SLACK_ID=100343
@@ -104,7 +122,7 @@ pingdom save-check \
   -a name=production-dstu2-patient \
   -a host=api.va.gov \
   -a url="/services/fhir/v0/dstu2/Patient/1011537977V693883" \
-  -a authorization_token="$ARGONAUT_TOKEN" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -112,7 +130,7 @@ pingdom save-check \
   -a name=production-dstu2-condition \
   -a host=api.va.gov \
   -a url="/services/fhir/v0/dstu2/Condition?patient=1011537977V693883" \
-  -a authorization_token="$ARGONAUT_TOKEN" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -120,7 +138,7 @@ pingdom save-check \
   -a name=production-dstu2-medication-statement \
   -a host=api.va.gov \
   -a url="/services/fhir/v0/dstu2/MedicationStatement?patient=1011537977V693883" \
-  -a authorization_token="$ARGONAUT_TOKEN" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -136,7 +154,7 @@ pingdom save-check \
   -a name=dev-dstu2-patient \
   -a host=dev-api.va.gov \
   -a url="/services/fhir/v0/dstu2/Patient/1011537977V693883" \
-  -a authorization_token="$ARGONAUT_TOKEN" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 

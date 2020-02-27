@@ -80,6 +80,11 @@ Pingdom will be integrated with
 Update the `build.sh` to include a new check definition or change an existing check.
 Updates to checks are performed by _name_. Name changes are seen as new checks.
 
+
+### Running locally
+if `secrets.conf` file is present, it will be sourced.
+This can be used to define sensitive information that is normally extracted from AWS Parameter Store.
+
 ```
 TODO EXAMPLE
 ```
