@@ -13,7 +13,7 @@
   "sendnotificationwhendown": 6,
   "notifyagainevery": 0,
   "notifywhenbackup": true,
-  "tags" : [ "managed", "$group" ],
+  "tags": [ "$build", "managed", "$group" ],
   "integrationids": [ $integrationids_csv ],
   "probe_filters": [ "region: NA" ]
 }

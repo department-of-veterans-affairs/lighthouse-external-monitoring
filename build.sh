@@ -7,7 +7,7 @@ set +x
 trap onExit EXIT
 onExit() {
   local status=$?
-  echo "TERMINATING WITH STATUS $status"
+  echo "All done! (status $status)"
   exit $status
 }
 

@@ -12,7 +12,7 @@
   "ssl_down_days_before": 60,
   "notifyagainevery": 0,
   "notifywhenbackup": true,
-  "tags" : [ "managed", "ssl-expiration" ],
+  "tags": [ "$build", "managed", "ssl-expiration" ],
   "integrationids": [ $integrationids_csv ],
   "probe_filters": [ "region: NA" ]
 }

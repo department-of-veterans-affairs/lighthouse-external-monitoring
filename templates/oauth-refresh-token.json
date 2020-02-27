@@ -14,7 +14,7 @@
   "sendnotificationwhendown": 6,
   "notifyagainevery": 0,
   "notifywhenbackup": true,
-  "tags" : [ "managed", "oauth" ],
+  "tags": [ "$build", "managed", "oauth" ],
   "integrationids": [ $integrationids_csv ],
   "probe_filters": [ "region: NA" ]
 }

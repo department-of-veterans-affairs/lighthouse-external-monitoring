@@ -13,7 +13,7 @@
   "sendnotificationwhendown": 6,
   "notifyagainevery": 0,
   "notifywhenbackup": true,
-  "tags" : [ "managed", "health-apis" ],
+  "tags": [ "$build", "managed", "health-apis" ],
   "integrationids": [ $integrationids_csv ],
   "probe_filters": [ "region: NA" ]
 }
