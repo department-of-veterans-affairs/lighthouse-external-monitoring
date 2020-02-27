@@ -19,7 +19,6 @@ export PINGDOM_TOKEN=$(get-secret "/monitoring/pingdom-token")
 # create checks. We can also eliminate duplicate secret fetches.
 #
 PRODUCTION_HEALTH_CHECK_API_KEY=$(get-secret "/production/api-gateway/health-check-api-key")
-
 PRODUCTION_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/production/oauth/basic-auth-token")
 PRODUCTION_OAUTH_REFRESH_TOKEN=$(get-secret "/production/oauth/refresh-token")
 DEV_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/dev/oauth/basic-auth-token")
