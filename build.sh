@@ -111,7 +111,7 @@ pingdom save-check \
 pingdom save-check \
   --template oauth-refresh-token \
   -a name=dev-oauth-refresh-token \
-  -a host=api.va.gov \
+  -a host=dev-api.va.gov \
   -a url=/oauth2/token \
   -a authorization_token="$DEV_OAUTH_BASIC_AUTH_TOKEN" \
   -a refresh_token="$DEV_OAUTH_REFRESH_TOKEN" \

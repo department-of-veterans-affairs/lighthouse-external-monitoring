@@ -86,12 +86,9 @@ if `secrets.conf` file is present, it will be sourced.
 This can be used to define sensitive information that is normally extracted from AWS Parameter Store.
 Secrets should be a hash array of parameter name to value, e.g.
 ```
- SECRETS[/monitoring/pingdom-token]="1234567890"
+SECRETS[/monitoring/pingdom-token]="1234567890"
 ```
 
-```
-TODO EXAMPLE
-```
 
 # What's done by hand?
 Unfortunately, our robots can't do 100% of activities. At least not yet.
