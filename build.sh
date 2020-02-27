@@ -4,10 +4,15 @@ set -euo pipefail
 # Disable debugging to prevent secrets from being leaked in the build log
 set +x
 
+trap onExit EXIT
+onExit() {
+  local status=$?
+  echo "TERMINATING WITH STATUS $status"
+  exit $status
+}
 
 export PATH=${WORKSPACE:-.}/bin:$PATH
 if [ "${DEBUG:-false}" == "true" ]; then export DEBUG; fi
-
 
 #
 # PINGDOM_TOKEN will be used by the pingdom script as the Pingdom API key.
