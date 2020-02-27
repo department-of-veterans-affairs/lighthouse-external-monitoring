@@ -132,7 +132,6 @@ curlPingdom() {
   then
     fail "\Failed to request $path: $status"
   fi
-  cat $output > /dev/stderr
   cat $output
   if [[ $status != 2?? ]]
   then
