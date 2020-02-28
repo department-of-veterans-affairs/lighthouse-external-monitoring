@@ -161,6 +161,22 @@ pingdom save-check \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
+  pingdom save-check \
+    --template fhir-resource \
+    -a name=dev-r4-coverage-eligibility-response \
+    -a host=dev-api.va.gov \
+    -a url="/services/fhir/v0/r4/CoverageEligibilityResponse?patient=1017283148V813263" \
+    -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+    -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+    pingdom save-check \
+      --template fhir-resource \
+      -a name=prod-r4-coverage-eligibility-response \
+      -a host=api.va.gov \
+      -a url="/services/fhir/v0/r4/CoverageEligibilityResponse?patient=1017283148V813263" \
+      -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+      -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
 
 
 
