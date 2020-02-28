@@ -161,7 +161,25 @@ pingdom save-check \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
+#
+# Community-Care Health Checks
+#
 
+pingdom save-check \
+  --template request-with-auth-header \
+  -a name=production-community-care-patient-primary-care \
+  -a host=api.va.gov \
+  -a url="/services/community-care/v0/eligibility/search?patient=1013294025V219497&serviceType=PrimaryCare&extendedDriveMin=50" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+pingdom save-check \
+  --template request-with-auth-header \
+  -a name=lab-community-care-patient-primary-care \
+  -a host=dev-api.va.gov \
+  -a url="/services/community-care/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 
 #
