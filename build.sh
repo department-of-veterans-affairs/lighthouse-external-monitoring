@@ -4,6 +4,12 @@ set -euo pipefail
 # Disable debugging to prevent secrets from being leaked in the build log
 set +x
 
+if [ "${RELEASE:-false}" == false ]
+then
+  echo "Skipping build since this would affect Pingdom"
+  exit 0
+fi
+
 trap onExit EXIT
 onExit() {
   local status=$?
