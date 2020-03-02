@@ -40,39 +40,51 @@ HEALTH_APIS_STATIC_ACCESS_TOKEN=$(get-secret "/production/health/static-access-t
 # These are Slack integrtion IDs. Unfortunately, there is no Pingdom API for determining these
 # at run time and must be configured here.
 #
-HEALTH_APIS_SLACK_ID=100343
-OAUTH_SLACK_ID=100343
-SSL_EXPIRATION_SLACK_ID=100343
-FACILITIES_SLACK_ID=100343
-ADDRESS_VALIDATION_SLACK_ID=100343
+
+#
+# During the cutover phase, we'll route alerts to the shanktovoid to
+# prevent duplicate spam in the real monitoring channel.
+#
+TEST_SLACK_CHANNEL_ID=100586
+
+HEALTH_APIS_SLACK_ID=$TEST_SLACK_CHANNEL_ID
+OAUTH_SLACK_ID=$TEST_SLACK_CHANNEL_ID
+SSL_EXPIRATION_SLACK_ID=$TEST_SLACK_CHANNEL_ID
+FACILITIES_SLACK_ID=$TEST_SLACK_CHANNEL_ID
+ADDRESS_VALIDATION_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 
 
 #
 # Address Validation
 #
-pingdom save-check \
-  --template post-request-with-apikey \
-  -a name=production-address-validation \
-  -a host=api.va.gov \
-  -a url="/services/address_validation/v1/candidate" \
-  -a group=address-validation \
-  -a apikey="$PRODUCTION_HEALTH_CHECK_API_KEY" \
-  -a postdata="$(escape-json '{"requestAddress": {"addressLine1": "1600 Pennsylvania Ave", "city": "Washington", "stateProvince": {"name": "DC"}, "requestCountry": {"countryName": "USA"}}}')" \
-  -a integrationids_csv="$ADDRESS_VALIDATION_SLACK_ID"
-
 
 #
-# Facilities
+# Still missing working API keys for facilities and address validation
 #
-pingdom save-check \
-  --template request-with-apikey \
-  -a name=production-facilities \
-  -a host=api.va.gov \
-  -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
-  -a group=facilities \
-  -a apikey="$PRODUCTION_HEALTH_CHECK_API_KEY" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID"
+if [ "${SKIP_BROKEN_ADHOC_CHECKS:-true}" == "false" ]
+then
+  pingdom save-check \
+    --template post-request-with-apikey \
+    -a name=production-address-validation \
+    -a host=api.va.gov \
+    -a url="/services/address_validation/v1/candidate" \
+    -a group=address-validation \
+    -a apikey="$PRODUCTION_HEALTH_CHECK_API_KEY" \
+    -a postdata="$(escape-json '{"requestAddress": {"addressLine1": "1600 Pennsylvania Ave", "city": "Washington", "stateProvince": {"name": "DC"}, "requestCountry": {"countryName": "USA"}}}')" \
+    -a integrationids_csv="$ADDRESS_VALIDATION_SLACK_ID"
 
+  #
+  # Facilities
+  #
+  pingdom save-check \
+    --template request-with-apikey \
+    -a name=production-facilities \
+    -a host=api.va.gov \
+    -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
+    -a group=facilities \
+    -a apikey="$PRODUCTION_HEALTH_CHECK_API_KEY" \
+    -a integqrationids_csv="$FACILITIES_SLACK_ID"
+fi
 
 #
 # SSL Checks
@@ -82,6 +94,8 @@ pingdom save-check \
   -a name=ssl-developer-portal \
   -a host=developer.va.gov \
   -a integrationids_csv="$SSL_EXPIRATION_SLACK_ID"
+
+exit 0
 
 pingdom save-check \
   --template ssl-expiration-check \
