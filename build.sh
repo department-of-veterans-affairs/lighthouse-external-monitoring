@@ -95,6 +95,8 @@ pingdom save-check \
   -a host=developer.va.gov \
   -a integrationids_csv="$SSL_EXPIRATION_SLACK_ID"
 
+exit
+
 pingdom save-check \
   --template ssl-expiration-check \
   -a name=ssl-dev-api \

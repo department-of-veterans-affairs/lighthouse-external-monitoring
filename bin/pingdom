@@ -56,9 +56,14 @@ initialize() {
 }
 
 fail() {
-  echo -e "$1" > /dev/stderr
+  echo -e "$1" >> /dev/stderr
   exit 1
 }
+
+debug() {
+  echo "[debug] $1" >> /dev/stderr
+}
+
 
 isDebug() {
   if [ "${DEBUG:-false}" == true ]; then return 0; fi
@@ -122,6 +127,7 @@ curlPingdom() {
   shift
   local output=$(mktemp -p $WORK_DIR)
   local status
+  debug "Requesting $path"
   if ! status=$(curl -k \
     $CURL_VERBOSE \
     -w '%{http_code}' \
@@ -133,6 +139,7 @@ curlPingdom() {
   then
     fail "\Failed to request $path: $status"
   fi
+  debug "$status response"
   cat $output
   if [[ $status != 2?? ]]
   then
