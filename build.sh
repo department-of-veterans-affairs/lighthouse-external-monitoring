@@ -40,12 +40,16 @@ export PINGDOM_TOKEN=$(get-secret "/monitoring/pingdom-token")
 # Load secrets early to make sure we have all the secrets we need before attempting to
 # create checks. We can also eliminate duplicate secret fetches.
 #
+# NOTE: AWS Systems Manager secret naming convention <env>/<product>/<key-name>
+#
 PRODUCTION_HEALTH_CHECK_API_KEY=$(get-secret "/production/api-gateway/health-check-api-key")
 PRODUCTION_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/production/oauth/basic-auth-token")
 PRODUCTION_OAUTH_REFRESH_TOKEN=$(get-secret "/production/oauth/refresh-token")
 DEV_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/dev/oauth/basic-auth-token")
 DEV_OAUTH_REFRESH_TOKEN=$(get-secret "/dev/oauth/refresh-token")
 HEALTH_APIS_STATIC_ACCESS_TOKEN=$(get-secret "/production/health/static-access-token")
+COMMUNITY_CARE_LAB_API_KEY=$(get-secret "/dev/community-care/api-key")
+
 
 #
 # These are Slack integrtion IDs. Unfortunately, there is no Pingdom API for determining these
@@ -57,6 +61,10 @@ HEALTH_APIS_STATIC_ACCESS_TOKEN=$(get-secret "/production/health/static-access-t
 # prevent duplicate spam in the real monitoring channel.
 #
 TEST_SLACK_CHANNEL_ID=100586
+
+if [ -f ./secrets.conf ]; then
+  TEST_SLACK_CHANNEL_ID=$(get-secret "/local/slack-integration/id")
+fi
 
 HEALTH_APIS_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 OAUTH_SLACK_ID=$TEST_SLACK_CHANNEL_ID
@@ -94,7 +102,7 @@ then
     -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
     -a group=facilities \
     -a apikey="$PRODUCTION_HEALTH_CHECK_API_KEY" \
-    -a integqrationids_csv="$FACILITIES_SLACK_ID"
+    -a integrationids_csv="$FACILITIES_SLACK_ID"
 fi
 
 #
@@ -190,6 +198,9 @@ pingdom save-check \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
+#
+# Urgent-Care Health Checks
+#
 pingdom save-check \
   --template fhir-resource \
   -a name=dev-r4-coverage-eligibility-response \
@@ -207,6 +218,35 @@ pingdom save-check \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 
+#
+# Community-Care Health Checks
+#
+pingdom save-check \
+  --template request-with-bearer-token \
+  -a name=production-community-care-patient-primary-care \
+  -a host=api.va.gov \
+  -a url="/services/community-care/v0/eligibility/search?patient=1013294025V219497&serviceType=PrimaryCare&extendedDriveMin=50" \
+  -a group="community-care" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+pingdom save-check \
+  --template request-with-bearer-token \
+  -a name=lab-community-care-patient-primary-care \
+  -a host=dev-api.va.gov \
+  -a url="/services/community-care/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
+  -a group="community-care" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=lab-community-care-vaos-patient-primary-care \
+  -a host=dev-api.va.gov \
+  -a url="/services/community-care-vaos/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
+  -a group="community-care" \
+  -a apikey="$COMMUNITY_CARE_LAB_API_KEY" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 
 #

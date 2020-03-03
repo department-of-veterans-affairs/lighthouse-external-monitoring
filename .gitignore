@@ -1,3 +1,5 @@
+*~
+
 */target/
 !.mvn/wrapper/maven-wrapper.jar
 
@@ -29,3 +31,4 @@ target/
 *.pem
 secrets.conf
 work/
+debug.log

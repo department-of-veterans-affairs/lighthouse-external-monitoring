@@ -4,7 +4,7 @@
   "host": "$host",
   "port": 443,
   "url": "$url",
-  "requestheaderApiKey":"apikey:$apikey",
+  "requestheaderAuthorization":"Authorization:Bearer $authorization_token",
   "encryption": true,
   "verify_certificate": true,
   "resolution": 1,
