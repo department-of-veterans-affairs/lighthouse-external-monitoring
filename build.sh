@@ -31,7 +31,6 @@ PRODUCTION_OAUTH_REFRESH_TOKEN=$(get-secret "/production/oauth/refresh-token")
 DEV_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/dev/oauth/basic-auth-token")
 DEV_OAUTH_REFRESH_TOKEN=$(get-secret "/dev/oauth/refresh-token")
 HEALTH_APIS_STATIC_ACCESS_TOKEN=$(get-secret "/production/health/static-access-token")
-COMMUNITY_CARE_PRODUCTION_API_KEY=$(get-secret "/production/community-care/api-key")
 COMMUNITY_CARE_LAB_API_KEY=$(get-secret "/dev/community-care/api-key")
 
 
@@ -186,15 +185,6 @@ pingdom save-check \
   -a group="community-care" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
-
-pingdom save-check \
-  --template request-with-apikey \
-  -a name=production-community-care-vaos-patient-primary-care \
-  -a host=api.va.gov \
-  -a url="/services/community-care-vaos/v0/eligibility/search?patient=1013294025V219497&serviceType=PrimaryCare&extendedDriveMin=50" \
-  -a group="community-care" \
-  -a apikey="$COMMUNITY_CARE_PRODUCTION_API_KEY" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID"
 
 pingdom save-check \
   --template request-with-apikey \
