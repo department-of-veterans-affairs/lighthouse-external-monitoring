@@ -63,7 +63,7 @@ COMMUNITY_CARE_LAB_API_KEY=$(get-secret "/dev/community-care/api-key")
 TEST_SLACK_CHANNEL_ID=100586
 
 if [ -f ./secrets.conf ]; then
-  TEST_SLACK_CHANNEL_ID=(get-secret "/local/slack-integration/id")
+  TEST_SLACK_CHANNEL_ID=$(get-secret "/local/slack-integration/id")
 fi
 
 HEALTH_APIS_SLACK_ID=$TEST_SLACK_CHANNEL_ID
