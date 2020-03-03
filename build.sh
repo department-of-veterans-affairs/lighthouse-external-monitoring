@@ -190,10 +190,10 @@ pingdom save-check \
   --template request-with-apikey \
   -a name=lab-community-care-vaos-patient-primary-care \
   -a host=dev-api.va.gov \
-  -a url="/services/community-care-vaos/v0/eligibility/search?patient=1013294025V219497&serviceType=PrimaryCare&extendedDriveMin=50" \
+  -a url="/services/community-care-vaos/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
   -a group="community-care" \
   -a apikey="$COMMUNITY_CARE_LAB_API_KEY" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID"
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 
 #
