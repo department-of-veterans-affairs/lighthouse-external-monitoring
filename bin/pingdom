@@ -58,7 +58,7 @@ initialize() {
 
 fail() {
   debug "FAIL: $1"
-  echo -e "$1" >> /dev/stderr
+  echo -e "$1\n" >> /dev/stderr
   exit 1
 }
 
