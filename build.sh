@@ -71,7 +71,54 @@ OAUTH_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 SSL_EXPIRATION_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 FACILITIES_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 ADDRESS_VALIDATION_SLACK_ID=$TEST_SLACK_CHANNEL_ID
+DOMAIN_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 
+#
+# Domain Checks
+#
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-domain \
+  -a host=api.va.gov \
+  -a url="/" \
+  -a port="443" \
+  -a responsetime_threshold="10000" \
+  -a resolution="1" \
+  -a group="domain-health" \
+  -a integrationids_csv="$DOMAIN_SLACK_ID"
+
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-domain \
+  -a host=sandbox-api.va.gov \
+  -a url="/" \
+  -a port="443" \
+  -a responsetime_threshold="10000" \
+  -a resolution="1" \
+  -a group="domain-health" \
+  -a integrationids_csv="$DOMAIN_SLACK_ID"
+
+pingdom save-check \
+  --template https-public-200 \
+  -a name=developer-portal-domain \
+  -a host=developer.va.gov \
+  -a url="/" \
+  -a port="443" \
+  -a responsetime_threshold="10000" \
+  -a resolution="1" \
+  -a group="domain-health" \
+  -a integrationids_csv="$DOMAIN_SLACK_ID"
+
+pingdom save-check \
+  --template https-public-200 \
+  -a name=dev-domain \
+  -a host=dev-api.va.gov \
+  -a url="/" \
+  -a port="443" \
+  -a responsetime_threshold="10000" \
+  -a resolution="1" \
+  -a group="domain-health" \
+  -a integrationids_csv="$DOMAIN_SLACK_ID"
 
 #
 # Address Validation
