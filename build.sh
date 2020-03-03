@@ -10,10 +10,21 @@ then
   exit 0
 fi
 
+#
+# Pingdom will honor this as the debug log.
+#
+export DEBUG_FILE=./debug.log
+
+
 trap onExit EXIT
 onExit() {
   local status=$?
   echo "All done! (status $status)"
+  if [ $status != 0 ]
+  then
+    echo "DEBUG LOG"
+    cat $DEBUG_FILE
+  fi
   exit $status
 }
 
