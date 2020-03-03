@@ -8,6 +8,7 @@ TEMPLATE_ARGS[build]="build-${BUILD_ID:-user-$USER}"
 TEMPLATE_DIR=$BASE_DIR/templates
 WORK_DIR=$BASE_DIR/work
 SECRETS_FILE=secrets.conf
+if [ -z "${DEBUG_FILE:-}" ]; then DEBUG_FILE=$WORK_DIR/debug.log; fi
 # We'll use $SED_SEPARATOR as a sed separator since this would not naturally occur
 # but, just in case it might, we can make it a configurable option later
 SED_SEPARATOR="^"
@@ -56,9 +57,15 @@ initialize() {
 }
 
 fail() {
-  echo -e "$1" > /dev/stderr
+  debug "FAIL: $1"
+  echo -e "$1\n" >> /dev/stderr
   exit 1
 }
+
+debug() {
+  echo "$1" >> $DEBUG_FILE
+}
+
 
 isDebug() {
   if [ "${DEBUG:-false}" == true ]; then return 0; fi
@@ -122,6 +129,7 @@ curlPingdom() {
   shift
   local output=$(mktemp -p $WORK_DIR)
   local status
+  debug "Requesting $path"
   if ! status=$(curl -k \
     $CURL_VERBOSE \
     -w '%{http_code}' \
@@ -133,6 +141,7 @@ curlPingdom() {
   then
     fail "\Failed to request $path: $status"
   fi
+  debug "$status response"
   cat $output
   if [[ $status != 2?? ]]
   then
@@ -208,6 +217,7 @@ saveCheck() {
   processTemplate $output
   # All checks must have a name.
   local name="$(jq -r .name $output)"
+  debug "Saving $TEMPLATE_NAME check \"$name\""
   if [ -z "$name" ]; then fail "Check $TEMPLATE_NAME is missing a name."; fi
   echo "Looking for existing $name check..."
   local id=$(getExistingCheckIdForName $name)
