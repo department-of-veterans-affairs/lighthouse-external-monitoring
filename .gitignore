@@ -31,3 +31,4 @@ target/
 *.pem
 secrets.conf
 work/
+debug.log

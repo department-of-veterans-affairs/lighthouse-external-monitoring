@@ -62,6 +62,10 @@ COMMUNITY_CARE_LAB_API_KEY=$(get-secret "/dev/community-care/api-key")
 #
 TEST_SLACK_CHANNEL_ID=100586
 
+if [ -f ./secrets.conf ]; then
+  TEST_SLACK_CHANNEL_ID=(get-secret "/local/slack-integration/id")
+fi
+
 HEALTH_APIS_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 OAUTH_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 SSL_EXPIRATION_SLACK_ID=$TEST_SLACK_CHANNEL_ID
@@ -98,7 +102,7 @@ then
     -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
     -a group=facilities \
     -a apikey="$PRODUCTION_HEALTH_CHECK_API_KEY" \
-    -a integqrationids_csv="$FACILITIES_SLACK_ID"
+    -a integrationids_csv="$FACILITIES_SLACK_ID"
 fi
 
 #
