@@ -303,6 +303,7 @@ pingdom save-check \
     -a name=production-r4-metadata \
     -a host=api.va.gov \
     -a url="/services/fhir/v0/r4/metadata" \
+    -a port="443" \
     -a responsetime_threshold=10000 \
     -a resolution=1 \
     -a group=metadata \
@@ -313,6 +314,7 @@ pingdom save-check \
     -a name=production-r4-openapi \
     -a host=api.va.gov \
     -a url="/services/fhir/v0/r4/openapi.json" \
+    -a port="443" \
     -a responsetime_threshold=10000 \
     -a resolution=1 \
     -a group=metadata \
@@ -323,6 +325,7 @@ pingdom save-check \
     -a name=production-dstu2-metadata \
     -a host=api.va.gov \
     -a url="/services/fhir/v0/dstu2/metadata" \
+    -a port="443" \
     -a responsetime_threshold=10000 \
     -a resolution=1 \
     -a group=metadata \
@@ -332,6 +335,7 @@ pingdom save-check \
     --template https-public-200 \
     -a name=production-dstu2-openapi.json \
     -a host=api.va.gov \
+    -a port="443" \
     -a url="/services/fhir/v0/dstu2/openapi.json" \
     -a responsetime_threshold=10000 \
     -a resolution=1 \
@@ -342,7 +346,8 @@ pingdom save-check \
     --template https-public-200 \
     -a name=production-data-query-metadata \
     -a host=api.va.gov \
-    -a url="/services/fhir/v0/argonaut/dataquery/metadata" \
+    -a url="/services/fhir/v0/argonaut/data-query/metadata" \
+    -a port="443" \
     -a responsetime_threshold=10000 \
     -a resolution=1 \
     -a group=metadata \
@@ -352,7 +357,8 @@ pingdom save-check \
     --template https-public-200 \
     -a name=production-data-query-openapi \
     -a host=api.va.gov \
-    -a url="/services/fhir/v0/argonaut/dataquery/openapi.json" \
+    -a url="/services/fhir/v0/argonaut/data-query/openapi.json" \
+    -a port="443" \
     -a responsetime_threshold=10000 \
     -a resolution=1 \
     -a group=metadata \
@@ -363,6 +369,7 @@ pingdom save-check \
     -a name=production-community-care-openapi \
     -a host=api.va.gov \
     -a url="/services/community-care/v0/eligibility/openapi.json" \
+    -a port="443" \
     -a responsetime_threshold=10000 \
     -a resolution=1 \
     -a group=metadata \
@@ -375,6 +382,7 @@ pingdom save-check \
   -a name=sandbox-r4-metadata \
   -a host=sandbox-api.va.gov \
   -a url="/services/fhir/v0/r4/metadata" \
+  -a port="443" \
   -a responsetime_threshold=10000 \
   -a resolution=1 \
   -a group=metadata \
@@ -385,6 +393,7 @@ pingdom save-check \
   -a name=sandbox-r4-openapi \
   -a host=sandbox-api.va.gov \
   -a url="/services/fhir/v0/r4/openapi.json" \
+  -a port="443" \
   -a responsetime_threshold=10000 \
   -a resolution=1 \
   -a group=metadata \
@@ -395,6 +404,7 @@ pingdom save-check \
   -a name=sandbox-dstu2-metadata \
   -a host=sandbox-api.va.gov \
   -a url="/services/fhir/v0/dstu2/metadata" \
+  -a port="443" \
   -a responsetime_threshold=10000 \
   -a resolution=1 \
   -a group=metadata \
@@ -405,6 +415,7 @@ pingdom save-check \
   -a name=sandbox-dstu2-openapi.json \
   -a host=sandbox-api.va.gov \
   -a url="/services/fhir/v0/dstu2/openapi.json" \
+  -a port="443" \
   -a responsetime_threshold=10000 \
   -a resolution=1 \
   -a group=metadata \
@@ -414,7 +425,8 @@ pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-data-query-metadata \
   -a host=sandbox-api.va.gov \
-  -a url="/services/fhir/v0/argonaut/dataquery/metadata" \
+  -a url="/services/fhir/v0/argonaut/data-query/metadata" \
+  -a port="443" \
   -a responsetime_threshold=10000 \
   -a resolution=1 \
   -a group=metadata \
@@ -424,7 +436,8 @@ pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-data-query-openapi \
   -a host=sandbox-api.va.gov \
-  -a url="/services/fhir/v0/argonaut/dataquery/openapi.json" \
+  -a url="/services/fhir/v0/argonaut/data-query/openapi.json" \
+  -a port="443" \
   -a responsetime_threshold=10000 \
   -a resolution=1 \
   -a group=metadata \
@@ -435,6 +448,7 @@ pingdom save-check \
   -a name=sandbox-community-care-openapi \
   -a host=sandbox-api.va.gov \
   -a url="/services/community-care/v0/eligibility/openapi.json" \
+  -a port="443" \
   -a responsetime_threshold=10000 \
   -a resolution=1 \
   -a group=metadata \
