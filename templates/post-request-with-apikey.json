@@ -5,7 +5,7 @@
   "port": 443,
   "url": "$url",
   "requestheaderApiKey":"apikey:$apikey",
-  "requestheaderAccept":"Accept:application/json+fhir",
+  "requestheaderContentType":"Content-Type:application/json",
   "postdata":"$postdata",
   "encryption": true,
   "verify_certificate": true,
