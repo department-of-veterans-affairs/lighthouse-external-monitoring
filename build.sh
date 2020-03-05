@@ -42,7 +42,10 @@ export PINGDOM_TOKEN=$(get-secret "/monitoring/pingdom-token")
 #
 # NOTE: AWS Systems Manager secret naming convention <env>/<product>/<key-name>
 #
-PRODUCTION_HEALTH_CHECK_API_KEY=$(get-secret "/production/api-gateway/health-check-api-key")
+SANDBOX_FACILITIES_API_KEY=$(get-secret "/sandbox/facilities/api-key")
+PRODUCTION_FACILITIES_API_KEY=$(get-secret "/production/facilities/api-key")
+SANDBOX_ADDRESS_VALIDATION_API_KEY=$(get-secret "/sandbox/address-validation/api-key")
+PRODUCTION_ADDRESS_VALIDATION_API_KEY=$(get-secret "/production/address-validation/api-key")
 PRODUCTION_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/production/oauth/basic-auth-token")
 PRODUCTION_OAUTH_REFRESH_TOKEN=$(get-secret "/production/oauth/refresh-token")
 DEV_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/dev/oauth/basic-auth-token")
@@ -52,7 +55,7 @@ COMMUNITY_CARE_LAB_API_KEY=$(get-secret "/dev/community-care/api-key")
 
 
 #
-# These are Slack integrtion IDs. Unfortunately, there is no Pingdom API for determining these
+# These are Slack integration IDs. Unfortunately, there is no Pingdom API for determining these
 # at run time and must be configured here.
 #
 
@@ -124,33 +127,46 @@ pingdom save-check \
 # Address Validation
 #
 
-#
-# Still missing working API keys for facilities and address validation
-#
-if [ "${SKIP_BROKEN_ADHOC_CHECKS:-true}" == "false" ]
-then
-  pingdom save-check \
-    --template post-request-with-apikey \
-    -a name=production-address-validation \
-    -a host=api.va.gov \
-    -a url="/services/address_validation/v1/candidate" \
-    -a group=address-validation \
-    -a apikey="$PRODUCTION_HEALTH_CHECK_API_KEY" \
-    -a postdata="$(escape-json '{"requestAddress": {"addressLine1": "1600 Pennsylvania Ave", "city": "Washington", "stateProvince": {"name": "DC"}, "requestCountry": {"countryName": "USA"}}}')" \
-    -a integrationids_csv="$ADDRESS_VALIDATION_SLACK_ID"
+pingdom save-check \
+  --template post-request-with-apikey \
+  -a name=sandbox-address-validation \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/address_validation/v1/candidate" \
+  -a group=address-validation \
+  -a apikey="$SANDBOX_ADDRESS_VALIDATION_API_KEY" \
+  -a postdata="$(escape-json '{"requestAddress": {"addressLine1": "1600 Pennsylvania Ave", "city": "Washington", "stateProvince": {"name": "DC"}, "requestCountry": {"countryName": "USA"}}}')" \
+  -a integrationids_csv="$ADDRESS_VALIDATION_SLACK_ID"
+
+pingdom save-check \
+  --template post-request-with-apikey \
+  -a name=production-address-validation \
+  -a host=api.va.gov \
+  -a url="/services/address_validation/v1/candidate" \
+  -a group=address-validation \
+  -a apikey="$PRODUCTION_ADDRESS_VALIDATION_API_KEY" \
+  -a postdata="$(escape-json '{"requestAddress": {"addressLine1": "1600 Pennsylvania Ave", "city": "Washington", "stateProvince": {"name": "DC"}, "requestCountry": {"countryName": "USA"}}}')" \
+  -a integrationids_csv="$ADDRESS_VALIDATION_SLACK_ID"
 
   #
   # Facilities
   #
   pingdom save-check \
     --template request-with-apikey \
+    -a name=sandbox-facilities \
+    -a host=sandbox-api.va.gov \
+    -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
+    -a group=facilities \
+    -a apikey="$SANDBOX_FACILITIES_API_KEY" \
+    -a integrationids_csv="$FACILITIES_SLACK_ID"
+
+  pingdom save-check \
+    --template request-with-apikey \
     -a name=production-facilities \
     -a host=api.va.gov \
     -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
     -a group=facilities \
-    -a apikey="$PRODUCTION_HEALTH_CHECK_API_KEY" \
+    -a apikey="$PRODUCTION_FACILITIES_API_KEY" \
     -a integrationids_csv="$FACILITIES_SLACK_ID"
-fi
 
 #
 # SSL Checks
