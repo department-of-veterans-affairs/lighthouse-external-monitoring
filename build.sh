@@ -498,6 +498,51 @@ pingdom save-check \
   -a group="claims" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
+#
+# Documents API Health Checks
+#
+PRODUCTION_DOCUMENTS_API_KEY=$(get-secret "/production/documents/api-key")
+SANDBOX_DOCUMENTS_API_KEY=$(get-secret "/sandbox/documents/api-key")
+
+#v0
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=production-documents-v0-health-check \
+  -a host=api.va.gov \
+  -a url="/services/vba_documents/v0/healthcheck" \
+  -a apikey="$PRODUCTION_DOCUMENTS_API_KEY" \
+  -a group="documents" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=sandbox-documents-v0-health-check \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/vba_documents/v0/healthcheck" \
+  -a apikey="$SANDBOX_DOCUMENTS_API_KEY" \
+  -a group="documents" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+#v1
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=production-documents-v1-health-check \
+  -a host=api.va.gov \
+  -a url="/services/vba_documents/v1/healthcheck" \
+  -a apikey="$PRODUCTION_DOCUMENTS_API_KEY" \
+  -a group="documents" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=sandbox-documents-v1-health-check \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/vba_documents/v1/healthcheck" \
+  -a apikey="$SANDBOX_DOCUMENTS_API_KEY" \
+  -a group="documents" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+
 
 #
 # URLs monitored by blackbox
@@ -515,10 +560,12 @@ pingdom save-check \
 # developer.va.gov/
 # api.va.gov/services/meta/v0/ping
 # api.va.gov/services/appeals/v0/healthcheck
-# api.va.gov/services/claims/v0/healthcheck
-# api.va.gov/services/claims/v1/healthcheck
-# api.va.gov/services/vba_documents/v0/healthcheck
-# api.va.gov/services/vba_documents/v1/healthcheck
+#
+
+
+# DONE
+# api.va.gov/services/va_facilities/v0/facilities?lat=41.881832&long=87.6233&limit=1
+# api.va.gov/services/address_validation/v1/candidate
 # api.va.gov/services/fhir/v0/r4/metadata
 # api.va.gov/services/fhir/v0/r4/openapi.json
 # api.va.gov/services/fhir/v0/dstu2/metadata
@@ -526,9 +573,7 @@ pingdom save-check \
 # api.va.gov/services/fhir/v0/argonaut/dataquery/metadata
 # api.va.gov/services/fhir/v0/argonaut/dataquery/openapi.json
 # api.va.gov/services/communitycare/v0/eligibility/openapi.json
-#
-
-
-# DONE
-# api.va.gov/services/va_facilities/v0/facilities?lat=41.881832&long=87.6233&limit=1
-# api.va.gov/services/address_validation/v1/candidate
+# api.va.gov/services/claims/v0/healthcheck
+# api.va.gov/services/claims/v1/healthcheck
+# api.va.gov/services/vba_documents/v0/healthcheck
+# api.va.gov/services/vba_documents/v1/healthcheck
