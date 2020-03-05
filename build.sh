@@ -455,6 +455,51 @@ pingdom save-check \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 #
+# Claims Health Checks
+#
+PRODUCTION_CLAIMS_API_KEY=$(get-secret "/production/claims/api-key")
+SANDBOX_CLAIMS_API_KEY=$(get-secret "/sandbox/claims/api-key")
+
+# v0
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=production-claims-v0-health-check \
+  -a host=api.va.gov \
+  -a url="/services/claims/v0/healthcheck" \
+  -a apikey="$PRODUCTION_CLAIMS_API_KEY" \
+  -a group="claims" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=sandbox-claims-v0-health-check \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/claims/v0/healthcheck" \
+  -a apikey="$SANDBOX_CLAIMS_API_KEY" \
+  -a group="claims" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+# v1
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=production-claims-v1-health-check \
+  -a host=api.va.gov \
+  -a url="/services/claims/v1/healthcheck" \
+  -a apikey="$PRODUCTION_CLAIMS_API_KEY" \
+  -a group="claims" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=sandbox-claims-v1-health-check \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/claims/v1/healthcheck" \
+  -a apikey="$SANDBOX_CLAIMS_API_KEY" \
+  -a group="claims" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+
+#
 # URLs monitored by blackbox
 #
 # api.vets.gov
