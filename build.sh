@@ -455,6 +455,31 @@ pingdom save-check \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 #
+# Appeals Health Checks
+#
+PRODUCTION_APPEALS_API_KEY=$(get-secret "/production/appeals/api-key")
+SANDBOX_APPEALS_API_KEY=$(get-secret "/sandbox/appeals/api-key")
+
+# v0
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=production-appeals-v0-health-check \
+  -a host=api.va.gov \
+  -a url="/services/appeals/v0/healthcheck" \
+  -a apikey="$PRODUCTION_APPEALS_API_KEY" \
+  -a group="appeals" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=sandbox-appeals-v0-health-check \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/appeals/v0/healthcheck" \
+  -a apikey="$SANDBOX_APPEALS_API_KEY" \
+  -a group="appeals" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+#
 # Claims Health Checks
 #
 PRODUCTION_CLAIMS_API_KEY=$(get-secret "/production/claims/api-key")
