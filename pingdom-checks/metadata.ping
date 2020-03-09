@@ -8,8 +8,8 @@ pingdom save-check \
     -a responsetime_threshold=10000 \
     -a resolution=1 \
     -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_I";
-echo $?
+    -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+
   pingdom save-check \
     --template https-public-200 \
     -a name=production-r4-openapi \

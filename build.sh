@@ -70,7 +70,7 @@ allChecks(){
   find pingdom-checks -name *.ping
 }
 
-allChecks | xargs -n1 -I{} bash -c "set -euo pipefail && {} || exit 255"
+allChecks | xargs -n1 -I{} bash -c "set -euo pipefail; {} ||  exit 255"
 
 
 #
