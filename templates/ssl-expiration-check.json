@@ -7,7 +7,7 @@
   "encryption": true,
   "verify_certificate": true,
   "resolution": 60,
-  "responsetime_threshold": 10000,
+  "responsetime_threshold": 30000,
   "sendnotificationwhendown": 2,
   "ssl_down_days_before": 60,
   "notifyagainevery": 0,

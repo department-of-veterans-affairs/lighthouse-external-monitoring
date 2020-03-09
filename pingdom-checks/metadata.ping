@@ -5,7 +5,7 @@ pingdom save-check \
     -a host=api.va.gov \
     -a url="/services/fhir/v0/r4/metadata" \
     -a port="443" \
-    -a responsetime_threshold=10000 \
+    -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
     -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
@@ -16,7 +16,7 @@ pingdom save-check \
     -a host=api.va.gov \
     -a url="/services/fhir/v0/r4/openapi.json" \
     -a port="443" \
-    -a responsetime_threshold=10000 \
+    -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
     -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
@@ -27,7 +27,7 @@ pingdom save-check \
     -a host=api.va.gov \
     -a url="/services/fhir/v0/dstu2/metadata" \
     -a port="443" \
-    -a responsetime_threshold=10000 \
+    -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
     -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
@@ -38,7 +38,7 @@ pingdom save-check \
     -a host=api.va.gov \
     -a port="443" \
     -a url="/services/fhir/v0/dstu2/openapi.json" \
-    -a responsetime_threshold=10000 \
+    -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
     -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
@@ -49,7 +49,7 @@ pingdom save-check \
     -a host=api.va.gov \
     -a url="/services/fhir/v0/argonaut/data-query/metadata" \
     -a port="443" \
-    -a responsetime_threshold=10000 \
+    -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
     -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
@@ -60,7 +60,7 @@ pingdom save-check \
     -a host=api.va.gov \
     -a url="/services/fhir/v0/argonaut/data-query/openapi.json" \
     -a port="443" \
-    -a responsetime_threshold=10000 \
+    -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
     -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
@@ -71,7 +71,7 @@ pingdom save-check \
     -a host=api.va.gov \
     -a url="/services/community-care/v0/eligibility/openapi.json" \
     -a port="443" \
-    -a responsetime_threshold=10000 \
+    -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
     -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
@@ -84,7 +84,7 @@ pingdom save-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/fhir/v0/r4/metadata" \
   -a port="443" \
-  -a responsetime_threshold=10000 \
+  -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
@@ -95,7 +95,7 @@ pingdom save-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/fhir/v0/r4/openapi.json" \
   -a port="443" \
-  -a responsetime_threshold=10000 \
+  -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
@@ -106,7 +106,7 @@ pingdom save-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/fhir/v0/dstu2/metadata" \
   -a port="443" \
-  -a responsetime_threshold=10000 \
+  -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
@@ -117,7 +117,7 @@ pingdom save-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/fhir/v0/dstu2/openapi.json" \
   -a port="443" \
-  -a responsetime_threshold=10000 \
+  -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
@@ -128,7 +128,7 @@ pingdom save-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/fhir/v0/argonaut/data-query/metadata" \
   -a port="443" \
-  -a responsetime_threshold=10000 \
+  -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
@@ -139,7 +139,7 @@ pingdom save-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/fhir/v0/argonaut/data-query/openapi.json" \
   -a port="443" \
-  -a responsetime_threshold=10000 \
+  -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
@@ -150,7 +150,7 @@ pingdom save-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/community-care/v0/eligibility/openapi.json" \
   -a port="443" \
-  -a responsetime_threshold=10000 \
+  -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID";

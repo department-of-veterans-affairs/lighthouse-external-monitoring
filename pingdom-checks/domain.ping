@@ -6,7 +6,7 @@ pingdom save-check \
   -a host=api.va.gov \
   -a url="/" \
   -a port="443" \
-  -a responsetime_threshold="10000" \
+  -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="domain-health" \
   -a integrationids_csv="$DOMAIN_SLACK_ID";
@@ -17,7 +17,7 @@ pingdom save-check \
   -a host=sandbox-api.va.gov \
   -a url="/" \
   -a port="443" \
-  -a responsetime_threshold="10000" \
+  -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="domain-health" \
   -a integrationids_csv="$DOMAIN_SLACK_ID";
@@ -28,7 +28,7 @@ pingdom save-check \
   -a host=developer.va.gov \
   -a url="/" \
   -a port="443" \
-  -a responsetime_threshold="10000" \
+  -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="domain-health" \
   -a integrationids_csv="$DOMAIN_SLACK_ID";
@@ -39,7 +39,7 @@ pingdom save-check \
   -a host=dev-api.va.gov \
   -a url="/" \
   -a port="443" \
-  -a responsetime_threshold="10000" \
+  -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="domain-health" \
   -a integrationids_csv="$DOMAIN_SLACK_ID";

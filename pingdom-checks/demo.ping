@@ -7,7 +7,7 @@ pingdom save-check \
     -a host=dev-api.va.gov \
     -a url="/services/fhir/v0/shanktopus" \
     -a port="443" \
-    -a responsetime_threshold=10000 \
+    -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
     -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
