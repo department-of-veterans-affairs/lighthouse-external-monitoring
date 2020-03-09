@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
 COMMUNITY_CARE_LAB_API_KEY=$(get-secret "/dev/community-care/api-key")
 
 

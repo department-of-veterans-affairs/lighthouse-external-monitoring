@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
 SSL_EXPIRATION_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 
 pingdom save-check \

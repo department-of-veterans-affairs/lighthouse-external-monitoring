@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
 PRODUCTION_APPEALS_API_KEY=$(get-secret "/production/appeals/api-key")
 SANDBOX_APPEALS_API_KEY=$(get-secret "/sandbox/appeals/api-key")
 

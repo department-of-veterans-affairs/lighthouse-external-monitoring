@@ -14,7 +14,7 @@ fi
 # Pingdom will honor this as the debug log.
 #
 export DEBUG_FILE=./debug.log
-
+export WORKING_DIR=$(pwd)
 
 trap onExit EXIT
 onExit() {
@@ -70,7 +70,7 @@ allChecks(){
   find pingdom-checks -name *.ping
 }
 
-allChecks | xargs -n1 bash 
+allChecks | xargs -n1 -I{} bash -c "set -euo pipefail && {} || exit 255"
 
 
 #
