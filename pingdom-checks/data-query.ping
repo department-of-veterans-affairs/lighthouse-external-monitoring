@@ -1,0 +1,39 @@
+pingdom save-check \
+  --template fhir-resource \
+  -a name=production-dstu2-patient \
+  -a host=api.va.gov \
+  -a url="/services/fhir/v0/dstu2/Patient/1011537977V693883" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+
+pingdom save-check \
+  --template fhir-resource \
+  -a name=production-dstu2-condition \
+  -a host=api.va.gov \
+  -a url="/services/fhir/v0/dstu2/Condition?patient=1011537977V693883" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+
+pingdom save-check \
+  --template fhir-resource \
+  -a name=production-dstu2-medication-statement \
+  -a host=api.va.gov \
+  -a url="/services/fhir/v0/dstu2/MedicationStatement?patient=1011537977V693883" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+
+pingdom save-check \
+  --template simple-resource \
+  -a name=dev-health-alb \
+  -a host=dev-api.va.gov \
+  -a url="/services/fhir/v0/healthz" \
+  -a group="health-apis" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+
+pingdom save-check \
+  --template fhir-resource \
+  -a name=dev-dstu2-patient \
+  -a host=dev-api.va.gov \
+  -a url="/services/fhir/v0/dstu2/Patient/1011537977V693883" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";

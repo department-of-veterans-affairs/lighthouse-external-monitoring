@@ -1,0 +1,21 @@
+SANDBOX_FACILITIES_API_KEY=$(get-secret "/sandbox/facilities/api-key")
+PRODUCTION_FACILITIES_API_KEY=$(get-secret "/production/facilities/api-key")
+FACILITIES_SLACK_ID=$TEST_SLACK_CHANNEL_ID
+
+pingdom save-check \
+    --template request-with-apikey \
+    -a name=sandbox-facilities \
+    -a host=sandbox-api.va.gov \
+    -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
+    -a group=facilities \
+    -a apikey="$SANDBOX_FACILITIES_API_KEY" \
+    -a integrationids_csv="$FACILITIES_SLACK_ID";
+
+  pingdom save-check \
+    --template request-with-apikey \
+    -a name=production-facilities \
+    -a host=api.va.gov \
+    -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
+    -a group=facilities \
+    -a apikey="$PRODUCTION_FACILITIES_API_KEY" \
+    -a integrationids_csv="$FACILITIES_SLACK_ID";
