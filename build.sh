@@ -65,13 +65,9 @@ export TEST_SLACK_CHANNEL_ID
 
 export HEALTH_APIS_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 
-
-allChecks(){
-  find pingdom-checks -name *.ping
-}
-
-allChecks | xargs -n1 -I{} bash -c "set -euo pipefail; {} ||  exit 255"
-
+for check in ./pingdom-checks/*.ping; do
+  bash -euo pipefail $check || exit 1
+done
 
 #
 # URLs monitored by blackbox
@@ -79,20 +75,20 @@ allChecks | xargs -n1 -I{} bash -c "set -euo pipefail; {} ||  exit 255"
 # api.vets.gov
 # api.vets.gov/
 # va.gov
-# api.va.gov
-# api.va.gov/
 # api.va.gov/health/
 # api.va.gov/scorecard/
 # api.va.gov/gids/status
 # api.va.gov/healthcheck
-# developer.va.gov
-# developer.va.gov/
-# api.va.gov/services/meta/v0/ping
-# api.va.gov/services/appeals/v0/healthcheck
 #
 
 
 # DONE
+# api.va.gov
+# api.va.gov/
+# developer.va.gov
+# developer.va.gov/
+# api.va.gov/services/meta/v0/ping
+# api.va.gov/services/appeals/v0/healthcheck
 # api.va.gov/services/va_facilities/v0/facilities?lat=41.881832&long=87.6233&limit=1
 # api.va.gov/services/address_validation/v1/candidate
 # api.va.gov/services/fhir/v0/r4/metadata
