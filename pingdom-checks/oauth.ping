@@ -3,6 +3,8 @@ set -euo pipefail
 
 PRODUCTION_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/production/oauth/basic-auth-token")
 PRODUCTION_OAUTH_REFRESH_TOKEN=$(get-secret "/production/oauth/refresh-token")
+DEV_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/dev/oauth/basic-auth-token")
+DEV_OAUTH_REFRESH_TOKEN=$(get-secret "/dev/oauth/refresh-token")
 OAUTH_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 
 pingdom save-check \

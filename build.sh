@@ -70,7 +70,7 @@ allChecks(){
   find pingdom-checks -name *.ping
 }
 
-allChecks | xargs -n1 bash -c
+allChecks | xargs -n1 bash 
 
 
 #
