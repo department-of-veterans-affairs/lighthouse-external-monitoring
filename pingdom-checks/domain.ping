@@ -10,7 +10,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="domain-health" \
   -a integrationids_csv="$DOMAIN_SLACK_ID" \
-  -a userids_csv=""
+  -a userids_csv=" "
 
 pingdom save-check \
   --template https-public-200 \
@@ -22,7 +22,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="domain-health" \
   -a integrationids_csv="$DOMAIN_SLACK_ID" \
-  -a userids_csv=""
+  -a userids_csv=" "
 
 pingdom save-check \
   --template https-public-200 \
@@ -34,7 +34,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="domain-health" \
   -a integrationids_csv="$DOMAIN_SLACK_ID" \
-  -a userids_csv=""
+  -a userids_csv=" "
 
 pingdom save-check \
   --template https-public-200 \
@@ -46,4 +46,4 @@ pingdom save-check \
   -a resolution="1" \
   -a group="domain-health" \
   -a integrationids_csv="$DOMAIN_SLACK_ID" \
-  -a userids_csv=""
+  -a userids_csv=" "
