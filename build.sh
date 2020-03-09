@@ -31,6 +31,10 @@ onExit() {
 export PATH=${WORKSPACE:-.}/bin:$PATH
 if [ "${DEBUG:-false}" == "true" ]; then export DEBUG; fi
 
+
+. user-ids.conf
+. integration-ids.conf
+
 #
 # PINGDOM_TOKEN will be used by the pingdom script as the Pingdom API key.
 #
@@ -51,11 +55,6 @@ export HEALTH_APIS_STATIC_ACCESS_TOKEN=$(get-secret "/production/health/static-a
 # at run time and must be configured here.
 #
 
-#
-# During the cutover phase, we'll route alerts to the shanktovoid to
-# prevent duplicate spam in the real monitoring channel.
-#
-TEST_SLACK_CHANNEL_ID=100586
 
 if [ -f ./secrets.conf ]; then
   TEST_SLACK_CHANNEL_ID=$(get-secret "/local/slack-integration/id")

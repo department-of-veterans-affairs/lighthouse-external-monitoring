@@ -9,7 +9,8 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="domain-health" \
-  -a integrationids_csv="$DOMAIN_SLACK_ID";
+  -a integrationids_csv="$DOMAIN_SLACK_ID" \
+  -a userids_csv=""
 
 pingdom save-check \
   --template https-public-200 \
@@ -20,7 +21,8 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="domain-health" \
-  -a integrationids_csv="$DOMAIN_SLACK_ID";
+  -a integrationids_csv="$DOMAIN_SLACK_ID" \
+  -a userids_csv=""
 
 pingdom save-check \
   --template https-public-200 \
@@ -31,7 +33,8 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="domain-health" \
-  -a integrationids_csv="$DOMAIN_SLACK_ID";
+  -a integrationids_csv="$DOMAIN_SLACK_ID" \
+  -a userids_csv=""
 
 pingdom save-check \
   --template https-public-200 \
@@ -42,4 +45,5 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="domain-health" \
-  -a integrationids_csv="$DOMAIN_SLACK_ID";
+  -a integrationids_csv="$DOMAIN_SLACK_ID" \
+  -a userids_csv=""

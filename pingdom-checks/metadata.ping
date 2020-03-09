@@ -8,7 +8,8 @@ pingdom save-check \
     -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
 
   pingdom save-check \
     --template https-public-200 \
@@ -19,7 +20,8 @@ pingdom save-check \
     -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
 
   pingdom save-check \
     --template https-public-200 \
@@ -30,7 +32,8 @@ pingdom save-check \
     -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
 
   pingdom save-check \
     --template https-public-200 \
@@ -41,7 +44,8 @@ pingdom save-check \
     -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
 
   pingdom save-check \
     --template https-public-200 \
@@ -52,7 +56,8 @@ pingdom save-check \
     -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
 
   pingdom save-check \
     --template https-public-200 \
@@ -63,7 +68,8 @@ pingdom save-check \
     -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
 
   pingdom save-check \
     --template https-public-200 \
@@ -74,7 +80,8 @@ pingdom save-check \
     -a responsetime_threshold=30000 \
     -a resolution=1 \
     -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
 
 #sandbox
 
@@ -87,7 +94,8 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+  -a userids_csv=""
 
 pingdom save-check \
   --template https-public-200 \
@@ -98,7 +106,8 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+  -a userids_csv=""
 
 pingdom save-check \
   --template https-public-200 \
@@ -109,7 +118,8 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+  -a userids_csv=""
 
 pingdom save-check \
   --template https-public-200 \
@@ -120,7 +130,8 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+  -a userids_csv=""
 
 pingdom save-check \
   --template https-public-200 \
@@ -131,7 +142,8 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+  -a userids_csv=""
 
 pingdom save-check \
   --template https-public-200 \
@@ -142,7 +154,8 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+  -a userids_csv=""
 
 pingdom save-check \
   --template https-public-200 \
@@ -153,4 +166,5 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+  -a userids_csv=""

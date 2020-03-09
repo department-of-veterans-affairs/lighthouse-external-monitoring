@@ -12,5 +12,6 @@
   "notifywhenbackup": true,
   "tags" : [ "managed", "$group" ],
   "responsetime_threshold": "$responsetime_threshold",
+  "userids" : [ $userids_csv ],
   "integrationids": [ $integrationids_csv ]
 }

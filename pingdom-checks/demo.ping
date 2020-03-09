@@ -1,13 +1,15 @@
 #
 # This check is used to demonstrate pingdom functionality and not a real check
 #
+
 pingdom save-check \
-    --template https-public-200 \
-    -a name=shanktopus-demo \
-    -a host=dev-api.va.gov \
-    -a url="/services/fhir/v0/shanktopus" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  --template https-public-200 \
+  -a name=shanktopus-demo \
+  -a host=dev-api.va.gov \
+  -a url="/services/fhir/v0/shanktopus" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+  -a userids_csv="$STATUS_PAGE_DEMO_USER"
