@@ -69,36 +69,3 @@ for check in ./pingdom-checks/*.ping; do
   bash -euo pipefail $check || exit 1
 done
 
-#
-# URLs monitored by blackbox
-#
-# api.vets.gov
-# api.vets.gov/
-# va.gov
-# api.va.gov/health/
-# api.va.gov/scorecard/
-# api.va.gov/gids/status
-# api.va.gov/healthcheck
-#
-
-
-# DONE
-# api.va.gov
-# api.va.gov/
-# developer.va.gov
-# developer.va.gov/
-# api.va.gov/services/meta/v0/ping
-# api.va.gov/services/appeals/v0/healthcheck
-# api.va.gov/services/va_facilities/v0/facilities?lat=41.881832&long=87.6233&limit=1
-# api.va.gov/services/address_validation/v1/candidate
-# api.va.gov/services/fhir/v0/r4/metadata
-# api.va.gov/services/fhir/v0/r4/openapi.json
-# api.va.gov/services/fhir/v0/dstu2/metadata
-# api.va.gov/services/fhir/v0/dstu2/openapi.json
-# api.va.gov/services/fhir/v0/argonaut/dataquery/metadata
-# api.va.gov/services/fhir/v0/argonaut/dataquery/openapi.json
-# api.va.gov/services/communitycare/v0/eligibility/openapi.json
-# api.va.gov/services/claims/v0/healthcheck
-# api.va.gov/services/claims/v1/healthcheck
-# api.va.gov/services/vba_documents/v0/healthcheck
-# api.va.gov/services/vba_documents/v1/healthcheck
