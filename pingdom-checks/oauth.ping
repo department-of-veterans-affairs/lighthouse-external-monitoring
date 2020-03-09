@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PRODUCTION_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/production/oauth/basic-auth-token")
+PRODUCTION_OAUTH_REFRESH_TOKEN=$(get-secret "/production/oauth/refresh-token")
+OAUTH_SLACK_ID=$TEST_SLACK_CHANNEL_ID
+
+pingdom save-check \
+  --template oauth-refresh-token \
+  -a name=production-oauth-refresh-token \
+  -a host=api.va.gov \
+  -a url=/oauth2/token \
+  -a authorization_token="$PRODUCTION_OAUTH_BASIC_AUTH_TOKEN" \
+  -a refresh_token="$PRODUCTION_OAUTH_REFRESH_TOKEN" \
+  -a integrationids_csv="$OAUTH_SLACK_ID";
+
+pingdom save-check \
+  --template oauth-refresh-token \
+  -a name=dev-oauth-refresh-token \
+  -a host=dev-api.va.gov \
+  -a url=/oauth2/token \
+  -a authorization_token="$DEV_OAUTH_BASIC_AUTH_TOKEN" \
+  -a refresh_token="$DEV_OAUTH_REFRESH_TOKEN" \
+  -a integrationids_csv="$OAUTH_SLACK_ID";

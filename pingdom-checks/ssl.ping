@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SSL_EXPIRATION_SLACK_ID=$TEST_SLACK_CHANNEL_ID
+
+pingdom save-check \
+  --template ssl-expiration-check \
+  -a name=ssl-developer-portal \
+  -a host=developer.va.gov \
+  -a integrationids_csv="$SSL_EXPIRATION_SLACK_ID";
+
+pingdom save-check \
+  --template ssl-expiration-check \
+  -a name=ssl-dev-api \
+  -a host=dev-api.va.gov \
+  -a integrationids_csv="$SSL_EXPIRATION_SLACK_ID";
+
+pingdom save-check \
+  --template ssl-expiration-check \
+  -a name=ssl-production-api \
+  -a host=api.va.gov \
+  -a integrationids_csv="$SSL_EXPIRATION_SLACK_ID";
+
+pingdom save-check \
+  --template ssl-expiration-check \
+  -a name=ssl-tools-health \
+  -a host=tools.health.dev-developer.va.gov \
+  -a integrationids_csv="$SSL_EXPIRATION_SLACK_ID";
