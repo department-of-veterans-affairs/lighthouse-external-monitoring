@@ -10,6 +10,6 @@ pingdom save-check \
   -a port="443" \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
-  -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
+  -a group=demo \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID,$TEST_PAGER_DUTY" \
   -a userids_csv="$STATUS_PAGE_DEMO_USER"

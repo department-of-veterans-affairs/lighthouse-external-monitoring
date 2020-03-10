@@ -64,7 +64,8 @@ export TEST_SLACK_CHANNEL_ID
 
 export HEALTH_APIS_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 
-for check in ./pingdom-checks/*.ping; do
+
+for check in ./pingdom-checks/${CHECK_FILTER:-*.ping}; do
   bash -euo pipefail $check || exit 1
 done
 
