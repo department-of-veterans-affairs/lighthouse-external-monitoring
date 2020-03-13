@@ -72,6 +72,8 @@ Pingdom will be integrated with
 - `build.sh` defines the checks and is executed as part of the automated build.
   This script also defines integration IDs.
 - `bin/pingdom` provides basic ability to interact with the Pingdom API.
+- `bin/get-secret` is a utility to extract secrets from AWS Parameter store with the ability
+   to try local secrets first.
 - `templates/*.json` defines check templates in Pingdom API format.
   These checks are processed to substitute template variables and then uploaded
   to Pingdom to create or update checks.
@@ -83,8 +85,68 @@ Pingdom will be integrated with
    User IDs that are not shared can be placed in the `*.ping` health checks directly.
 
 ### Create a new check or update an existing
-Update the `build.sh` to include a new check definition or change an existing check.
-Updates to checks are performed by _name_. Name changes are seen as new checks.
+Create or update `pingdom-checks/*.ping` file to include a new check definition or change an 
+existing check.
+
+> Pro Tip: Create a curl command of the check _first_. Once you done this, translating it
+> to Pingdom is fairly straight forward.
+
+Pingdom checks use a _template_ to create the HTTP request. Many checks follow the same pattern,
+so it is likely a template already exists to meet your needs. If not, create a new template
+in Pingdom API format.
+
+> Warning: As of March 2020, the Pingdom API incorrectly documents request headers structure.
+> Instead of a _map_ of headers, you must create a field named `requestheader<Name>`, e.g.
+> ```
+> "requestheaderAuthorization":"Authorization:Bearer $authorization_token",
+> "requestheaderAccept":"Accept:application/json+fhir",
+> ```
+
+
+Updates to checks are performed by _name_. Name changes are seen as new checks. If you need
+to change the name, you will need to delete the previous check manually.
+
+#### Template processing
+Templates include variables that are substituted as the checks are processed. For example, 
+```
+{
+  "name": "$name",
+  "type": "http",
+  "host": "$host",
+  ...
+```
+The check definition must include _all_ variables or it will be rejected.
+
+#### Using `bin/pingdom`
+The pingdom utility is automatically included in the path available to your checks.
+You can use it manually also. See `bin/pingdom --help`
+
+##### Saving checks
+The `save-check` command is used to create or update checks in Pingdom. 
+You must specify a template (by name) and template arguments for processing. 
+```
+pingdom save-check \
+  --template awesome-check \
+  -a name=production-awesomeness \
+  -a host=api.va.gov \
+  ...
+```
+You may _test_ templating with the `process-template` command.
+```
+$ bin/pingdom process-template --template https-public-200 -a name=awesome -a url=awesome.com
+Missing template argument: port
+Missing template argument: host
+Missing template argument: resolution
+Missing template argument: group
+Missing template argument: responsetime_threshold
+Missing template argument: userids_csv
+Missing template argument: integrationids_csv
+Missing parameters for template: https-public-200
+``` 
+> Pro Tip: If a template requires an integration or user argument but you do not need one,
+> you may use `$NO_INTEGRATIONS` or `$NO_USERS` to satisfy the template. 
+
+
 
 
 ### Running locally
@@ -108,12 +170,16 @@ have permission to access the parameter store.
 You can test your local secrets with the `check-local-secrets` utility.
 
 
+
+
+
 # What's done by hand?
 Unfortunately, our robots can't do 100% of activities. At least not yet.
 The following activities must be done by a human.
+- Secret management
 - Creating or modifying integrations with Pingdom, e.g. Slack or Statuspage.io
 - Deleting checks
-- Determining integration and user IDs.
+- Determining integration and user IDs
 
 
 ## How to determining integration and user IDs
@@ -128,7 +194,7 @@ Prerequisites
 Steps
 - Manually configure the `manual-integrations-test` check in Pingdom to include _just_ the
   integration or user you are interested in.
-  https://my.pingdom.com/reports/uptime#check=5834577&daterange=7days&tab=uptime_tab
+  Edit the [manual-integration-test](https://my.pingdom.com/reports/uptime#check=5834577).
 - After saving the check, pull the configuration locally. The ID will be available in the
   response.
 - Update `integration-ids.conf`, `user-ids.conf` or your `*.ping` check as appropriate.
