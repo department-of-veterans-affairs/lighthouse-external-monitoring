@@ -36,12 +36,12 @@ save-check --template <template> --template-args key=value ...
   Process a template and save it, creating a new one or updating an existing entry by the same check name.
 
 Example:
-$0 save-check \
-  --template fhir-resource \
-  -a name=production-dstu2-medication-statement \
-  -a host=api.va.gov \
-  -a url="/services/fhir/v0/dstu2/MedicationStatement?patient=1011537977V693883" \
-  -a authorization_token="\$ARGONAUT_TOKEN" \
+$0 save-check \\
+  --template fhir-resource \\
+  -a name=production-dstu2-medication-statement \\
+  -a host=api.va.gov \\
+  -a url="/services/fhir/v0/dstu2/MedicationStatement?patient=1011537977V693883" \\
+  -a authorization_token="\$ARGONAUT_TOKEN" \\
   -a integrationids_csv="\$HEALTH_APIS_SLACK_ID"
 
 
@@ -75,7 +75,7 @@ isDebug() {
 processCommandLine() {
   local args
   if ! args=$(getopt -n "application" \
-    -l "debug,token:,secrets:,template:,template-arg:" \
+    -l "help,debug,token:,secrets:,template:,template-arg:" \
     -o "a:" -- "$@")
   then
     usage
@@ -84,6 +84,7 @@ processCommandLine() {
   while true
   do
     case "$1" in
+      --help) usage;;
       --debug) DEBUG=true;;
       --token) PINGDOM_TOKEN="$2";;
       --secrets) SECRETS_FILE="$2";;
