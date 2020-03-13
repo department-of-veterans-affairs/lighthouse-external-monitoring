@@ -182,6 +182,12 @@ The following activities must be done by a human.
 - Determining integration and user IDs
 
 
+## Adding secrets
+Secrets are added to the `dvp-gov-internal` AWS account by hand. Consult with code
+owners regard key name. If you cannot or prefer not to add secrets yourself, the code owners
+can do this for you.
+
+
 ## How to determining integration and user IDs
 Unfortunately, Pingdom does not have an API to determine the IDs of users/integration.
 You must use this gross work around. If you are unable to do this, contact the 
