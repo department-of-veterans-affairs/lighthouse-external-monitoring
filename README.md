@@ -75,6 +75,12 @@ Pingdom will be integrated with
 - `templates/*.json` defines check templates in Pingdom API format.
   These checks are processed to substitute template variables and then uploaded
   to Pingdom to create or update checks.
+- `pingdom-checks/*.ping` collection of checks, typically one related group of checks per file.
+  These checks will be processed and updated Pingdom.
+- `integration-ids.conf` contains shared Pingdom integration IDs. 
+   Integration IDs that are not shared can be placed in the `*.ping` health checks directly.
+- `user-ids.conf` contains Pingdom user IDs.
+   User IDs that are not shared can be placed in the `*.ping` health checks directly.
 
 ### Create a new check or update an existing
 Update the `build.sh` to include a new check definition or change an existing check.
@@ -82,12 +88,24 @@ Updates to checks are performed by _name_. Name changes are seen as new checks.
 
 
 ### Running locally
-if `secrets.conf` file is present, it will be sourced.
+
+> Note: Since there is only one Pingdom instance, testings changes locally is difficult.
+A trial account can be used.
+
+If `secrets.conf` file is present, it will be sourced.
 This can be used to define sensitive information that is normally extracted from AWS Parameter Store.
-Secrets should be a hash array of parameter name to value, e.g.
+Secrets should be a hash array of parameter name to value.
 ```
+typeset -xA SECRETS
 SECRETS[/monitoring/pingdom-token]="1234567890"
+SECRETS[/dev/community-care/api-key]="abcdefhij"
+...
 ```
+Any secrets not available in `secrets.conf` will extracted from AWS Parameter Store. 
+In many cases, this will fail if the AWS CLI is not configured correctly locally or you do not
+have permission to access the parameter store.
+
+You can test your local secrets with the `check-local-secrets` utility.
 
 
 # What's done by hand?
@@ -95,4 +113,35 @@ Unfortunately, our robots can't do 100% of activities. At least not yet.
 The following activities must be done by a human.
 - Creating or modifying integrations with Pingdom, e.g. Slack or Statuspage.io
 - Deleting checks
+- Determining integration and user IDs.
+
+
+## How to determining integration and user IDs
+Unfortunately, Pingdom does not have an API to determine the IDs of users/integration.
+You must use this gross work around. If you are unable to do this, contact the 
+code owners of this repository for assistance.
+
+Prerequisites
+- Pingdom access
+- Pingdom API token
+
+Steps
+- Manually configure the `manual-integrations-test` check in Pingdom to include _just_ the
+  integration or user you are interested in.
+  https://my.pingdom.com/reports/uptime#check=5834577&daterange=7days&tab=uptime_tab
+- After saving the check, pull the configuration locally. The ID will be available in the
+  response.
+- Update `integration-ids.conf`, `user-ids.conf` or your `*.ping` check as appropriate.
+  Be sure to use a descriptive name and please add a comment for future developers.
+  
+```
+# Integration ID
+$ bin/pingdom --token $TOKEN get-check manual-integrations-test | jq  .check.integrationids[0]
+123456
+
+# User ID
+$ bin/pingdom --token $TOKEN get-check manual-integrations-test | jq  .check.userids[0]
+987654
+```
+
 
