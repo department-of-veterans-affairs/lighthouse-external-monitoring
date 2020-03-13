@@ -78,7 +78,7 @@ Pingdom will be integrated with
   These checks are processed to substitute template variables and then uploaded
   to Pingdom to create or update checks.
 - `pingdom-checks/*.ping` collection of checks, typically one related group of checks per file.
-  These checks will be processed and updated Pingdom.
+  These checks will be processed and updated in Pingdom.
 - `integration-ids.conf` contains shared Pingdom integration IDs. 
    Integration IDs that are not shared can be placed in the `*.ping` health checks directly.
 - `user-ids.conf` contains Pingdom user IDs.
@@ -91,9 +91,10 @@ existing check.
 > Pro Tip: Create a curl command of the check _first_. Once you done this, translating it
 > to Pingdom is fairly straight forward.
 
-Pingdom checks use a _template_ to create the HTTP request. Many checks follow the same pattern,
-so it is likely a template already exists to meet your needs. If not, create a new template
-in Pingdom API format.
+Pingdom checks use a _template_ to create the HTTP request. Templates are located in the 
+`templates/` directories and referred to by name minus the file extension.
+Many checks follow the same pattern, so it is likely a template already exists to meet your needs. 
+If not, create a new template in Pingdom API check format.
 
 > Warning: As of March 2020, the Pingdom API incorrectly documents request headers structure.
 > Instead of a _map_ of headers, you must create a field named `requestheader<Name>`, e.g.
@@ -178,8 +179,25 @@ Unfortunately, our robots can't do 100% of activities. At least not yet.
 The following activities must be done by a human.
 - Secret management
 - Creating or modifying integrations with Pingdom, e.g. Slack or Statuspage.io
+  _Must be performed by a Pingdom administrator_
 - Deleting checks
+  _Must be performed by a Pingdom administrator._
 - Determining integration and user IDs
+
+## Integrations and Users
+Integrations are a Pingdom concept that links Pingdom with other services, e.g. PagerDuty and Slack.
+Users are "individuals" that should be notified directly. Note that for Statuspage,
+an "individual" can also be a Statuspage component since Statuspage component status can be
+manipulated via special emails. 
+
+Each PagerDuty "Service" is manually configured as a distinct integration in Pingdom and as such,
+each will have a unique ID. PagerDuty services will be used to alert on-call personnel.
+
+Each Slack channel is manually configured as a distinct integration in Pingdom and will also have
+unique IDs. Slack channels are used for situational awareness of the teams at large.
+
+Each Statuspage component will have a unique _Alert Contact_ user entry in Pingdom, which will be
+used to drive Statuspage.io updates. Alert contact users require manual configuration in Pingdom.
 
 
 ## Adding secrets
