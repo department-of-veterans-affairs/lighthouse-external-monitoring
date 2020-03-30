@@ -1,4 +1,4 @@
-COMMUNITY_CARE_LAB_API_KEY=$(get-secret "/dev/community-care/api-key")
+COMMUNITY_CARE_DEV_API_KEY=$(get-secret "/dev/community-care/api-key")
 
 
 pingdom save-check \
@@ -12,7 +12,7 @@ pingdom save-check \
 
 pingdom save-check \
   --template request-with-bearer-token \
-  -a name=lab-community-care-patient-primary-care \
+  -a name=dev-community-care-patient-primary-care \
   -a host=dev-api.va.gov \
   -a url="/services/community-care/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
   -a group="community-care" \
@@ -21,27 +21,27 @@ pingdom save-check \
 
 pingdom save-check \
   --template request-with-apikey \
-  -a name=lab-community-care-vaos-patient-primary-care \
+  -a name=dev-community-care-vaos-patient-primary-care \
   -a host=dev-api.va.gov \
   -a url="/services/community-care-vaos/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
   -a group="community-care" \
-  -a apikey="$COMMUNITY_CARE_LAB_API_KEY" \
+  -a apikey="$COMMUNITY_CARE_DEV_API_KEY" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
 
-  pingdom save-check \
-    --template request-with-bearer-token \
-    -a name=sandbox-community-care-patient-primary-care \
-    -a host=sandbox-api.va.gov \
-    -a url="/services/community-care/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
-    -a group="community-care" \
-    -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+pingdom save-check \
+  --template request-with-bearer-token \
+  -a name=sandbox-community-care-patient-primary-care \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/community-care/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
+  -a group="community-care" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
 
-  pingdom save-check \
-    --template request-with-apikey \
-    -a name=sandbox-community-care-vaos-patient-primary-care \
-    -a host=sandbox-api.va.gov \
-    -a url="/services/community-care-vaos/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
-    -a group="community-care" \
-    -a apikey="$COMMUNITY_CARE_LAB_API_KEY" \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=sandbox-community-care-vaos-patient-primary-care \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/community-care-vaos/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
+  -a group="community-care" \
+  -a apikey="$COMMUNITY_CARE_DEV_API_KEY" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
