@@ -8,7 +8,7 @@
   "verify_certificate": true,
   "resolution": 1,
   "responsetime_threshold": 30000,
-  "sendnotificationwhendown": 0,
+  "sendnotificationwhendown": 1,
   "notifyagainevery": 2,
   "notifywhenbackup": true,
   "tags": [ "$build", "managed", "$group" ],

@@ -7,7 +7,7 @@
   "host": "$host",
   "type": "http",
   "resolution": $resolution,
-  "sendnotificationwhendown": 0,
+  "sendnotificationwhendown": 1,
   "notifyagainevery": 2,
   "notifywhenbackup": true,
   "tags" : [ "managed", "$group" ],
