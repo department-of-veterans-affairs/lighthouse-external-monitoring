@@ -14,6 +14,12 @@ pingdom save-check \
 
 pingdom save-check \
   --template ssl-expiration-check \
+  -a name=ssl-sandbox-api \
+  -a host=sandbox-api.va.gov \
+  -a integrationids_csv="$SSL_EXPIRATION_SLACK_ID";
+
+pingdom save-check \
+  --template ssl-expiration-check \
   -a name=ssl-production-api \
   -a host=api.va.gov \
   -a integrationids_csv="$SSL_EXPIRATION_SLACK_ID";
