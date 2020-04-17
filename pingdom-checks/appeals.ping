@@ -1,5 +1,5 @@
-PRODUCTION_APPEALS_API_KEY=$(get-secret "/production/appeals/api-key")
-SANDBOX_APPEALS_API_KEY=$(get-secret "/sandbox/appeals/api-key")
+PRODUCTION_APPEALS_API_KEY=$(get-secret "/dvp/production/appeals/api-key")
+SANDBOX_APPEALS_API_KEY=$(get-secret "/dvp/lab/appeals/api-key")
 
 #v0
 pingdom save-check \

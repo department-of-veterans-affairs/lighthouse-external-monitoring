@@ -1,4 +1,4 @@
-COMMUNITY_CARE_DEV_API_KEY=$(get-secret "/dev/community-care/api-key")
+COMMUNITY_CARE_DEV_API_KEY=$(get-secret "/dvp/dev/community-care/api-key")
 
 
 pingdom save-check \

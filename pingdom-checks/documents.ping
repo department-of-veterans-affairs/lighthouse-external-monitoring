@@ -1,5 +1,5 @@
-PRODUCTION_DOCUMENTS_API_KEY=$(get-secret "/production/documents/api-key")
-SANDBOX_DOCUMENTS_API_KEY=$(get-secret "/sandbox/documents/api-key")
+PRODUCTION_DOCUMENTS_API_KEY=$(get-secret "/dvp/production/documents/api-key")
+SANDBOX_DOCUMENTS_API_KEY=$(get-secret "/dvp/lab/documents/api-key")
 
 #v0
 pingdom save-check \

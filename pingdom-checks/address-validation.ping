@@ -1,5 +1,5 @@
-SANDBOX_ADDRESS_VALIDATION_API_KEY=$(get-secret "/sandbox/address-validation/api-key")
-PRODUCTION_ADDRESS_VALIDATION_API_KEY=$(get-secret "/production/address-validation/api-key")
+SANDBOX_ADDRESS_VALIDATION_API_KEY=$(get-secret "/dvp/lab/address-validation/api-key")
+PRODUCTION_ADDRESS_VALIDATION_API_KEY=$(get-secret "/dvp/production/address-validation/api-key")
 ADDRESS_VALIDATION_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 
 pingdom save-check \
