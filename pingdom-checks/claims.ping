@@ -1,5 +1,5 @@
-PRODUCTION_CLAIMS_API_KEY=$(get-secret "/production/claims/api-key")
-SANDBOX_CLAIMS_API_KEY=$(get-secret "/sandbox/claims/api-key")
+PRODUCTION_CLAIMS_API_KEY=$(get-secret "/dvp/production/claims/api-key")
+SANDBOX_CLAIMS_API_KEY=$(get-secret "/dvp/lab/claims/api-key")
 
 # v0
 pingdom save-check \
