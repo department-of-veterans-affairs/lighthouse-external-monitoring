@@ -38,7 +38,7 @@ if [ "${DEBUG:-false}" == "true" ]; then export DEBUG; fi
 #
 # PINGDOM_TOKEN will be used by the pingdom script as the Pingdom API key.
 #
-export PINGDOM_TOKEN=$(get-secret "/monitoring/pingdom-token")
+export PINGDOM_TOKEN=$(get-secret "/dvp/monitoring/pingdom-token")
 
 #
 # Load secrets early to make sure we have all the secrets we need before attempting to
@@ -47,7 +47,7 @@ export PINGDOM_TOKEN=$(get-secret "/monitoring/pingdom-token")
 # NOTE: AWS Systems Manager secret naming convention <env>/<product>/<key-name>
 #
 
-export HEALTH_APIS_STATIC_ACCESS_TOKEN=$(get-secret "/production/health/static-access-token")
+export HEALTH_APIS_STATIC_ACCESS_TOKEN=$(get-secret "/dvp/production/health/static-access-token")
 
 
 #
@@ -57,7 +57,7 @@ export HEALTH_APIS_STATIC_ACCESS_TOKEN=$(get-secret "/production/health/static-a
 
 
 if [ -f ./secrets.conf ]; then
-  TEST_SLACK_CHANNEL_ID=$(get-secret "/local/slack-integration/id")
+  TEST_SLACK_CHANNEL_ID=$(get-secret "/dvp/local/slack-integration/id")
 fi
 
 export TEST_SLACK_CHANNEL_ID
