@@ -1,5 +1,5 @@
-SANDBOX_FACILITIES_API_KEY=$(get-secret "/sandbox/facilities/api-key")
-PRODUCTION_FACILITIES_API_KEY=$(get-secret "/production/facilities/api-key")
+SANDBOX_FACILITIES_API_KEY=$(get-secret "/dvp/lab/facilities/api-key")
+PRODUCTION_FACILITIES_API_KEY=$(get-secret "/dvp/production/facilities/api-key")
 FACILITIES_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 
 pingdom save-check \
