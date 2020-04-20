@@ -1,90 +1,96 @@
-#production
+# -*- sh -*-
+
+#
+# production
+#
 pingdom save-check \
-    --template https-public-200 \
-    -a name=production-r4-metadata \
-    -a host=api.va.gov \
-    -a url="/services/fhir/v0/r4/metadata" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
+  --template https-public-200 \
+  -a name=production-r4-metadata \
+  -a host=api.va.gov \
+  -a url="/services/fhir/v0/r4/metadata" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-  pingdom save-check \
-    --template https-public-200 \
-    -a name=production-r4-openapi \
-    -a host=api.va.gov \
-    -a url="/services/fhir/v0/r4/openapi.json" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-r4-openapi \
+  -a host=api.va.gov \
+  -a url="/services/fhir/v0/r4/openapi.json" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-  pingdom save-check \
-    --template https-public-200 \
-    -a name=production-dstu2-metadata \
-    -a host=api.va.gov \
-    -a url="/services/fhir/v0/dstu2/metadata" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-dstu2-metadata \
+  -a host=api.va.gov \
+  -a url="/services/fhir/v0/dstu2/metadata" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-  pingdom save-check \
-    --template https-public-200 \
-    -a name=production-dstu2-openapi.json \
-    -a host=api.va.gov \
-    -a port="443" \
-    -a url="/services/fhir/v0/dstu2/openapi.json" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-dstu2-openapi.json \
+  -a host=api.va.gov \
+  -a port="443" \
+  -a url="/services/fhir/v0/dstu2/openapi.json" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-  pingdom save-check \
-    --template https-public-200 \
-    -a name=production-data-query-metadata \
-    -a host=api.va.gov \
-    -a url="/services/fhir/v0/argonaut/data-query/metadata" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-data-query-metadata \
+  -a host=api.va.gov \
+  -a url="/services/fhir/v0/argonaut/data-query/metadata" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-  pingdom save-check \
-    --template https-public-200 \
-    -a name=production-data-query-openapi \
-    -a host=api.va.gov \
-    -a url="/services/fhir/v0/argonaut/data-query/openapi.json" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-data-query-openapi \
+  -a host=api.va.gov \
+  -a url="/services/fhir/v0/argonaut/data-query/openapi.json" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-  pingdom save-check \
-    --template https-public-200 \
-    -a name=production-community-care-openapi \
-    -a host=api.va.gov \
-    -a url="/services/community-care/v0/eligibility/openapi.json" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$STATUS_PAGE_HEALTH_USER"
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-community-care-openapi \
+  -a host=api.va.gov \
+  -a url="/services/community-care/v0/eligibility/openapi.json" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-#sandbox
 
+#
+# sandbox
+#
 pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-r4-metadata \
@@ -94,8 +100,8 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-  -a userids_csv="$NO_USERS"
+  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
   --template https-public-200 \
@@ -106,8 +112,8 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-  -a userids_csv="$NO_USERS"
+  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
   --template https-public-200 \
@@ -118,8 +124,8 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-  -a userids_csv="$NO_USERS"
+  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
   --template https-public-200 \
@@ -130,8 +136,8 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-  -a userids_csv="$NO_USERS"
+  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
   --template https-public-200 \
@@ -142,8 +148,8 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-  -a userids_csv="$NO_USERS"
+  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
   --template https-public-200 \
@@ -154,8 +160,8 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-  -a userids_csv="$NO_USERS"
+  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
   --template https-public-200 \
@@ -166,91 +172,92 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-  -a userids_csv="$NO_USERS"
+  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-  # dev
+#
+# dev
+#
+pingdom save-check \
+  --template https-public-200 \
+  -a name=dev-r4-metadata \
+  -a host=dev-api.va.gov \
+  -a url="/services/fhir/v0/r4/metadata" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-  pingdom save-check \
-    --template https-public-200 \
-    -a name=dev-r4-metadata \
-    -a host=dev-api.va.gov \
-    -a url="/services/fhir/v0/r4/metadata" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$NO_USERS"
+pingdom save-check \
+  --template https-public-200 \
+  -a name=dev-r4-openapi \
+  -a host=dev-api.va.gov \
+  -a url="/services/fhir/v0/r4/openapi.json" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-  pingdom save-check \
-    --template https-public-200 \
-    -a name=dev-r4-openapi \
-    -a host=dev-api.va.gov \
-    -a url="/services/fhir/v0/r4/openapi.json" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$NO_USERS"
+pingdom save-check \
+  --template https-public-200 \
+  -a name=dev-dstu2-metadata \
+  -a host=dev-api.va.gov \
+  -a url="/services/fhir/v0/dstu2/metadata" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-  pingdom save-check \
-    --template https-public-200 \
-    -a name=dev-dstu2-metadata \
-    -a host=dev-api.va.gov \
-    -a url="/services/fhir/v0/dstu2/metadata" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$NO_USERS"
+pingdom save-check \
+  --template https-public-200 \
+  -a name=dev-dstu2-openapi.json \
+  -a host=dev-api.va.gov \
+  -a url="/services/fhir/v0/dstu2/openapi.json" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-  pingdom save-check \
-    --template https-public-200 \
-    -a name=dev-dstu2-openapi.json \
-    -a host=dev-api.va.gov \
-    -a url="/services/fhir/v0/dstu2/openapi.json" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$NO_USERS"
+pingdom save-check \
+  --template https-public-200 \
+  -a name=dev-data-query-metadata \
+  -a host=dev-api.va.gov \
+  -a url="/services/fhir/v0/argonaut/data-query/metadata" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-  pingdom save-check \
-    --template https-public-200 \
-    -a name=dev-data-query-metadata \
-    -a host=dev-api.va.gov \
-    -a url="/services/fhir/v0/argonaut/data-query/metadata" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$NO_USERS"
+pingdom save-check \
+  --template https-public-200 \
+  -a name=dev-data-query-openapi \
+  -a host=dev-api.va.gov \
+  -a url="/services/fhir/v0/argonaut/data-query/openapi.json" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
-  pingdom save-check \
-    --template https-public-200 \
-    -a name=dev-data-query-openapi \
-    -a host=dev-api.va.gov \
-    -a url="/services/fhir/v0/argonaut/data-query/openapi.json" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$NO_USERS"
-
-  pingdom save-check \
-    --template https-public-200 \
-    -a name=dev-community-care-openapi \
-    -a host=dev-api.va.gov \
-    -a url="/services/community-care/v0/eligibility/openapi.json" \
-    -a port="443" \
-    -a responsetime_threshold=30000 \
-    -a resolution=1 \
-    -a group=metadata \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID" \
-    -a userids_csv="$NO_USERS"
+pingdom save-check \
+  --template https-public-200 \
+  -a name=dev-community-care-openapi \
+  -a host=dev-api.va.gov \
+  -a url="/services/community-care/v0/eligibility/openapi.json" \
+  -a port="443" \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a group=metadata \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
