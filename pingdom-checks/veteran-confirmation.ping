@@ -1,0 +1,24 @@
+#production
+pingdom save-check \
+  --template simple-resource \
+  -a name=production-veteran-confirmation-health \
+  -a host=api.va.gov \
+  -a url="/services/veteran_confirmation/v0/health" \
+  -a group=veteran-confirmation \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+#sandbox
+pingdom save-check \
+  --template simple-resource \
+  -a name=sandbox-veteran-confirmation-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/veteran_confirmation/v0/health" \
+  -a group=veteran-confirmation \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+# dev
+pingdom save-check \
+  --template simple-resource \
+  -a name=dev-veteran-confirmation-health \
+  -a host=dev-api.va.gov \
+  -a url="/services/veteran_confirmation/v0/health" \
+  -a group=veteran-confirmation \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
