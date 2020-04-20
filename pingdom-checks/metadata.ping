@@ -12,7 +12,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -24,7 +24,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -36,7 +36,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -48,7 +48,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -60,7 +60,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -72,7 +72,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -84,7 +84,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[production-fhir]" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 
@@ -100,7 +100,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -112,7 +112,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -124,7 +124,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -136,7 +136,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -148,7 +148,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -160,7 +160,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -172,7 +172,7 @@ pingdom save-check \
   -a responsetime_threshold=30000 \
   -a resolution=1 \
   -a group=metadata \
-  -a userids_csv="$STATUSPAGE[sandbox-fhir]" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 #
