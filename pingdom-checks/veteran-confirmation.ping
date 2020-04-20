@@ -8,7 +8,7 @@ pingdom save-check \
   -a name=production-veteran-confirmation-health \
   -a host=api.va.gov \
   -a url="/services/veteran_confirmation/v0/health" \
-  -a apiKey="$PRODUCTION_VETERAN_CONFIRMATION_API_KEY" \
+  -a apikey="$PRODUCTION_VETERAN_CONFIRMATION_API_KEY" \
   -a userids_csv="$NO_USERS" \
   -a group=veteran-confirmation \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
@@ -19,7 +19,7 @@ pingdom save-check \
   -a name=sandbox-veteran-confirmation-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/veteran_confirmation/v0/health" \
-  -a apiKey="$SANDBOX_VETERAN_CONFIRMATION_API_KEY" \
+  -a apikey="$SANDBOX_VETERAN_CONFIRMATION_API_KEY" \
   -a userids_csv="$NO_USERS" \
   -a group=veteran-confirmation \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
@@ -29,7 +29,7 @@ pingdom save-check \
   -a name=dev-veteran-confirmation-health \
   -a host=dev-api.va.gov \
   -a url="/services/veteran_confirmation/v0/health" \
-  -a apiKey="$DEV_VETERAN_CONFIRMATION_API_KEY" \
+  -a apikey="$DEV_VETERAN_CONFIRMATION_API_KEY" \
   -a userids_csv="$NO_USERS" \
   -a group=veteran-confirmation \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
