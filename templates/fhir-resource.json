@@ -10,10 +10,11 @@
   "verify_certificate": true,
   "resolution": 1,
   "responsetime_threshold": 30000,
-  "sendnotificationwhendown": 1,
-  "notifyagainevery": 2,
+  "sendnotificationwhendown": 6,
+  "notifyagainevery": 1,
   "notifywhenbackup": true,
   "tags": [ "$build", "managed", "health-apis" ],
   "integrationids": [ $integrationids_csv ],
+  "userids" : [ $userids_csv ],
   "probe_filters": [ "region: NA" ]
 }
