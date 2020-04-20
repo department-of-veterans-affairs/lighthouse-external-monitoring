@@ -1,15 +1,18 @@
+# -*- sh -*-
+
 SANDBOX_FACILITIES_API_KEY=$(get-secret "/dvp/lab/facilities/api-key")
 PRODUCTION_FACILITIES_API_KEY=$(get-secret "/dvp/production/facilities/api-key")
 FACILITIES_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 
 pingdom save-check \
-    --template request-with-apikey \
-    -a name=sandbox-facilities \
-    -a host=sandbox-api.va.gov \
-    -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
-    -a group=facilities \
-    -a apikey="$SANDBOX_FACILITIES_API_KEY" \
-    -a integrationids_csv="$FACILITIES_SLACK_ID";
+  --template request-with-apikey \
+  -a name=sandbox-facilities \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
+  -a group=facilities \
+  -a apikey="$SANDBOX_FACILITIES_API_KEY" \
+  -a userids_csv="$STATUSPAGE[sandbox-facilities]" \
+  -a integrationids_csv="$FACILITIES_SLACK_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -18,25 +21,28 @@ pingdom save-check \
   -a url="/services/va_facilities/v0/nearby?city=Melbourne&page=1&per_page=20&state=FL&street_address=505+N+John+Rodes+Blvd&zip=32934" \
   -a group=facilities \
   -a apikey="$SANDBOX_FACILITIES_API_KEY" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID";
+  -a userids_csv="$NO_USER" \
+  -a integrationids_csv="$FACILITIES_SLACK_ID"
 
-  pingdom save-check \
-      --template request-with-apikey \
-      -a name=dev-facilities \
-      -a host=dev-api.va.gov \
-      -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
-      -a group=facilities \
-      -a apikey="$SANDBOX_FACILITIES_API_KEY" \
-      -a integrationids_csv="$FACILITIES_SLACK_ID";
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=dev-facilities \
+  -a host=dev-api.va.gov \
+  -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
+  -a group=facilities \
+  -a apikey="$SANDBOX_FACILITIES_API_KEY" \
+  -a userids_csv="$NO_USER" \
+  -a integrationids_csv="$FACILITIES_SLACK_ID"
 
-  pingdom save-check \
-    --template request-with-apikey \
-    -a name=dev-facilities-nearby \
-    -a host=dev-api.va.gov \
-    -a url="/services/va_facilities/v0/nearby?city=Melbourne&page=1&per_page=20&state=FL&street_address=505+N+John+Rodes+Blvd&zip=32934" \
-    -a group=facilities \
-    -a apikey="$SANDBOX_FACILITIES_API_KEY" \
-    -a integrationids_csv="$FACILITIES_SLACK_ID";
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=dev-facilities-nearby \
+  -a host=dev-api.va.gov \
+  -a url="/services/va_facilities/v0/nearby?city=Melbourne&page=1&per_page=20&state=FL&street_address=505+N+John+Rodes+Blvd&zip=32934" \
+  -a group=facilities \
+  -a apikey="$SANDBOX_FACILITIES_API_KEY" \
+  -a userids_csv="$NO_USER" \
+  -a integrationids_csv="$FACILITIES_SLACK_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -45,7 +51,8 @@ pingdom save-check \
   -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
   -a group=facilities \
   -a apikey="$PRODUCTION_FACILITIES_API_KEY" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID";
+  -a userids_csv="$STATUSPAGE[production-facilities]" \
+  -a integrationids_csv="$FACILITIES_SLACK_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -54,4 +61,5 @@ pingdom save-check \
   -a url="/services/va_facilities/v0/nearby?city=Melbourne&page=1&per_page=20&state=FL&street_address=505+N+John+Rodes+Blvd&zip=32934" \
   -a group=facilities \
   -a apikey="$PRODUCTION_FACILITIES_API_KEY" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID";
+  -a userids_csv="$NO_USER" \
+  -a integrationids_csv="$FACILITIES_SLACK_ID"

@@ -1,3 +1,5 @@
+# -*- sh -*-
+
 PRODUCTION_APPEALS_API_KEY=$(get-secret "/dvp/production/appeals/api-key")
 SANDBOX_APPEALS_API_KEY=$(get-secret "/dvp/lab/appeals/api-key")
 
@@ -9,7 +11,8 @@ pingdom save-check \
   -a url="/services/appeals/v0/healthcheck" \
   -a apikey="$PRODUCTION_APPEALS_API_KEY" \
   -a group="appeals" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a userids_csv="$NO_USER" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -18,7 +21,8 @@ pingdom save-check \
   -a url="/services/appeals/v0/healthcheck" \
   -a apikey="$SANDBOX_APPEALS_API_KEY" \
   -a group="appeals" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a userids_csv="$NO_USER" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -27,4 +31,5 @@ pingdom save-check \
   -a url="/services/appeals/v0/healthcheck" \
   -a apikey="$SANDBOX_APPEALS_API_KEY" \
   -a group="appeals" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a userids_csv="$NO_USER" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"

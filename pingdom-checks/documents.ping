@@ -1,3 +1,5 @@
+# -*- sh -*-
+
 PRODUCTION_DOCUMENTS_API_KEY=$(get-secret "/dvp/production/documents/api-key")
 SANDBOX_DOCUMENTS_API_KEY=$(get-secret "/dvp/lab/documents/api-key")
 
@@ -9,6 +11,7 @@ pingdom save-check \
   -a url="/services/vba_documents/v0/healthcheck" \
   -a apikey="$PRODUCTION_DOCUMENTS_API_KEY" \
   -a group="documents" \
+  -a userids_csv="$NO_USER" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
 
 pingdom save-check \
@@ -18,16 +21,18 @@ pingdom save-check \
   -a url="/services/vba_documents/v0/healthcheck" \
   -a apikey="$SANDBOX_DOCUMENTS_API_KEY" \
   -a group="documents" \
+  -a userids_csv="$NO_USER" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
 
-  pingdom save-check \
-    --template request-with-apikey \
-    -a name=dev-documents-v0-health-check \
-    -a host=dev-api.va.gov \
-    -a url="/services/vba_documents/v0/healthcheck" \
-    -a apikey="$SANDBOX_DOCUMENTS_API_KEY" \
-    -a group="documents" \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=dev-documents-v0-health-check \
+  -a host=dev-api.va.gov \
+  -a url="/services/vba_documents/v0/healthcheck" \
+  -a apikey="$SANDBOX_DOCUMENTS_API_KEY" \
+  -a group="documents" \
+  -a userids_csv="$NO_USER" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
 
 #v1
 pingdom save-check \
@@ -37,6 +42,7 @@ pingdom save-check \
   -a url="/services/vba_documents/v1/healthcheck" \
   -a apikey="$PRODUCTION_DOCUMENTS_API_KEY" \
   -a group="documents" \
+  -a userids_csv="$NO_USER" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
 
 pingdom save-check \
@@ -46,13 +52,15 @@ pingdom save-check \
   -a url="/services/vba_documents/v1/healthcheck" \
   -a apikey="$SANDBOX_DOCUMENTS_API_KEY" \
   -a group="documents" \
+  -a userids_csv="$NO_USER" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
 
-  pingdom save-check \
-    --template request-with-apikey \
-    -a name=dev-documents-v1-health-check \
-    -a host=dev-api.va.gov \
-    -a url="/services/vba_documents/v1/healthcheck" \
-    -a apikey="$SANDBOX_DOCUMENTS_API_KEY" \
-    -a group="documents" \
-    -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=dev-documents-v1-health-check \
+  -a host=dev-api.va.gov \
+  -a url="/services/vba_documents/v1/healthcheck" \
+  -a apikey="$SANDBOX_DOCUMENTS_API_KEY" \
+  -a group="documents" \
+  -a userids_csv="$NO_USER" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
