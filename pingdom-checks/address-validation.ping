@@ -10,9 +10,9 @@ pingdom save-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/address_validation/v1/candidate" \
   -a group=address-validation \
-  -a apikey="$STATUSPAGE_SANDBOX_ADDRESS_VALIDATION" \
+  -a apikey="$SANDBOX_ADDRESS_VALIDATION_API_KEY" \
   -a postdata="$(escape-json '{"requestAddress": {"addressLine1": "1600 Pennsylvania Ave", "city": "Washington", "stateProvince": {"name": "DC"}, "requestCountry": {"countryName": "USA"}}}')" \
-  -a userids_csv="$NO_USERS" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_ADDRESS_VALIDATION" \
   -a integrationids_csv="$ADDRESS_VALIDATION_SLACK_ID"
 
 pingdom save-check \
