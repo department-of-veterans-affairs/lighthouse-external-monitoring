@@ -10,6 +10,9 @@ then
   exit 0
 fi
 
+echo "THIS IS JUST A TEST TO VERIFY BUILD FAILURE BEHAVIOR"
+exit 1
+
 #
 # Pingdom will honor this as the debug log.
 #
