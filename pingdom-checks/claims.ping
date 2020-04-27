@@ -11,7 +11,7 @@ pingdom save-check \
   -a url="/services/claims/v0/healthcheck" \
   -a apikey="$PRODUCTION_CLAIMS_API_KEY" \
   -a group="claims" \
-  -a userids_csv="$NO_USERS" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_BENEFITS_CLAIMS_V0" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -21,7 +21,7 @@ pingdom save-check \
   -a url="/services/claims/v0/healthcheck" \
   -a apikey="$SANDBOX_CLAIMS_API_KEY" \
   -a group="claims" \
-  -a userids_csv="$NO_USERS" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_CLAIMS_V0" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -31,7 +31,7 @@ pingdom save-check \
   -a url="/services/claims/v0/healthcheck" \
   -a apikey="$SANDBOX_CLAIMS_API_KEY" \
   -a group="claims" \
-  -a userids_csv="$NO_USERS" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_CLAIMS_V0" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 # v1
@@ -42,7 +42,7 @@ pingdom save-check \
   -a url="/services/claims/v1/healthcheck" \
   -a apikey="$PRODUCTION_CLAIMS_API_KEY" \
   -a group="claims" \
-  -a userids_csv="$NO_USERS" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_BENEFITS_CLAIMS_V1" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -52,7 +52,7 @@ pingdom save-check \
   -a url="/services/claims/v1/healthcheck" \
   -a apikey="$SANDBOX_CLAIMS_API_KEY" \
   -a group="claims" \
-  -a userids_csv="$NO_USERS" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_INTAKE_V1" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -62,5 +62,5 @@ pingdom save-check \
   -a url="/services/claims/v1/healthcheck" \
   -a apikey="$SANDBOX_CLAIMS_API_KEY" \
   -a group="claims" \
-  -a userids_csv="$NO_USERS" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_INTAKE_V1" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
