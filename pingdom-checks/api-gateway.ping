@@ -10,7 +10,7 @@ pingdom save-check \
   -a url="/services/meta/v0/ping" \
   -a apikey="$PRODUCTION_API_GATEWAY_KEY" \
   -a group="api-gateway" \
-  -a userids_csv="$NO_USERS" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_API_GATEWAY" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 
 pingdom save-check \
@@ -20,5 +20,5 @@ pingdom save-check \
   -a url="/services/meta/v0/ping" \
   -a apikey="$SANDBOX_API_GATEWAY_KEY" \
   -a group="api-gateway" \
-  -a userids_csv="$NO_USERS" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_API_GATEWAY" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
