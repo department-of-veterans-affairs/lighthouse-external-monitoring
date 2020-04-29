@@ -1,11 +1,11 @@
 # -*- sh -*-
 
-PRODUCTION_LOAN_GUARANTY_KEY=$(get-secret "/dvp/production/api-gateway/api-key")
-SANDBOX_LOAN_GUARANTY_KEY=$(get-secret "/dvp/lab/api-gateway/api-key")
+PRODUCTION_LOAN_GUARANTY_KEY=$(get-secret "/dvp/production/loan-guaranty/api-key")
+SANDBOX_LOAN_GUARANTY_KEY=$(get-secret "/dvp/lab/loan-guaranty/api-key")
 
 pingdom save-check \
   --template request-with-apikey \
-  -a name=production-api-gateway-health-check \
+  -a name=production-loan-guaranty-health-check \
   -a host=api.va.gov \
   -a url="/services/loan_guaranty/v1/healthcheck" \
   -a apikey="$PRODUCTION_LOAN_GUARANTY_KEY" \
@@ -15,7 +15,7 @@ pingdom save-check \
 
 pingdom save-check \
   --template request-with-apikey \
-  -a name=sandbox-api-gateway-health-check \
+  -a name=sandbox-loan-guaranty-health-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/meta/v0/ping" \
   -a apikey="$SANDBOX_API_GATEWAY_KEY" \
