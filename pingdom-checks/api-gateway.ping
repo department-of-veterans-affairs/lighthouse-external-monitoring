@@ -1,7 +1,7 @@
 # -*- sh -*-
 
-PRODUCTION_API_GATEWAY_KEY=$(get-secret "/dvp/production/api-gateway/api-key")
-SANDBOX_API_GATEWAY_KEY=$(get-secret "/dvp/lab/api-gateway/api-key")
+PRODUCTION_API_GATEWAY_KEY=$(get-secret "/dvp/production/claims/api-key")
+SANDBOX_API_GATEWAY_KEY=$(get-secret "/dvp/lab/claims/api-key")
 
 pingdom save-check \
   --template request-with-apikey \
