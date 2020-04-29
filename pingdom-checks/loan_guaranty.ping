@@ -17,7 +17,7 @@ pingdom save-check \
   --template request-with-apikey \
   -a name=sandbox-loan-guaranty-health-check \
   -a host=sandbox-api.va.gov \
-  -a url="/services/meta/v0/ping" \
+  -a url="/services/loan_guaranty/v1/healthcheck" \
   -a apikey="$SANDBOX_API_GATEWAY_KEY" \
   -a group="loan-guaranty" \
   -a userids_csv="$STATUSPAGE_SANDBOX_LOAN_GUARANTY_V1" \
