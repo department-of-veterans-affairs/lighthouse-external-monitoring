@@ -1,0 +1,24 @@
+# -*- sh -*-
+
+PRODUCTION_API_GATEWAY_KEY=$(get-secret "/dvp/production/api-gateway/api-key")
+SANDBOX_API_GATEWAY_KEY=$(get-secret "/dvp/lab/api-gateway/api-key")
+
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=production-api-gateway-health-check \
+  -a host=api.va.gov \
+  -a url="/" \
+  -a apikey="$PRODUCTION_API_GATEWAY_KEY" \
+  -a group="api-gateway" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=sandbox-api-gateway-health-check \
+  -a host=sandbox-api.va.gov \
+  -a url="/" \
+  -a apikey="$SANDBOX_API_GATEWAY_KEY" \
+  -a group="api-gateway" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
