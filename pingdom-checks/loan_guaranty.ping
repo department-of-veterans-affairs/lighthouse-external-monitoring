@@ -1,0 +1,24 @@
+# -*- sh -*-
+
+PRODUCTION_LOAN_GUARANTY_KEY=$(get-secret "/dvp/production/loan-guaranty/api-key")
+SANDBOX_LOAN_GUARANTY_KEY=$(get-secret "/dvp/lab/loan-guaranty/api-key")
+
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=production-loan-guaranty-health-check \
+  -a host=api.va.gov \
+  -a url="/services/loan_guaranty/v1/healthcheck" \
+  -a apikey="$PRODUCTION_LOAN_GUARANTY_KEY" \
+  -a group="loan-guaranty" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_LOAN_GUARANTY_V1" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=sandbox-loan-guaranty-health-check \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/loan_guaranty/v1/healthcheck" \
+  -a apikey="$SANDBOX_LOAN_GUARANTY_KEY" \
+  -a group="loan-guaranty" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_LOAN_GUARANTY_V1" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
