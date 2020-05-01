@@ -1,3 +1,7 @@
+# -*- sh -*-
+
+SAML_PROXY_SLACK_ID=$VASDVP_MONITORING
+
 #production
 pingdom save-check \
   --template simple-resource \
@@ -5,7 +9,7 @@ pingdom save-check \
   -a host=api.va.gov \
   -a url="/samlproxy/idp/metadata" \
   -a group=saml-proxy \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$SAML_PROXY_SLACK_ID,$PAGER_DUTY"
 
 #sandbox
 pingdom save-check \
@@ -14,7 +18,7 @@ pingdom save-check \
   -a host=sandbox-api.va.gov \
   -a url="/samlproxy/idp/metadata" \
   -a group=saml-proxy \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$SAML_PROXY_SLACK_ID,$PAGER_DUTY"
   
 # dev
 pingdom save-check \
