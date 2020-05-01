@@ -1,5 +1,7 @@
 # -*- sh -*-
 
+URGENT_CARE_SLACK_ID=$VASDVP_MONITORING
+
 pingdom save-check \
   --template fhir-resource \
   -a name=dev-r4-coverage-eligibility-response \
@@ -16,7 +18,7 @@ pingdom save-check \
   -a url="/services/fhir/v0/r4/CoverageEligibilityResponse?patient=1017283148V813263" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$URGENT_CARE_SLACK_ID,$PAGER_DUTY"
 
 pingdom save-check \
   --template fhir-resource \
@@ -25,4 +27,4 @@ pingdom save-check \
   -a url="/services/fhir/v0/r4/CoverageEligibilityResponse?patient=1017237188V293031" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$URGENT_CARE_SLACK_ID,$PAGER_DUTY"
