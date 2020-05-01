@@ -69,25 +69,21 @@ pingdom save-check \
 # Informational. Should not be integrated with statuspage.
 #
 pingdom save-check \
-  --template https-public-200 \
+  --template request-with-apikey \
   -a name=production-facilities-collector-backend-health \
   -a host=api.va.gov \
   -a url="/services/va_facilities/collector/health" \
-  -a port="443" \
-  -a responsetime_threshold=30000 \
-  -a resolution=1 \
   -a group=facilities \
+  -a apikey="$PRODUCTION_FACILITIES_API_KEY" \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$FACILITIES_SLACK_ID"
 
 pingdom save-check \
-  --template https-public-200 \
+  --template request-with-apikey \
   -a name=sandbox-facilities-collector-backend-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/va_facilities/collector/health" \
-  -a port="443" \
-  -a responsetime_threshold=30000 \
-  -a resolution=1 \
   -a group=facilities \
+  -a apikey="$SANDBOX_FACILITIES_API_KEY" \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$FACILITIES_SLACK_ID"
