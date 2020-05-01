@@ -2,6 +2,7 @@
 
 COMMUNITY_CARE_DEV_API_KEY=$(get-secret "/dvp/dev/community-care/api-key")
 
+COMMUNITY_CARE_SLACK_ID=$VASDVP_MONITORING
 
 pingdom save-check \
   --template request-with-bearer-token \
@@ -11,7 +12,7 @@ pingdom save-check \
   -a group="community-care" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
 
 pingdom save-check \
   --template request-with-bearer-token \
@@ -41,7 +42,7 @@ pingdom save-check \
   -a group="community-care" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_SANDBOX_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -51,4 +52,4 @@ pingdom save-check \
   -a group="community-care" \
   -a apikey="$COMMUNITY_CARE_DEV_API_KEY" \
   -a userids_csv="$STATUSPAGE_SANDBOX_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
