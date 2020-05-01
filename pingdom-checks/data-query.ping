@@ -7,7 +7,7 @@ pingdom save-check \
   -a url="/services/fhir/v0/dstu2/Patient/1011537977V693883" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID,$PAGER_DUTY"
 
 pingdom save-check \
   --template fhir-resource \
@@ -25,7 +25,7 @@ pingdom save-check \
   -a url="/services/fhir/v0/dstu2/MedicationStatement?patient=1011537977V693883" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID,$PAGER_DUTY"
 
 pingdom save-check \
   --template simple-resource \
@@ -85,7 +85,7 @@ pingdom save-check \
   -a url="/services/fhir/v0/dstu2/Patient/1011537977V693883" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID,$PAGER_DUTY"
 
 pingdom save-check \
   --template fhir-resource \
@@ -103,4 +103,4 @@ pingdom save-check \
   -a url="/services/fhir/v0/dstu2/MedicationStatement?patient=1011537977V693883" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID,$PAGER_DUTY"
