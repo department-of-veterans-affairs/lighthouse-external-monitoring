@@ -2,7 +2,8 @@
 
 SANDBOX_FACILITIES_API_KEY=$(get-secret "/dvp/lab/facilities/api-key")
 PRODUCTION_FACILITIES_API_KEY=$(get-secret "/dvp/production/facilities/api-key")
-FACILITIES_SLACK_ID=$TEST_SLACK_CHANNEL_ID
+FACILITIES_SLACK_ID=$VASDVP_MONITORING
+FACILITIES_BACKEND_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 
 pingdom save-check \
   --template request-with-apikey \
@@ -12,7 +13,7 @@ pingdom save-check \
   -a group=facilities \
   -a apikey="$SANDBOX_FACILITIES_API_KEY" \
   -a userids_csv="$STATUSPAGE_SANDBOX_FACILITIES" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID"
+  -a integrationids_csv="$FACILITIES_SLACK_ID,$PAGER_DUTY"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -22,7 +23,7 @@ pingdom save-check \
   -a group=facilities \
   -a apikey="$SANDBOX_FACILITIES_API_KEY" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID"
+  -a integrationids_csv="$FACILITIES_SLACK_ID,$PAGER_DUTY"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -32,7 +33,7 @@ pingdom save-check \
   -a group=facilities \
   -a apikey="$SANDBOX_FACILITIES_API_KEY" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID"
+  -a integrationids_csv="$TEST_SLACK_CHANNEL_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -42,7 +43,7 @@ pingdom save-check \
   -a group=facilities \
   -a apikey="$SANDBOX_FACILITIES_API_KEY" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID"
+  -a integrationids_csv="$TEST_SLACK_CHANNEL_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -52,7 +53,7 @@ pingdom save-check \
   -a group=facilities \
   -a apikey="$PRODUCTION_FACILITIES_API_KEY" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_FACILITIES" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID"
+  -a integrationids_csv="$FACILITIES_SLACK_ID,$PAGER_DUTY"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -62,7 +63,7 @@ pingdom save-check \
   -a group=facilities \
   -a apikey="$PRODUCTION_FACILITIES_API_KEY" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID"
+  -a integrationids_csv="$FACILITIES_SLACK_ID,$PAGER_DUTY"
 
 #
 # Facilities Collector (Checks Backend Services)
@@ -76,7 +77,7 @@ pingdom save-check \
   -a group=facilities \
   -a apikey="$PRODUCTION_FACILITIES_API_KEY" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID"
+  -a integrationids_csv="$FACILITIES_BACKEND_SLACK_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -86,4 +87,4 @@ pingdom save-check \
   -a group=facilities \
   -a apikey="$SANDBOX_FACILITIES_API_KEY" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$FACILITIES_SLACK_ID"
+  -a integrationids_csv="$FACILITIES_BACKEND_SLACK_ID"
