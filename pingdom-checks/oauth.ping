@@ -1,8 +1,10 @@
+# -*- sh -*-
+
 PRODUCTION_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/dvp/production/oauth/basic-auth-token")
 PRODUCTION_OAUTH_REFRESH_TOKEN=$(get-secret "/dvp/production/oauth/refresh-token")
 DEV_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/dvp/dev/oauth/basic-auth-token")
 DEV_OAUTH_REFRESH_TOKEN=$(get-secret "/dvp/dev/oauth/refresh-token")
-OAUTH_SLACK_ID=$TEST_SLACK_CHANNEL_ID
+OAUTH_SLACK_ID=$VASDVP_MONITORING
 
 pingdom save-check \
   --template oauth-refresh-token \
@@ -11,7 +13,7 @@ pingdom save-check \
   -a url=/oauth2/token \
   -a authorization_token="$PRODUCTION_OAUTH_BASIC_AUTH_TOKEN" \
   -a refresh_token="$PRODUCTION_OAUTH_REFRESH_TOKEN" \
-  -a integrationids_csv="$OAUTH_SLACK_ID";
+  -a integrationids_csv="$OAUTH_SLACK_ID,$PAGER_DUTY";
 
 pingdom save-check \
   --template oauth-refresh-token \
@@ -20,7 +22,7 @@ pingdom save-check \
   -a url=/oauth2/token \
   -a authorization_token="$DEV_OAUTH_BASIC_AUTH_TOKEN" \
   -a refresh_token="$DEV_OAUTH_REFRESH_TOKEN" \
-  -a integrationids_csv="$OAUTH_SLACK_ID";
+  -a integrationids_csv="$TEST_SLACK_CHANNEL_ID";
 
   pingdom save-check \
     --template oauth-refresh-token \
@@ -29,4 +31,4 @@ pingdom save-check \
     -a url=/oauth2/token \
     -a authorization_token="$DEV_OAUTH_BASIC_AUTH_TOKEN" \
     -a refresh_token="$DEV_OAUTH_REFRESH_TOKEN" \
-    -a integrationids_csv="$OAUTH_SLACK_ID";
+    -a integrationids_csv="$OAUTH_SLACK_ID,$PAGER_DUTY";
