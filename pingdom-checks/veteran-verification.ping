@@ -6,6 +6,7 @@ pingdom save-check \
   -a url="/services/veteran_verification/v0/health" \
   -a port="443" \
   -a responsetime_threshold="30000" \
+  -a resolution="1" \
   -a group=veteran-verification \
   -a userids_csv="$STATUSPAGE_PRODUCTION_VETERAN_VERIFICATION" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
@@ -18,6 +19,7 @@ pingdom save-check \
   -a url="/services/veteran_verification/v0/health" \
   -a port="443" \
   -a responsetime_threshold="30000" \
+  -a resolution="1" \
   -a group=veteran-verification \
   -a userids_csv="$STATUSPAGE_SANDBOX_VETERAN_VERIFICATION" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
@@ -30,6 +32,7 @@ pingdom save-check \
   -a url="/services/veteran_verification/v0/health" \
   -a port="443" \
   -a responsetime_threshold="30000" \
+  -a resolution="1" \
   -a group=veteran-verification \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
