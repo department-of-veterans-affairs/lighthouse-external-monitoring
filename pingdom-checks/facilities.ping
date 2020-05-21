@@ -27,26 +27,6 @@ pingdom save-check \
 
 pingdom save-check \
   --template request-with-apikey \
-  -a name=dev-facilities \
-  -a host=dev-api.va.gov \
-  -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \
-  -a group=facilities \
-  -a apikey="$SANDBOX_FACILITIES_API_KEY" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$TEST_SLACK_CHANNEL_ID"
-
-pingdom save-check \
-  --template request-with-apikey \
-  -a name=dev-facilities-nearby \
-  -a host=dev-api.va.gov \
-  -a url="/services/va_facilities/v0/nearby?city=Melbourne&page=1&per_page=20&state=FL&street_address=505+N+John+Rodes+Blvd&zip=32934" \
-  -a group=facilities \
-  -a apikey="$SANDBOX_FACILITIES_API_KEY" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$TEST_SLACK_CHANNEL_ID"
-
-pingdom save-check \
-  --template request-with-apikey \
   -a name=production-facilities \
   -a host=api.va.gov \
   -a url="/services/va_facilities/v0/facilities?lat=41.881832&long=-87.6233&limit=1" \

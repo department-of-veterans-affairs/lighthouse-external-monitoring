@@ -16,26 +16,6 @@ pingdom save-check \
 
 pingdom save-check \
   --template request-with-bearer-token \
-  -a name=dev-community-care-patient-primary-care \
-  -a host=dev-api.va.gov \
-  -a url="/services/community-care/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
-  -a group="community-care" \
-  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
-
-pingdom save-check \
-  --template request-with-apikey \
-  -a name=dev-community-care-vaos-patient-primary-care \
-  -a host=dev-api.va.gov \
-  -a url="/services/community-care-vaos/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
-  -a group="community-care" \
-  -a apikey="$COMMUNITY_CARE_DEV_API_KEY" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
-
-pingdom save-check \
-  --template request-with-bearer-token \
   -a name=sandbox-community-care-patient-primary-care \
   -a host=sandbox-api.va.gov \
   -a url="/services/community-care/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
