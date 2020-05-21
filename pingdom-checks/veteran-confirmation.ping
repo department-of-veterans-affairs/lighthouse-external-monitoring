@@ -24,12 +24,3 @@ pingdom save-check \
   -a userids_csv="$STATUSPAGE_SANDBOX_VETERAN_CONFIRMATION" \
   -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
 # dev
-pingdom save-check \
-  --template request-with-apikey \
-  -a name=dev-veteran-confirmation-health \
-  -a host=dev-api.va.gov \
-  -a url="/services/veteran_confirmation/v0/health" \
-  -a apikey="$DEV_VETERAN_CONFIRMATION_API_KEY" \
-  -a userids_csv="$NO_USERS" \
-  -a group=veteran-confirmation \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"

@@ -15,15 +15,6 @@ pingdom save-check \
   -a refresh_token="$PRODUCTION_OAUTH_REFRESH_TOKEN" \
   -a integrationids_csv="$OAUTH_SLACK_ID,$PAGER_DUTY";
 
-pingdom save-check \
-  --template oauth-refresh-token \
-  -a name=dev-oauth-refresh-token \
-  -a host=dev-api.va.gov \
-  -a url=/oauth2/token \
-  -a authorization_token="$DEV_OAUTH_BASIC_AUTH_TOKEN" \
-  -a refresh_token="$DEV_OAUTH_REFRESH_TOKEN" \
-  -a integrationids_csv="$TEST_SLACK_CHANNEL_ID";
-
   pingdom save-check \
     --template oauth-refresh-token \
     -a name=sandbox-oauth-refresh-token \
