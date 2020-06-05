@@ -1,8 +1,8 @@
 # -*- sh -*-
 
 COMMUNITY_CARE_DEV_API_KEY=$(get-secret "/dvp/dev/community-care/api-key")
-
 COMMUNITY_CARE_SLACK_ID=$VASDVP_MONITORING
+COMMUNITY_CARE_BACKEND_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 
 pingdom save-check \
   --template request-with-bearer-token \
@@ -33,3 +33,18 @@ pingdom save-check \
   -a apikey="$COMMUNITY_CARE_DEV_API_KEY" \
   -a userids_csv="$STATUSPAGE_SANDBOX_COMMUNITY_CARE_ELIGIBILITY" \
   -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
+
+#
+# Backend services. Should not be integrated with statuspage.
+#
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-community-care-eligibility-backend-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/community-care/v0/health" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID"
