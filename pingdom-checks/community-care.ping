@@ -39,6 +39,18 @@ pingdom save-check \
 #
 pingdom save-check \
   --template https-public-200 \
+  -a name=production-community-care-eligibility-backend-health \
+  -a host=api.va.gov \
+  -a url="/services/community-care/v0/health" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID"
+
+pingdom save-check \
+  --template https-public-200 \
   -a name=sandbox-community-care-eligibility-backend-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/community-care/v0/health" \
