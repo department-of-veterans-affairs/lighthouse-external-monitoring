@@ -1,0 +1,23 @@
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-va-forms-health \
+  -a host=api.va.gov \
+  -a url="/services/va_forms/v0/healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="va-forms" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$NO_INTEGRATIONS"
+
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-va-forms-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/va_forms/v0/healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="va-forms" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$NO_INTEGRATIONS"
