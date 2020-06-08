@@ -8,7 +8,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="va-forms" \
   -a userids_csv="$NO_USERS" \
-#  -a integrationids_csv="$VA_FORMS_SLACK_ID"
+  -a integrationids_csv="$NO_INTEGRATIONS"
 
 pingdom save-check \
   --template https-public-200 \
@@ -20,4 +20,4 @@ pingdom save-check \
   -a resolution="1" \
   -a group="va-forms" \
   -a userids_csv="$NO_USERS" \
-#  -a integrationids_csv="$VA_FORMS_SLACK_ID"
+  -a integrationids_csv="$NO_INTEGRATIONS"
