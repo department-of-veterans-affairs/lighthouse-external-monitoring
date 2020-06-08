@@ -7,8 +7,8 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="va-forms" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$NO_INTEGRATIONS"
+  -a userids_csv="$STATUSPAGE_PRODUCTION_VA_FORMS" \
+  -a integrationids_csv="$VASDVP_MONITORING,$PAGER_DUTY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -19,5 +19,5 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="va-forms" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$NO_INTEGRATIONS"
+  -a userids_csv="$STATUSPAGE_SANDBOX_VA_FORMS" \
+  -a integrationids_csv="$VASDVP_MONITORING,$PAGER_DUTY"
