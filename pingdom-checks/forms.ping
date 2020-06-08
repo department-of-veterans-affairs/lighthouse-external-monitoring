@@ -7,7 +7,7 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="va-forms" \
-#  -a userids_csv="$NO_USERS" \
+  -a userids_csv="$NO_USERS" \
 #  -a integrationids_csv="$VA_FORMS_BACKEND_SLACK_ID"
 
 pingdom save-check \
@@ -19,5 +19,5 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="va-forms" \
-#  -a userids_csv="$NO_USERS" \
+  -a userids_csv="$NO_USERS" \
 #  -a integrationids_csv="$VA_FORMS_BACKEND_SLACK_ID"
