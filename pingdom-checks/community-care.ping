@@ -1,6 +1,6 @@
 # -*- sh -*-
 
-COMMUNITY_CARE_DEV_API_KEY=$(get-secret "/dvp/dev/community-care/api-key")
+COMMUNITY_CARE_DEV_API_KEY=$(get-secret "/dvp/qa/community-care/api-key")
 COMMUNITY_CARE_SLACK_ID=$VASDVP_MONITORING
 COMMUNITY_CARE_BACKEND_SLACK_ID=$TEST_SLACK_CHANNEL_ID
 

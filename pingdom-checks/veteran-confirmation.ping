@@ -1,6 +1,6 @@
 PRODUCTION_VETERAN_CONFIRMATION_API_KEY=$(get-secret "/dvp/production/veteran-confirmation/api-key")
 SANDBOX_VETERAN_CONFIRMATION_API_KEY=$(get-secret "/dvp/lab/veteran-confirmation/api-key")
-DEV_VETERAN_CONFIRMATION_API_KEY=$(get-secret "/dvp/dev/veteran-confirmation/api-key")
+DEV_VETERAN_CONFIRMATION_API_KEY=$(get-secret "/dvp/qa/veteran-confirmation/api-key")
 
 #production
 pingdom save-check \
