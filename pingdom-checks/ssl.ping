@@ -29,3 +29,15 @@ pingdom save-check \
   -a name=ssl-expiration-tools-health \
   -a host=tools.health.dev-developer.va.gov \
   -a integrationids_csv="$SSL_EXPIRATION_SLACK_ID";
+
+pingdom save-check \
+  --template ssl-expiration-check \
+  -a name=ssl-expiration-dev-developer-health \
+  -a host=dev-developer.va.gov \
+  -a integrationids_csv="$SSL_EXPIRATION_SLACK_ID";
+
+pingdom save-check \
+  --template ssl-expiration-check \
+  -a name=ssl-expiration-staging-developer-health \
+  -a host=staging-developer.va.gov \
+  -a integrationids_csv="$SSL_EXPIRATION_SLACK_ID";
