@@ -49,22 +49,6 @@ export PINGDOM_TOKEN=$(get-secret "/dvp/monitoring/pingdom-token")
 
 export HEALTH_APIS_STATIC_ACCESS_TOKEN=$(get-secret "/dvp/production/health/static-access-token")
 
-
-#
-# These are Slack integration IDs. Unfortunately, there is no Pingdom API for determining these
-# at run time and must be configured here.
-#
-
-
-if [ -f ./secrets.conf ]; then
-  TEST_SLACK_CHANNEL_ID=$(get-secret "/dvp/local/slack-integration/id")
-fi
-
-export TEST_SLACK_CHANNEL_ID
-
-export HEALTH_APIS_SLACK_ID=$TEST_SLACK_CHANNEL_ID
-
-
 for check in ./pingdom-checks/${CHECK_FILTER:-*.ping}; do
   bash -euo pipefail $check || exit 1
 done

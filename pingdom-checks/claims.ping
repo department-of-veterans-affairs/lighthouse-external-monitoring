@@ -45,4 +45,4 @@ pingdom save-check \
   -a apikey="$SANDBOX_CLAIMS_API_KEY" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_CLAIMS_V1" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$CLAIMS_SLACK_ID"
