@@ -44,5 +44,5 @@ pingdom save-check \
   -a url="/services/claims/v1/healthcheck" \
   -a apikey="$SANDBOX_CLAIMS_API_KEY" \
   -a group="claims" \
-  -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_INTAKE_V1" \
-  -a integrationids_csv="$CLAIMS_SLACK_ID"
+  -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_CLAIMS_V1" \
+  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
