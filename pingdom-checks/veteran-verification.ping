@@ -1,3 +1,5 @@
+VETERAN_VERIFICATION_SLACK_ID=$LIGHTHOUSE_ALERTS
+
 #production
 pingdom save-check \
   --template https-public-200 \
@@ -9,7 +11,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group=veteran-verification \
   -a userids_csv="$STATUSPAGE_PRODUCTION_VETERAN_VERIFICATION" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$VETERAN_VERIFICATION_SLACK_ID"
 
 #sandbox
 pingdom save-check \
@@ -22,4 +24,4 @@ pingdom save-check \
   -a resolution="1" \
   -a group=veteran-verification \
   -a userids_csv="$STATUSPAGE_SANDBOX_VETERAN_VERIFICATION" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$VETERAN_VERIFICATION_SLACK_ID"

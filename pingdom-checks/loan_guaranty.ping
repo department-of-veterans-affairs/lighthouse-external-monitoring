@@ -3,6 +3,8 @@
 PRODUCTION_LOAN_GUARANTY_KEY=$(get-secret "/dvp/production/loan-guaranty/api-key")
 SANDBOX_LOAN_GUARANTY_KEY=$(get-secret "/dvp/lab/loan-guaranty/api-key")
 
+LOAN_GUARANTY_SLACK_ID=$LIGHTHOUSE_ALERTS
+
 pingdom save-check \
   --template request-with-apikey \
   -a name=production-loan-guaranty-health-check \
@@ -11,7 +13,7 @@ pingdom save-check \
   -a apikey="$PRODUCTION_LOAN_GUARANTY_KEY" \
   -a group="loan-guaranty" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_LOAN_GUARANTY_V1" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$LOAN_GUARANTY_SLACK_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -21,4 +23,4 @@ pingdom save-check \
   -a apikey="$SANDBOX_LOAN_GUARANTY_KEY" \
   -a group="loan-guaranty" \
   -a userids_csv="$STATUSPAGE_SANDBOX_LOAN_GUARANTY_V1" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$LOAN_GUARANTY_SLACK_ID"
