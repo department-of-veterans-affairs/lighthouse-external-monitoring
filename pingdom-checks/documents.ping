@@ -3,6 +3,8 @@
 PRODUCTION_DOCUMENTS_API_KEY=$(get-secret "/dvp/production/documents/api-key")
 SANDBOX_DOCUMENTS_API_KEY=$(get-secret "/dvp/lab/documents/api-key")
 
+DOCUMENTS_SLACK_ID=$LIGHTHOUSE_ALERTS
+
 #v0
 pingdom save-check \
   --template request-with-apikey \
@@ -12,7 +14,7 @@ pingdom save-check \
   -a apikey="$PRODUCTION_DOCUMENTS_API_KEY" \
   -a group="documents" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a integrationids_csv="$DOCUMENTS_SLACK_ID";
 
 pingdom save-check \
   --template request-with-apikey \
@@ -22,7 +24,7 @@ pingdom save-check \
   -a apikey="$SANDBOX_DOCUMENTS_API_KEY" \
   -a group="documents" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a integrationids_csv="$DOCUMENTS_SLACK_ID";
 
 #v1
 pingdom save-check \
@@ -33,7 +35,7 @@ pingdom save-check \
   -a apikey="$PRODUCTION_DOCUMENTS_API_KEY" \
   -a group="documents" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a integrationids_csv="$DOCUMENTS_SLACK_ID";
 
 pingdom save-check \
   --template request-with-apikey \
@@ -43,4 +45,4 @@ pingdom save-check \
   -a apikey="$SANDBOX_DOCUMENTS_API_KEY" \
   -a group="documents" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID";
+  -a integrationids_csv="$DOCUMENTS_SLACK_ID";
