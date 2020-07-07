@@ -3,7 +3,7 @@
 SANDBOX_FACILITIES_API_KEY=$(get-secret "/dvp/lab/facilities/api-key")
 PRODUCTION_FACILITIES_API_KEY=$(get-secret "/dvp/production/facilities/api-key")
 FACILITIES_SLACK_ID=$VASDVP_MONITORING
-FACILITIES_BACKEND_SLACK_ID=$TEST_SLACK_CHANNEL_ID
+FACILITIES_BACKEND_SLACK_ID=$LIGHTHOUSE_ALERTS
 
 pingdom save-check \
   --template request-with-apikey \

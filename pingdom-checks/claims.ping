@@ -3,6 +3,8 @@
 PRODUCTION_CLAIMS_API_KEY=$(get-secret "/dvp/production/claims/api-key")
 SANDBOX_CLAIMS_API_KEY=$(get-secret "/dvp/lab/claims/api-key")
 
+CLAIMS_SLACK_ID=$LIGHTHOUSE_ALERTS
+
 # v0
 pingdom save-check \
   --template request-with-apikey \
@@ -12,7 +14,7 @@ pingdom save-check \
   -a apikey="$PRODUCTION_CLAIMS_API_KEY" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_BENEFITS_CLAIMS_V0" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$CLAIMS_SLACK_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -22,7 +24,7 @@ pingdom save-check \
   -a apikey="$SANDBOX_CLAIMS_API_KEY" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_CLAIMS_V0" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$CLAIMS_SLACK_ID"
 
 # v1
 pingdom save-check \
@@ -33,7 +35,7 @@ pingdom save-check \
   -a apikey="$PRODUCTION_CLAIMS_API_KEY" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_BENEFITS_CLAIMS_V1" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$CLAIMS_SLACK_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -43,4 +45,4 @@ pingdom save-check \
   -a apikey="$SANDBOX_CLAIMS_API_KEY" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_CLAIMS_V1" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$CLAIMS_SLACK_ID"

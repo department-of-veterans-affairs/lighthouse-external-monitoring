@@ -3,6 +3,8 @@
 PRODUCTION_APPEALS_API_KEY=$(get-secret "/dvp/production/appeals/api-key")
 SANDBOX_APPEALS_API_KEY=$(get-secret "/dvp/lab/appeals/api-key")
 
+APPEALS_SLACK_ID=$LIGHTHOUSE_ALERTS
+
 #v0
 pingdom save-check \
   --template request-with-apikey \
@@ -12,7 +14,7 @@ pingdom save-check \
   -a apikey="$PRODUCTION_APPEALS_API_KEY" \
   -a group="appeals" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_APPEALS_STATUS" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$APPEALS_SLACK_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -22,4 +24,4 @@ pingdom save-check \
   -a apikey="$SANDBOX_APPEALS_API_KEY" \
   -a group="appeals" \
   -a userids_csv="$STATUSPAGE_SANDBOX_APPEALS_STATUS" \
-  -a integrationids_csv="$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="$APPEALS_SLACK_ID"

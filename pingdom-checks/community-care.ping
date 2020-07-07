@@ -2,7 +2,7 @@
 
 COMMUNITY_CARE_DEV_API_KEY=$(get-secret "/dvp/qa/community-care/api-key")
 COMMUNITY_CARE_SLACK_ID=$VASDVP_MONITORING
-COMMUNITY_CARE_BACKEND_SLACK_ID=$TEST_SLACK_CHANNEL_ID
+COMMUNITY_CARE_BACKEND_SLACK_ID=$LIGHTHOUSE_ALERTS
 
 pingdom save-check \
   --template request-with-bearer-token \

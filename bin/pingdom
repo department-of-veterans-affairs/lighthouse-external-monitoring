@@ -42,7 +42,7 @@ $0 save-check \\
   -a host=api.va.gov \\
   -a url="/services/fhir/v0/dstu2/MedicationStatement?patient=1011537977V693883" \\
   -a authorization_token="\$ARGONAUT_TOKEN" \\
-  -a integrationids_csv="\$HEALTH_APIS_SLACK_ID"
+  -a integrationids_csv="\$DQ_SLACK_ID"
 
 
 ${1:-}
