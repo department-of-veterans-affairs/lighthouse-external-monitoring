@@ -41,3 +41,9 @@ pingdom save-check \
   -a name=ssl-expiration-staging-developer-health \
   -a host=staging-developer.va.gov \
   -a integrationids_csv="$SSL_EXPIRATION_SLACK_ID";
+
+pingdom save-check \
+  --template ssl-expiration-check \
+  -a name=ssl-expiration-staging-api \
+  -a host=staging-api.va.gov \
+  -a integrationids_csv="$SSL_EXPIRATION_SLACK_ID";
