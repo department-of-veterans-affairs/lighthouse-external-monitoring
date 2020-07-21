@@ -25,3 +25,24 @@ pingdom save-check \
   -a group="appeals" \
   -a userids_csv="$STATUSPAGE_SANDBOX_APPEALS_STATUS" \
   -a integrationids_csv="$APPEALS_SLACK_ID"
+
+#v1
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=production-appeals-v1-health-check \
+  -a host=api.va.gov \
+  -a url="/services/appeals/v1/healthcheck" \
+  -a apikey="$PRODUCTION_APPEALS_API_KEY" \
+  -a group="appeals" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$NO_INTEGRATIONS"
+
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=sandbox-appeals-v1-health-check \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/appeals/v1/healthcheck" \
+  -a apikey="$SANDBOX_APPEALS_API_KEY" \
+  -a group="appeals" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$NO_INTEGRATIONS"
