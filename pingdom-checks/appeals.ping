@@ -34,8 +34,8 @@ pingdom save-check \
   -a url="/services/appeals/v1/healthcheck" \
   -a apikey="$PRODUCTION_APPEALS_API_KEY" \
   -a group="appeals" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$NO_INTEGRATIONS"
+  -a userids_csv="$STATUSPAGE_PRODUCTION_DECISION_REVIEWS" \
+  -a integrationids_csv="$APPEALS_SLACK_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -44,5 +44,5 @@ pingdom save-check \
   -a url="/services/appeals/v1/healthcheck" \
   -a apikey="$SANDBOX_APPEALS_API_KEY" \
   -a group="appeals" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$NO_INTEGRATIONS"
+  -a userids_csv="$STATUSPAGE_SANDBOX_DECISION_REVIEWS" \
+  -a integrationids_csv="$APPEALS_SLACK_ID"
