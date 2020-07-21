@@ -35,7 +35,7 @@ pingdom save-check \
   -a apikey="$PRODUCTION_APPEALS_API_KEY" \
   -a group="appeals" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_DECISION_REVIEWS" \
-  -a integrationids_csv="$NO_INTEGRATIONS"
+  -a integrationids_csv="$APPEALS_SLACK_ID"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -45,4 +45,4 @@ pingdom save-check \
   -a apikey="$SANDBOX_APPEALS_API_KEY" \
   -a group="appeals" \
   -a userids_csv="$STATUSPAGE_SANDBOX_DECISION_REVIEWS" \
-  -a integrationids_csv="$NO_INTEGRATIONS"
+  -a integrationids_csv="$APPEALS_SLACK_ID"
