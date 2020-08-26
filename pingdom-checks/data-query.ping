@@ -1,6 +1,6 @@
 # -*- sh -*-
 
-DATA_QUERY_SLACK_ID=$VASDVP_MONITORING
+DATA_QUERY_SLACK_ID="$SLACK_VASDVP_MONITORING,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template fhir-resource \

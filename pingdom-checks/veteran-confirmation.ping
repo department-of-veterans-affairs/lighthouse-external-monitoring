@@ -2,7 +2,7 @@ PRODUCTION_VETERAN_CONFIRMATION_API_KEY=$(get-secret "/dvp/production/veteran-co
 SANDBOX_VETERAN_CONFIRMATION_API_KEY=$(get-secret "/dvp/lab/veteran-confirmation/api-key")
 DEV_VETERAN_CONFIRMATION_API_KEY=$(get-secret "/dvp/qa/veteran-confirmation/api-key")
 
-VETERAN_CONFIRMATION_SLACK_ID=$LIGHTHOUSE_ALERTS
+VETERAN_CONFIRMATION_SLACK_ID=$SLACK_LIGHTHOUSE_ALERTS
 
 #production
 pingdom save-check \

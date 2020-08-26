@@ -1,6 +1,6 @@
 # -*- sh -*-
 
-URGENT_CARE_SLACK_ID=$VASDVP_MONITORING
+URGENT_CARE_SLACK_ID=$SLACK_VASDVP_MONITORING
 
 pingdom save-check \
   --template fhir-resource \

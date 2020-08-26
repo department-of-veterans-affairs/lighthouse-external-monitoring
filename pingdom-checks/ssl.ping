@@ -1,4 +1,4 @@
-SSL_EXPIRATION_SLACK_ID=$VASDVP_MONITORING
+SSL_EXPIRATION_SLACK_ID=$SLACK_VASDVP_MONITORING
 
 pingdom save-check \
   --template ssl-expiration-check \

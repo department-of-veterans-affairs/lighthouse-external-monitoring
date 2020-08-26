@@ -4,7 +4,7 @@ PRODUCTION_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/dvp/production/oauth/basic-auth
 PRODUCTION_OAUTH_REFRESH_TOKEN=$(get-secret "/dvp/production/oauth/refresh-token")
 DEV_OAUTH_BASIC_AUTH_TOKEN=$(get-secret "/dvp/qa/oauth/basic-auth-token")
 DEV_OAUTH_REFRESH_TOKEN=$(get-secret "/dvp/qa/oauth/refresh-token")
-OAUTH_SLACK_ID=$VASDVP_MONITORING
+OAUTH_SLACK_ID=$SLACK_VASDVP_MONITORING
 
 pingdom save-check \
   --template oauth-refresh-token \

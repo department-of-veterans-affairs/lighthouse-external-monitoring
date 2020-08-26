@@ -1,6 +1,6 @@
 # -*- sh -*-
 
-SAML_PROXY_SLACK_ID=$VASDVP_MONITORING
+SAML_PROXY_SLACK_ID=$SLACK_VASDVP_MONITORING
 
 #production
 pingdom save-check \

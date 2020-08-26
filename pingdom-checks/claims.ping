@@ -3,7 +3,7 @@
 PRODUCTION_CLAIMS_API_KEY=$(get-secret "/dvp/production/claims/api-key")
 SANDBOX_CLAIMS_API_KEY=$(get-secret "/dvp/lab/claims/api-key")
 
-CLAIMS_SLACK_ID=$LIGHTHOUSE_ALERTS
+CLAIMS_SLACK_ID=$SLACK_LIGHTHOUSE_ALERTS
 
 # v0
 pingdom save-check \
