@@ -35,7 +35,7 @@ pingdom save-check \
   -a host=api.va.gov \
   -a url="/services/fhir/v0/healthz" \
   -a group="health-apis" \
-  -a integrationids_csv="$DATA_QUERY_SLACK_ID,$PAGER_DUTY"
+  -a integrationids_csv="$DATA_QUERY_SLACK_ID,$PAGER_DUTY,$SLACK_API_ALARMS_INFRASTRUCTURE"
 
 pingdom save-check \
   --template simple-resource \
@@ -43,7 +43,7 @@ pingdom save-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/fhir/v0/healthz" \
   -a group="health-apis" \
-  -a integrationids_csv="$DATA_QUERY_SLACK_ID,$PAGER_DUTY"
+  -a integrationids_csv="$DATA_QUERY_SLACK_ID,$PAGER_DUTY,$SLACK_API_ALARMS_INFRASTRUCTURE"
 
 pingdom save-check \
   --template fhir-resource \
