@@ -1,6 +1,6 @@
 # -*- sh -*-
 
-DOMAIN_SLACK_ID=$SLACK_VASDVP_MONITORING
+DOMAIN_SLACK_ID="$SLACK_VASDVP_MONITORING,$SLACK_API_ALARMS_INFRASTRUCTURE"
 DOMAIN_DEPRECATED_SLACK_ID=$SLACK_LIGHTHOUSE_ALERTS
 
 pingdom save-check \
@@ -48,5 +48,5 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="domain-health" \
-  -a integrationids_csv="$DOMAIN_DEPRECATED_SLACK_ID" \
+  -a integrationids_csv="$DOMAIN_DEPRECATED_SLACK_ID,$SLACK_API_ALARMS_INFRASTRUCTURE" \
   -a userids_csv="$NO_USERS"
