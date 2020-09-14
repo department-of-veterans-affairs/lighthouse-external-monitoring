@@ -1,9 +1,9 @@
 # -*- sh -*-
 
 COMMUNITY_CARE_DEV_API_KEY=$(get-secret "/dvp/qa/community-care/api-key")
-VASDVP_SLACK_ID=$SLACK_VASDVP_MONITORING
+COMMUNITY_CARE_SLACK_ID=$SLACK_VASDVP_MONITORING
 COMMUNITY_CARE_BACKEND_SLACK_ID=$SLACK_LIGHTHOUSE_ALERTS
-COMMUNITY_CARE_SLACK_ID=$SLACK_COMMUNITY_CARE_MONITORING
+COMMUNITY_CARE_ALARMS_SLACK_ID=$SLACK_COMMUNITY_CARE_MONITORING
 
 pingdom save-check \
   --template request-with-bearer-token \
@@ -13,7 +13,7 @@ pingdom save-check \
   -a group="community-care" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$VASDVP_SLACK_ID,$COMMUNITY_CARE_BACKEND_SLACK_ID,$PAGER_DUTY"
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$COMMUNITY_CARE_ALARMS_SLACK_ID,$PAGER_DUTY"
 
 pingdom save-check \
   --template request-with-bearer-token \
@@ -23,7 +23,7 @@ pingdom save-check \
   -a group="community-care" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_SANDBOX_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$VASDVP_SLACK_ID,$COMMUNITY_CARE_BACKEND_SLACK_ID,$PAGER_DUTY"
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$COMMUNITY_CARE_ALARMS_SLACK_ID,$PAGER_DUTY"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -33,7 +33,7 @@ pingdom save-check \
   -a group="community-care" \
   -a apikey="$COMMUNITY_CARE_DEV_API_KEY" \
   -a userids_csv="$STATUSPAGE_SANDBOX_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$VASDVP_SLACK_ID,$COMMUNITY_CARE_BACKEND_SLACK_ID,$PAGER_DUTY"
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$COMMUNITY_CARE_ALARMS_SLACK_ID,$PAGER_DUTY"
 
 #
 # Backend services. Should not be integrated with statuspage.
