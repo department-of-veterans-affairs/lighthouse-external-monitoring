@@ -3,7 +3,7 @@
 PRODUCTION_API_GATEWAY_KEY=$(get-secret "/dvp/production/api-gateway/api-key")
 SANDBOX_API_GATEWAY_KEY=$(get-secret "/dvp/lab/api-gateway/api-key")
 
-GATEWAY_SLACK_ID=$SLACK_VASDVP_MONITORING
+GATEWAY_SLACK_ID="$SLACK_VASDVP_MONITORING,$SLACK_API_ALARMS_INFRASTRUCTURE"
 
 pingdom save-check \
   --template request-with-apikey \
