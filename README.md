@@ -206,23 +206,34 @@ owners regard key name. If you cannot or prefer not to add secrets yourself, the
 can do this for you.
 
 
-## How to determining integration and user IDs
-Unfortunately, Pingdom does not have an API to determine the IDs of users/integration.
-You must use this gross work around. If you are unable to do this, contact the 
-code owners of this repository for assistance.
+## How to determine integration and user IDs
+You are able to access the Pingdom Integration ID using its website.
 
 Prerequisites
 - Pingdom access
-- Pingdom API token
 
 Steps
-- Manually configure the `manual-integrations-test` check in Pingdom to include _just_ the
-  integration or user you are interested in.
-  Edit the [manual-integration-test](https://my.pingdom.com/reports/uptime#check=5834577).
-- After saving the check, pull the configuration locally. The ID will be available in the
-  response.
-- Update `integration-ids.conf`, `user-ids.conf` or your `*.ping` check as appropriate.
-  Be sure to use a descriptive name and please add a comment for future developers.
+- Log in to Pingdom (`my.pingdom.com`), and go to Integrations -> Integrations (Be sure to use the `VA API DEVELOPMENT AND OPERATIONS` organization)
+- Click on the integration you want the ID of.
+- Look at the URL, it should end with "#integrations=[ID]"
+- The [ID] is your desired integration ID
+- Update `integration-ids.conf`, `user-ids.conf` or your `*.ping` check as appropriate. Be sure to use a descriptive name 
+and please add a comment for future developers.
+
+Alternatively, Pingdom Integration IDs and User IDs may be determined using the `manual-integrations-test` and a 
+very gross workaround to Pingdom's lack of dedicated APIs for this purpose.
+
+Prerequisites
+- Pingdom access
+- Pingdom API Token
+
+Steps
+- Manually configure the `manual-integrations-test` check in Pingdom to include just the integration or user you are interested in. 
+Edit the `manual-integration-test`.
+- After saving the check, pull the configuration locally. The ID will be available in the response.
+- Update `integration-ids.conf`, `user-ids.conf` or your `*.ping` check as appropriate. Be sure to use a descriptive name 
+and please add a comment for future developers.
+
   
 ```
 # Integration ID
