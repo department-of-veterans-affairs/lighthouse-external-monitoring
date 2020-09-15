@@ -48,7 +48,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="community-care" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID"
+  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID,$COMMUNITY_CARE_DEDICATED_ALARMS_CHANNEL_SLACK_ID"
 
 pingdom save-check \
   --template https-public-200 \
@@ -60,4 +60,4 @@ pingdom save-check \
   -a resolution="1" \
   -a group="community-care" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID"
+  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID,$COMMUNITY_CARE_DEDICATED_ALARMS_CHANNEL_SLACK_ID"
