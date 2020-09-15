@@ -213,7 +213,7 @@ Prerequisites
 - Pingdom access
 
 Steps
-- Log in to Pingdom, and go to Integrations -> Integrations
+- Log in to Pingdom (`my.pingdom.com`), and go to Integrations -> Integrations
 - Click on the integration you want the ID of.
 - Look at the URL, it should end with "#integrations=[ID]"
 - The [ID] is your desired integration ID
