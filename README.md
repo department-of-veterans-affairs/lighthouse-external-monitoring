@@ -207,13 +207,13 @@ can do this for you.
 
 
 ## How to determine integration and user IDs
-You are able to access the Pingdom Integration ID using the Pingdom website.
+You are able to access the Pingdom Integration ID using its website.
 
 Prerequisites
 - Pingdom access
 
 Steps
-- Log in to Pingdom (`my.pingdom.com`), and go to Integrations -> Integrations
+- Log in to Pingdom (`my.pingdom.com`), and go to Integrations -> Integrations (Be sure to use the `VA API DEVELOPMENT AND OPERATIONS` organization)
 - Click on the integration you want the ID of.
 - Look at the URL, it should end with "#integrations=[ID]"
 - The [ID] is your desired integration ID
