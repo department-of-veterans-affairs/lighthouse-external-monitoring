@@ -1,6 +1,7 @@
 # -*- sh -*-
 
 DATA_QUERY_SLACK_ID="$SLACK_VASDVP_MONITORING,$SLACK_API_ALARMS_DATA_QUERY"
+ETL_MONITORING_SLACK_ID="SLACK_LIGHTHOUSE_ALERTS,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template fhir-resource \
@@ -38,6 +39,18 @@ pingdom save-check \
   -a integrationids_csv="$DATA_QUERY_SLACK_ID,$PAGER_DUTY,$SLACK_API_ALARMS_INFRASTRUCTURE"
 
 pingdom save-check \
+  --template https-public-200 \
+  -a name=production-etl-status \
+  -a host=api.va.gov \
+  -a url="/fhir/v0/r4/etl-status" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="health-apis" \
+  -a integrationids_csv="$ETL_MONITORING_SLACK_ID"
+  -a userids_csv="$NO_USERS"
+
+pingdom save-check \
   --template simple-resource \
   -a name=sandbox-health-alb \
   -a host=sandbox-api.va.gov \
@@ -71,3 +84,15 @@ pingdom save-check \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
   -a integrationids_csv="$DATA_QUERY_SLACK_ID,$PAGER_DUTY"
+
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-etl-status \
+  -a host=sandbox-api.va.gov \
+  -a url="/fhir/v0/r4/etl-status" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="health-apis" \
+  -a integrationids_csv="$ETL_MONITORING_SLACK_ID"
+  -a userids_csv="$NO_USERS"
