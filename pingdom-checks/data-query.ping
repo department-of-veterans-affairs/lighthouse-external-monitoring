@@ -47,8 +47,8 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="health-apis" \
+  -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$ETL_MONITORING_SLACK_ID"
-  -a userids_csv="$NO_USERS"
 
 pingdom save-check \
   --template simple-resource \
