@@ -42,7 +42,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=production-etl-status \
   -a host=api.va.gov \
-  -a url="/fhir/v0/r4/etl-status" \
+  -a url="/services/fhir/v0/r4/etl-status" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
@@ -84,15 +84,3 @@ pingdom save-check \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
   -a integrationids_csv="$DATA_QUERY_SLACK_ID,$PAGER_DUTY"
-
-pingdom save-check \
-  --template https-public-200 \
-  -a name=sandbox-etl-status \
-  -a host=sandbox-api.va.gov \
-  -a url="/fhir/v0/r4/etl-status" \
-  -a port="443" \
-  -a responsetime_threshold="30000" \
-  -a resolution="1" \
-  -a group="health-apis" \
-  -a integrationids_csv="$ETL_MONITORING_SLACK_ID"
-  -a userids_csv="$NO_USERS"
