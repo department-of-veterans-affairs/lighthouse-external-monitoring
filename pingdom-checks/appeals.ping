@@ -1,48 +1,78 @@
 # -*- sh -*-
 
-PRODUCTION_APPEALS_API_KEY=$(get-secret "/dvp/production/appeals/api-key")
-SANDBOX_APPEALS_API_KEY=$(get-secret "/dvp/lab/appeals/api-key")
-
-APPEALS_SLACK_ID="$SLACK_LIGHTHOUSE_ALERTS,$SLACK_API_ALARMS_APPEALS"
+APPEALS_SLACK_ID="$SLACK_VASDVP_MONITORING,$SLACK_API_ALARMS_APPEALS"
+APPEALS_BACKEND_SLACK_ID="$SLACK_LIGHTHOUSE_ALERTS,$SLACK_API_ALARMS_APPEALS"
 
 #v0
 pingdom save-check \
-  --template request-with-apikey \
+  --template request-without-apikey \
   -a name=production-appeals-v0-health-check \
   -a host=api.va.gov \
   -a url="/services/appeals/v0/healthcheck" \
-  -a apikey="$PRODUCTION_APPEALS_API_KEY" \
+  -a group="appeals" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$APPEALS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template request-without-apikey \
+  -a name=production-appeals-v0-backend-health \
+  -a host=api.va.gov \
+  -a url="/services/appeals/v0/upstream_healthcheck" \
   -a group="appeals" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_APPEALS_STATUS" \
-  -a integrationids_csv="$APPEALS_SLACK_ID"
+  -a integrationids_csv="$APPEALS_BACKEND_SLACK_ID"
 
 pingdom save-check \
-  --template request-with-apikey \
+  --template request-without-apikey \
   -a name=sandbox-appeals-v0-health-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/appeals/v0/healthcheck" \
-  -a apikey="$SANDBOX_APPEALS_API_KEY" \
+  -a group="appeals" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$APPEALS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template request-without-apikey \
+  -a name=sandbox-appeals-v0-backend-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/appeals/v0/upstream_healthcheck" \
   -a group="appeals" \
   -a userids_csv="$STATUSPAGE_SANDBOX_APPEALS_STATUS" \
-  -a integrationids_csv="$APPEALS_SLACK_ID"
+  -a integrationids_csv="$APPEALS_BACKEND_SLACK_ID"
 
 #v1
 pingdom save-check \
-  --template request-with-apikey \
+  --template request-without-apikey \
   -a name=production-appeals-v1-health-check \
   -a host=api.va.gov \
   -a url="/services/appeals/v1/healthcheck" \
-  -a apikey="$PRODUCTION_APPEALS_API_KEY" \
+  -a group="appeals" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$APPEALS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template request-without-apikey \
+  -a name=production-appeals-v1-backend-health \
+  -a host=api.va.gov \
+  -a url="/services/appeals/v1/upstream_healthcheck" \
   -a group="appeals" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_DECISION_REVIEWS" \
-  -a integrationids_csv="$APPEALS_SLACK_ID"
+  -a integrationids_csv="$APPEALS_BACKEND_SLACK_ID"
 
 pingdom save-check \
-  --template request-with-apikey \
+  --template request-without-apikey \
   -a name=sandbox-appeals-v1-health-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/appeals/v1/healthcheck" \
-  -a apikey="$SANDBOX_APPEALS_API_KEY" \
+  -a group="appeals" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$APPEALS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template request-without-apikey \
+  -a name=sandbox-appeals-v1-backend-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/appeals/v1/upstream_healthcheck" \
   -a group="appeals" \
   -a userids_csv="$STATUSPAGE_SANDBOX_DECISION_REVIEWS" \
-  -a integrationids_csv="$APPEALS_SLACK_ID"
+  -a integrationids_csv="$APPEALS_BACKEND_SLACK_ID"
