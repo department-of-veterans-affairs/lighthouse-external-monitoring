@@ -1,4 +1,4 @@
 standardShellPipeline {
-  credentials = [ string( credentialsId: 'SLACK_WEBHOOK_LIGHTHOUSE', variable: 'SLACK_WEBHOOK_LIGHTHOUSE' ) ]
-  slackDestinations = [ 'shankins@${env.SLACK_WEBHOOK_LIGHTHOUSE}' ]
+  credentials = [ string( credentialsId: 'SLACK_WEBHOOK', variable: 'SLACK_WEBHOOK' ) ]
+  slackDestinations = [ 'shankins@${env.SLACK_WEBHOOK}' ]
 }
