@@ -10,7 +10,7 @@
   "sendnotificationwhendown": 6,
   "notifyagainevery": 1,
   "notifywhenbackup": true,
-  "tags" : [ "managed", "$group" ],
+  "tags": [ "$build", "managed", "$group" ],
   "responsetime_threshold": "$responsetime_threshold",
   "userids" : [ $userids_csv ],
   "integrationids": [ $integrationids_csv ],
