@@ -1,3 +1,8 @@
+# -*- sh -*-
+
+VA_FORMS_SLACK_ID="$SLACK_VASDVP_MONITORING,$SLACK_API_ALARMS_VA_FORMS"
+VA_FORMS_BACKEND_SLACK_ID="$SLACK_LIGHTHOUSE_ALERTS,$SLACK_API_ALARMS_VA_FORMS"
+
 pingdom save-check \
   --template https-public-200 \
   -a name=production-va-forms-health \
@@ -7,8 +12,20 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="va-forms" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$VA_FORMS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-va-forms-backend-health \
+  -a host=api.va.gov \
+  -a url="/services/va_forms/v0/upstream_healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="va-forms" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_VA_FORMS" \
-  -a integrationids_csv="$SLACK_VASDVP_MONITORING,$PAGER_DUTY"
+  -a integrationids_csv="$VA_FORMS_BACKEND_SLACK_ID"
 
 pingdom save-check \
   --template https-public-200 \
@@ -19,5 +36,17 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="va-forms" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$VA_FORMS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-va-forms-backend-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/va_forms/v0/upstream_healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="va-forms" \
   -a userids_csv="$STATUSPAGE_SANDBOX_VA_FORMS" \
-  -a integrationids_csv="$SLACK_VASDVP_MONITORING,$PAGER_DUTY"
+  -a integrationids_csv="$VA_FORMS_BACKEND_SLACK_ID"

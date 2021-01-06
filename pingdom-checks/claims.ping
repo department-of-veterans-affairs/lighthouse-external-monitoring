@@ -1,48 +1,102 @@
 # -*- sh -*-
 
-PRODUCTION_CLAIMS_API_KEY=$(get-secret "/dvp/production/claims/api-key")
-SANDBOX_CLAIMS_API_KEY=$(get-secret "/dvp/lab/claims/api-key")
+CLAIMS_SLACK_ID="$SLACK_VASDVP_MONITORING,$SLACK_API_ALARMS_BENEFITS"
+CLAIMS_BACKEND_SLACK_ID="$SLACK_LIGHTHOUSE_ALERTS,$SLACK_API_ALARMS_BENEFITS"
 
-CLAIMS_SLACK_ID=$SLACK_LIGHTHOUSE_ALERTS
-
-# v0
+#v0
 pingdom save-check \
-  --template request-with-apikey \
+  --template https-public-200 \
   -a name=production-claims-v0-health-check \
   -a host=api.va.gov \
   -a url="/services/claims/v0/healthcheck" \
-  -a apikey="$PRODUCTION_CLAIMS_API_KEY" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="claims" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLAIMS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-claims-v0-backend-health \
+  -a host=api.va.gov \
+  -a url="/services/claims/v0/upstream_healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_BENEFITS_CLAIMS_V0" \
-  -a integrationids_csv="$CLAIMS_SLACK_ID"
+  -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID"
 
 pingdom save-check \
-  --template request-with-apikey \
+  --template https-public-200 \
   -a name=sandbox-claims-v0-health-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/claims/v0/healthcheck" \
-  -a apikey="$SANDBOX_CLAIMS_API_KEY" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="claims" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLAIMS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-claims-v0-backend-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/claims/v0/upstream_healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_CLAIMS_V0" \
-  -a integrationids_csv="$CLAIMS_SLACK_ID"
+  -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID"
 
-# v1
+#v1
 pingdom save-check \
-  --template request-with-apikey \
+  --template https-public-200 \
   -a name=production-claims-v1-health-check \
   -a host=api.va.gov \
   -a url="/services/claims/v1/healthcheck" \
-  -a apikey="$PRODUCTION_CLAIMS_API_KEY" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="claims" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLAIMS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-claims-v1-backend-health \
+  -a host=api.va.gov \
+  -a url="/services/claims/v1/upstream_healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_BENEFITS_CLAIMS_V1" \
-  -a integrationids_csv="$CLAIMS_SLACK_ID"
+  -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID"
 
 pingdom save-check \
-  --template request-with-apikey \
+  --template https-public-200 \
   -a name=sandbox-claims-v1-health-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/claims/v1/healthcheck" \
-  -a apikey="$SANDBOX_CLAIMS_API_KEY" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="claims" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLAIMS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-claims-v1-backend-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/claims/v1/upstream_healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_CLAIMS_V1" \
-  -a integrationids_csv="$CLAIMS_SLACK_ID"
+  -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID"

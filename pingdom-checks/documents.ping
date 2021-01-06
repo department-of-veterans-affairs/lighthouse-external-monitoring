@@ -1,48 +1,102 @@
 # -*- sh -*-
 
-PRODUCTION_DOCUMENTS_API_KEY=$(get-secret "/dvp/production/documents/api-key")
-SANDBOX_DOCUMENTS_API_KEY=$(get-secret "/dvp/lab/documents/api-key")
-
-DOCUMENTS_SLACK_ID=$SLACK_LIGHTHOUSE_ALERTS
+DOCUMENTS_SLACK_ID="$SLACK_VASDVP_MONITORING,$SLACK_API_ALARMS_BENEFITS"
+DOCUMENTS_BACKEND_SLACK_ID="$SLACK_LIGHTHOUSE_ALERTS,$SLACK_API_ALARMS_BENEFITS"
 
 #v0
 pingdom save-check \
-  --template request-with-apikey \
+  --template https-public-200 \
   -a name=production-documents-v0-health-check \
   -a host=api.va.gov \
   -a url="/services/vba_documents/v0/healthcheck" \
-  -a apikey="$PRODUCTION_DOCUMENTS_API_KEY" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
   -a group="documents" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$DOCUMENTS_SLACK_ID";
+  -a integrationids_csv="$DOCUMENTS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-documents-v0-backend-health \
+  -a host=api.va.gov \
+  -a url="/services/vba_documents/v0/upstream_healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="documents" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_BENEFITS_INTAKE_V0" \
+  -a integrationids_csv="$DOCUMENTS_BACKEND_SLACK_ID"
 
 pingdom save-check \
-  --template request-with-apikey \
+  --template https-public-200 \
   -a name=sandbox-documents-v0-health-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/vba_documents/v0/healthcheck" \
-  -a apikey="$SANDBOX_DOCUMENTS_API_KEY" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
   -a group="documents" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$DOCUMENTS_SLACK_ID";
+  -a integrationids_csv="$DOCUMENTS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-documents-v0-backend-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/vba_documents/v0/upstream_healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="documents" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_INTAKE_V0" \
+  -a integrationids_csv="$DOCUMENTS_BACKEND_SLACK_ID"
 
 #v1
 pingdom save-check \
-  --template request-with-apikey \
+  --template https-public-200 \
   -a name=production-documents-v1-health-check \
   -a host=api.va.gov \
   -a url="/services/vba_documents/v1/healthcheck" \
-  -a apikey="$PRODUCTION_DOCUMENTS_API_KEY" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
   -a group="documents" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$DOCUMENTS_SLACK_ID";
+  -a integrationids_csv="$DOCUMENTS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-documents-v1-backend-health \
+  -a host=api.va.gov \
+  -a url="/services/vba_documents/v1/upstream_healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="documents" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_BENEFITS_INTAKE_V1" \
+  -a integrationids_csv="$DOCUMENTS_BACKEND_SLACK_ID"
 
 pingdom save-check \
-  --template request-with-apikey \
+  --template https-public-200 \
   -a name=sandbox-documents-v1-health-check \
   -a host=sandbox-api.va.gov \
   -a url="/services/vba_documents/v1/healthcheck" \
-  -a apikey="$SANDBOX_DOCUMENTS_API_KEY" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
   -a group="documents" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$DOCUMENTS_SLACK_ID";
+  -a integrationids_csv="$DOCUMENTS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-documents-v1-backend-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/vba_documents/v1/upstream_healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="documents" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_INTAKE_V1" \
+  -a integrationids_csv="$DOCUMENTS_BACKEND_SLACK_ID"
