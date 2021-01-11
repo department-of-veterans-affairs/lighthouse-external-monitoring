@@ -1,13 +1,11 @@
 # -*- sh -*-
 
-PGD_SLACK_ID=PLACEHOLDER
-
 pingdom save-check \
   --template fhir-resource \ 
   -a name=sandbox-pgd-r4-patient \ 
   -a host=sandbox-api.va.gov \
   -a url="/services/fhir/pgd/v0/r4/questionnaire/37953b72-961b-41ee-bd05-86c62bacc46b" \
-  -a authorization_token= "$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
-  -a userids_csv= "$NO_USERS" \
-  -a integrationids_csv= "$SLACK_PGD_SANDBOX" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$SLACK_PGD_SANDBOX" 
 
