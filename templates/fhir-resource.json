@@ -5,7 +5,7 @@
   "port": 443,
   "url": "$url",
   "requestheaderAuthorization":"Authorization:Bearer $authorization_token",
-  "requestheaderAccept":"Accept:application/json+fhir",
+  "requestheaderAccept":"Accept:application/fhir+json",
   "encryption": true,
   "verify_certificate": true,
   "resolution": 1,
