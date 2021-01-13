@@ -3,8 +3,8 @@
 PGD_SLACK_ID="$SLACK_API_ALARMS_PGD,$SLACK_VASDVP_MONITORING"
 
 pingdom save-check \
-  --template fhir-resource \ 
-  -a name=sandbox-pgd-r4-questionnaire \ 
+  --template fhir-resource \
+  -a name=sandbox-pgd-r4-questionnaire \
   -a host=sandbox-api.va.gov \
   -a url="/services/fhir/pgd/v0/r4/questionnaire/37953b72-961b-41ee-bd05-86c62bacc46b" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
