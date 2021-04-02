@@ -1,0 +1,14 @@
+# -*- sh -*-
+
+SC_SLACK_ID="$SLACK_API_ALARMS_SMART_CARDS,$SLACK_VASDVP_MONITORING"
+
+pingdom save-check \
+  --template post-request-with-bearer-token \
+  -a name=sandbox-smart-cards-r4-issue \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/fhir/v0/r4/Patient/1011537977V693883/\$health-cards-issue" \
+  -a group=smart-cards \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a postdata="$(escape-json '{ "resourceType": "Parameters", "parameter": [{"name": "credentialType", "valueUri": "https://smarthealth.cards#immunization"}, {"name": "credentialType", "valueUri": "https://smarthealth.cards#covid19"}]}')" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$SC_SLACK_ID"
