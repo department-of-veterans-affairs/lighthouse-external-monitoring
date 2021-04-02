@@ -10,4 +10,5 @@ pingdom save-check \
   -a group=smart-cards \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a postdata="$(escape-json '{ "resourceType": "Parameters", "parameter": [{"name": "credentialType", "valueUri": "https://smarthealth.cards#immunization"}, {"name": "credentialType", "valueUri": "https://smarthealth.cards#covid19"}]}')" \
+  -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$SC_SLACK_ID"
