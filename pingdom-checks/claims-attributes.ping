@@ -1,0 +1,29 @@
+# -*- sh -*-
+
+CLAIMS_SLACK_ID="$SLACK_VASDVP_MONITORING,$SLACK_API_ALARMS_BENEFITS"
+CLAIMS_BACKEND_SLACK_ID="$SLACK_LIGHTHOUSE_ALERTS,$SLACK_API_ALARMS_BENEFITS"
+
+#v1
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-claims-attributes-v1-health-check \
+  -a host=api.va.gov \
+  -a url="/services/claims-attributes/v1/healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="claims-attributes" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLAIMS_SLACK_ID,$PAGER_DUTY"
+  
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-claims-attributes-v1-health-check \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/claims-attributes/v1/healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="claims-attributes" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLAIMS_SLACK_ID,$PAGER_DUTY" 
