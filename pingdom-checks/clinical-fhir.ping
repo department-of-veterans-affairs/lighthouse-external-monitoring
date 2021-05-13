@@ -22,7 +22,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-clinical-fhir-dq-health \
   -a host=sandbox-api.va.gov \
-  -a url="/services/clinical-fhir/v0/data--query/health" \
+  -a url="/services/clinical-fhir/v0/data-query/health" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
