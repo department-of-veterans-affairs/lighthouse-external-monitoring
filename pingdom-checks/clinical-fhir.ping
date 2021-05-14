@@ -74,7 +74,7 @@ pingdom save-check \
   -a url="/services/clinical-fhir/v0/r4/Observation?patient=1011537977V693883" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,${PAGER_DUTY}"
 
 # Clinical-Fhir Patient Health Check
 pingdom save-check \
