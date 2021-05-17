@@ -1,5 +1,10 @@
-CLINICAL_FHIR_SLACK_ID="$SLACK_VASDVP_MONITORING"
+CLINICAL_FHIR_SLACK_ID="${SLACK_VASDVP_MONITORING},${SLACK_API_ALARMS_CLINICAL_FHIR}"
 
+#
+# Sandbox
+#
+
+# Nginx Proxy Health
 pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-clinical-fhir-health \
@@ -12,6 +17,66 @@ pingdom save-check \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
 
+# Proxy -> DQ Health Check
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-clinical-fhir-dq-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/clinical-fhir/v0/data-query/health" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="clinical-fhir" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+
+# Proxy -> VFQ Health Check
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-clinical-fhir-vfq-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/clinical-fhir/v0/vista-fhir-query/health" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="clinical-fhir" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+
+# Proxy -> VFQ Backend Health Check (Charon)
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-clinical-fhir-vfq-backend-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/clinical-fhir/v0/vista-fhir-query/backend/health" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="clinical-fhir" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+
+# Clinical-Fhir Condition Health Check
+pingdom save-check \
+  --template fhir-resource \
+  -a name=sandbox-clinical-fhir-condition \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/clinical-fhir/v0/r4/Condition?patient=1011537977V693883" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+
+# Clinical-Fhir Observation Health Check
+pingdom save-check \
+  --template fhir-resource \
+  -a name=sandbox-clinical-fhir-observation \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/clinical-fhir/v0/r4/Observation?patient=1011537977V693883" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_CLINICAL_FHIR" \
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,${PAGER_DUTY}"
+
+# Clinical-Fhir Patient Health Check
 pingdom save-check \
   --template fhir-resource \
   -a name=sandbox-clinical-fhir-patient \
@@ -21,20 +86,3 @@ pingdom save-check \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
 
-pingdom save-check \
-  --template fhir-resource \
-  -a name=sandbox-clinical-fhir-observation \
-  -a host=sandbox-api.va.gov \
-  -a url="/services/clinical-fhir/v0/r4/Observation?patient=1011537977V693883" \
-  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
-
-  pingdom save-check \
-    --template fhir-resource \
-    -a name=sandbox-clinical-fhir-condition \
-    -a host=sandbox-api.va.gov \
-    -a url="/services/clinical-fhir/v0/r4/Condition?patient=1011537977V693883" \
-    -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
-    -a userids_csv="$NO_USERS" \
-    -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
