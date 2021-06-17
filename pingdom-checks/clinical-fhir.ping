@@ -86,3 +86,47 @@ pingdom save-check \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
 
+
+#
+# Production
+#
+
+# Proxy -> DQ Health Check
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-clinical-fhir-dq-health \
+  -a host=api.va.gov \
+  -a url="/services/clinical-fhir/v0/data-query/health" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="clinical-fhir" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+
+# Proxy -> VFQ Health Check
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-clinical-fhir-vfq-health \
+  -a host=api.va.gov \
+  -a url="/services/clinical-fhir/v0/vista-fhir-query/health" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="clinical-fhir" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+
+# Proxy -> VFQ Backend Health Check (Charon)
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-clinical-fhir-vfq-backend-health \
+  -a host=api.va.gov \
+  -a url="/services/clinical-fhir/v0/vista-fhir-query/backend/health" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="clinical-fhir" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+
