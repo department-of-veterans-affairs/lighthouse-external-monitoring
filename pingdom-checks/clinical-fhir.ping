@@ -102,6 +102,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="clinical-fhir" \
   -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
 
 # Proxy -> DQ Health Check
 pingdom save-check \
