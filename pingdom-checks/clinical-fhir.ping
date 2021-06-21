@@ -160,7 +160,7 @@ pingdom save-check \
   -a host=api.va.gov \
   -a url="/services/clinical-fhir/v0/r4/Observation?patient=1011537977V693883" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
-  -a userids_csv="$NO_USERS" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_CLINICAL_FHIR" \
   -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,${PAGER_DUTY}"
 
 # Clinical-Fhir Patient Health Check
