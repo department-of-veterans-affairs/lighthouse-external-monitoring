@@ -12,7 +12,7 @@ pingdom save-check \
   -a group="community-care" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
 pingdom save-check \
   --template request-with-bearer-token \
@@ -22,7 +22,7 @@ pingdom save-check \
   -a group="community-care" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_SANDBOX_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
 pingdom save-check \
   --template request-with-apikey \

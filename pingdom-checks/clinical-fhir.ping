@@ -15,7 +15,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="clinical-fhir" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,$PAGER_DUTY"
 
 # Proxy -> DQ Health Check
 pingdom save-check \
@@ -28,7 +28,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="clinical-fhir" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,$PAGER_DUTY"
 
 # Proxy -> VFQ Health Check
 pingdom save-check \
@@ -41,7 +41,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="clinical-fhir" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,$PAGER_DUTY"
 
 # Proxy -> VFQ Backend Health Check (Charon)
 pingdom save-check \
@@ -54,7 +54,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="clinical-fhir" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,$PAGER_DUTY"
 
 # Clinical-Fhir Condition Health Check
 pingdom save-check \
@@ -74,7 +74,7 @@ pingdom save-check \
   -a url="/services/clinical-fhir/v0/r4/Observation?patient=1011537977V693883" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_SANDBOX_CLINICAL_FHIR" \
-  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,${PAGER_DUTY}"
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
 # Clinical-Fhir Patient Health Check
 pingdom save-check \
@@ -102,7 +102,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="clinical-fhir" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,$PAGER_DUTY"
 
 # Proxy -> DQ Health Check
 pingdom save-check \
@@ -115,7 +115,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="clinical-fhir" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,$PAGER_DUTY"
 
 # Proxy -> VFQ Health Check
 pingdom save-check \
@@ -128,7 +128,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="clinical-fhir" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,$PAGER_DUTY"
 
 # Proxy -> VFQ Backend Health Check (Charon)
 pingdom save-check \
@@ -141,7 +141,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="clinical-fhir" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,$PAGER_DUTY"
 
 # Clinical-Fhir Condition Health Check
 pingdom save-check \
@@ -161,7 +161,7 @@ pingdom save-check \
   -a url="/services/clinical-fhir/v0/r4/Observation?patient=1011537977V693883" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_CLINICAL_FHIR" \
-  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,${PAGER_DUTY}"
+  -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
 # Clinical-Fhir Patient Health Check
 pingdom save-check \
