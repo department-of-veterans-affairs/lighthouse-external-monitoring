@@ -5,8 +5,34 @@ COMMUNITY_CARE_SLACK_ID="${SLACK_VASDVP_MONITORING},${SLACK_API_ALARMS_COMMUNITY
 COMMUNITY_CARE_BACKEND_SLACK_ID="${SLACK_LIGHTHOUSE_ALERTS},${SLACK_API_ALARMS_COMMUNITY_CARE}"
 
 pingdom save-check \
-  --template request-with-bearer-token \
+  --template https-public-200 \
   -a name=production-community-care-patient-primary-care \
+  -a host=api.va.gov \
+  -a url="/services/community-care/v0/actuator/health/liveness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_COMMUNITY_CARE_ELIGIBILITY" \
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
+
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-community-care-patient-primary-care \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/community-care/v0/actuator/health/liveness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_COMMUNITY_CARE_ELIGIBILITY" \
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
+
+# [Deprecated] Old-style health checks
+#
+pingdom save-check \
+  --template request-with-bearer-token \
+  -a name=production-community-care-patient-primary-care-old \
   -a host=api.va.gov \
   -a url="/services/community-care/v0/eligibility/search?patient=1013294025V219497&serviceType=PrimaryCare&extendedDriveMin=50" \
   -a group="community-care" \
@@ -16,7 +42,7 @@ pingdom save-check \
 
 pingdom save-check \
   --template request-with-bearer-token \
-  -a name=sandbox-community-care-patient-primary-care \
+  -a name=sandbox-community-care-patient-primary-care-old \
   -a host=sandbox-api.va.gov \
   -a url="/services/community-care/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
   -a group="community-care" \
@@ -26,7 +52,7 @@ pingdom save-check \
 
 pingdom save-check \
   --template request-with-apikey \
-  -a name=sandbox-community-care-vaos-patient-primary-care \
+  -a name=sandbox-community-care-vaos-patient-primary-care-old \
   -a host=sandbox-api.va.gov \
   -a url="/services/community-care-vaos/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
   -a group="community-care" \
@@ -41,7 +67,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=production-community-care-eligibility-backend-health \
   -a host=api.va.gov \
-  -a url="/services/community-care/v0/health" \
+  -a url="/services/community-care/v0/actuator/health/readiness" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
@@ -52,6 +78,32 @@ pingdom save-check \
 pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-community-care-eligibility-backend-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/community-care/v0/actuator/health/readiness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID"
+
+# [Deprecated] Old RESTful health endpoint
+#
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-community-care-eligibility-backend-health-old \
+  -a host=api.va.gov \
+  -a url="/services/community-care/v0/health" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID"
+
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-community-care-eligibility-backend-health-old \
   -a host=sandbox-api.va.gov \
   -a url="/services/community-care/v0/health" \
   -a port="443" \
