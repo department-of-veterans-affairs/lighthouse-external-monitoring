@@ -172,4 +172,3 @@ pingdom save-check \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$CLINICAL_FHIR_SLACK_ID"
-

@@ -9,7 +9,7 @@ pingdom save-check \
   -a url="/services/pgd/v0/r4/Questionnaire/37953b72-961b-41ee-bd05-86c62bacc46b" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$PGD_SLACK_ID"
+  -a integrationids_csv="$PGD_SLACK_ID,$PAGER_DUTY"
 
 pingdom save-check \
   --template fhir-resource \
@@ -18,4 +18,4 @@ pingdom save-check \
   -a url="/services/pgd/v0/r4/Questionnaire/37953b72-961b-41ee-bd05-86c62bacc46b" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$PGD_SLACK_ID"
+  -a integrationids_csv="$PGD_SLACK_ID,$PAGER_DUTY"

@@ -11,7 +11,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group=veteran-verification \
   -a userids_csv="$STATUSPAGE_PRODUCTION_VETERAN_VERIFICATION" \
-  -a integrationids_csv="$VETERAN_VERIFICATION_SLACK_ID"
+  -a integrationids_csv="$VETERAN_VERIFICATION_SLACK_ID,$PAGER_DUTY"
 
 #sandbox
 pingdom save-check \
@@ -24,4 +24,4 @@ pingdom save-check \
   -a resolution="1" \
   -a group=veteran-verification \
   -a userids_csv="$STATUSPAGE_SANDBOX_VETERAN_VERIFICATION" \
-  -a integrationids_csv="$VETERAN_VERIFICATION_SLACK_ID"
+  -a integrationids_csv="$VETERAN_VERIFICATION_SLACK_ID,$PAGER_DUTY"

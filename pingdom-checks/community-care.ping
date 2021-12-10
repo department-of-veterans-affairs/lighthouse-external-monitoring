@@ -4,6 +4,37 @@ COMMUNITY_CARE_DEV_API_KEY=$(get-secret "/dvp/qa/community-care/api-key")
 COMMUNITY_CARE_SLACK_ID="${SLACK_VASDVP_MONITORING},${SLACK_API_ALARMS_COMMUNITY_CARE}"
 COMMUNITY_CARE_BACKEND_SLACK_ID="${SLACK_LIGHTHOUSE_ALERTS},${SLACK_API_ALARMS_COMMUNITY_CARE}"
 
+#
+# Production
+#
+
+# CCE Healthcheck 
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-community-care-eligibiliy-health \
+  -a host=api.va.gov \
+  -a url="/services/community-care/v0/actuator/health/liveness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
+
+# CCE Backend Healthcheck
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-community-care-eligibility-backend-health \
+  -a host=api.va.gov \
+  -a url="/services/community-care/v0/actuator/health/readiness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_COMMUNITY_CARE_ELIGIBILITY" \
+  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+
+# [Deprecated] CCE Primary Care 
 pingdom save-check \
   --template request-with-bearer-token \
   -a name=production-community-care-patient-primary-care \
@@ -11,35 +42,13 @@ pingdom save-check \
   -a url="/services/community-care/v0/eligibility/search?patient=1013294025V219497&serviceType=PrimaryCare&extendedDriveMin=50" \
   -a group="community-care" \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
-  -a userids_csv="$STATUSPAGE_PRODUCTION_COMMUNITY_CARE_ELIGIBILITY" \
+  -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
-pingdom save-check \
-  --template request-with-bearer-token \
-  -a name=sandbox-community-care-patient-primary-care \
-  -a host=sandbox-api.va.gov \
-  -a url="/services/community-care/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
-  -a group="community-care" \
-  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
-  -a userids_csv="$STATUSPAGE_SANDBOX_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
-
-pingdom save-check \
-  --template request-with-apikey \
-  -a name=sandbox-community-care-vaos-patient-primary-care \
-  -a host=sandbox-api.va.gov \
-  -a url="/services/community-care-vaos/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
-  -a group="community-care" \
-  -a apikey="$COMMUNITY_CARE_DEV_API_KEY" \
-  -a userids_csv="$STATUSPAGE_SANDBOX_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
-
-#
-# Backend services. Should not be integrated with statuspage.
-#
+# [Deprecated] Old CCE Backend Health Check 
 pingdom save-check \
   --template https-public-200 \
-  -a name=production-community-care-eligibility-backend-health \
+  -a name=production-community-care-eligibility-backend-health-old \
   -a host=api.va.gov \
   -a url="/services/community-care/v0/health" \
   -a port="443" \
@@ -47,11 +56,64 @@ pingdom save-check \
   -a resolution="1" \
   -a group="community-care" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID"
+  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
+#
+# Sandbox
+#
+
+# CCE Healthcheck
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-community-care-eligibiliy-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/community-care/v0/actuator/health/liveness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
+
+# CCE Backend Healthcheck
 pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-community-care-eligibility-backend-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/community-care/v0/actuator/health/readiness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_COMMUNITY_CARE_ELIGIBILITY" \
+  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+
+# CCE Primary Care (VAOS) 
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=sandbox-community-care-vaos-patient-primary-care \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/community-care-vaos/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
+  -a group="community-care" \
+  -a apikey="$COMMUNITY_CARE_DEV_API_KEY" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
+
+# [Deprecated] CCE Primary Care
+pingdom save-check \
+  --template request-with-bearer-token \
+  -a name=sandbox-community-care-patient-primary-care \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/community-care/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
+  -a group="community-care" \
+  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+
+# [Deprecated] Old CCE Backend Health Check 
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-community-care-eligibility-backend-health-old \
   -a host=sandbox-api.va.gov \
   -a url="/services/community-care/v0/health" \
   -a port="443" \
@@ -59,4 +121,4 @@ pingdom save-check \
   -a resolution="1" \
   -a group="community-care" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID"
+  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"

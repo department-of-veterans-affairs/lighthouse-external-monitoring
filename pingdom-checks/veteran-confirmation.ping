@@ -13,7 +13,7 @@ pingdom save-check \
   -a apikey="$PRODUCTION_VETERAN_CONFIRMATION_API_KEY" \
   -a group=veteran-confirmation \
   -a userids_csv="$STATUSPAGE_PRODUCTION_VETERAN_CONFIRMATION" \
-  -a integrationids_csv="$VETERAN_CONFIRMATION_SLACK_ID"
+  -a integrationids_csv="$VETERAN_CONFIRMATION_SLACK_ID,$PAGER_DUTY"
 
 #sandbox
 pingdom save-check \
@@ -24,5 +24,4 @@ pingdom save-check \
   -a apikey="$SANDBOX_VETERAN_CONFIRMATION_API_KEY" \
   -a group=veteran-confirmation \
   -a userids_csv="$STATUSPAGE_SANDBOX_VETERAN_CONFIRMATION" \
-  -a integrationids_csv="$VETERAN_CONFIRMATION_SLACK_ID"
-# dev
+  -a integrationids_csv="$VETERAN_CONFIRMATION_SLACK_ID,$PAGER_DUTY"
