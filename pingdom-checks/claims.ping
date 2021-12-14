@@ -26,7 +26,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_BENEFITS_CLAIMS_V0" \
-  -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID"
+  -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
 pingdom save-check \
   --template https-public-200 \
@@ -50,7 +50,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_CLAIMS_V0" \
-  -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID"
+  -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
 #v1
 pingdom save-check \
@@ -75,7 +75,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_BENEFITS_CLAIMS_V1" \
-  -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID"
+  -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
 pingdom save-check \
   --template https-public-200 \
@@ -99,4 +99,4 @@ pingdom save-check \
   -a resolution="1" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_CLAIMS_V1" \
-  -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID"
+  -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
