@@ -1,0 +1,16 @@
+# -*- sh -*-
+
+JENKINS_SLACK_ID="$SLACK_VASDVP_MONITORING,$SLACK_API_ALARMS_JENKINS"
+
+pingdom save-check \
+  --template request-with-basic-auth \
+  -a name=dvp-jenkins-health-check \
+  -a host=tools.health.dev-developer.va.gov \
+  -a url="/jenkins/" \
+  -a port="443" \
+  -a username=$(get-secret /dvp/devops/jenkins_pingdom_user) \
+  -a password=$(get-secret /dvp/devops/jenkins_pingdom_user_password) \
+  -a responsetime_threshold=30000 \
+  -a resolution=1 \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$JENKINS_SLACK_ID"
