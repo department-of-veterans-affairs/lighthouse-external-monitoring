@@ -14,4 +14,3 @@ pingdom save-check \
   -a resolution=1 \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$JENKINS_SLACK_ID"
-  
