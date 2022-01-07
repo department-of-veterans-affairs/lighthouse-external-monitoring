@@ -16,4 +16,4 @@
     "integrationids": [ $integrationids_csv ],
     "userids" : [ $userids_csv ],
     "probe_filters": [ "region: NA" ]
-  }
+}
