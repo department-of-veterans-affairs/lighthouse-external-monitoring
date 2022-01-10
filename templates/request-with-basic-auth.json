@@ -1,0 +1,19 @@
+{
+    "name": "$name",
+    "type": "http",
+    "host": "$host",
+    "port": 443,
+    "url": "$url",
+    "auth": "$username:$password",
+    "encryption": true,
+    "verify_certificate": true,
+    "resolution": 1,
+    "responsetime_threshold": 30000,
+    "sendnotificationwhendown": 6,
+    "notifyagainevery": 1,
+    "notifywhenbackup": true,
+    "tags": [ "$build", "managed", "$group" ],
+    "integrationids": [ $integrationids_csv ],
+    "userids" : [ $userids_csv ],
+    "probe_filters": [ "region: NA" ]
+}
