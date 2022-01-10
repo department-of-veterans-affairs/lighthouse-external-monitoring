@@ -1,6 +1,6 @@
 # -*- sh -*-
 
-JENKINS_SLACK_ID="$SLACK_VASDVP_MONITORING,$SLACK_API_ALARMS_JENKINS"
+JENKINS_SLACK_ID="$SLACK_VASDVP_MONITORING"
 
 pingdom save-check \
   --template request-with-basic-auth \
