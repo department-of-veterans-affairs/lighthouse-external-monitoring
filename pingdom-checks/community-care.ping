@@ -34,30 +34,6 @@ pingdom save-check \
   -a userids_csv="$STATUSPAGE_PRODUCTION_COMMUNITY_CARE_ELIGIBILITY" \
   -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
-# [Deprecated] CCE Primary Care 
-pingdom save-check \
-  --template request-with-bearer-token \
-  -a name=production-community-care-patient-primary-care \
-  -a host=api.va.gov \
-  -a url="/services/community-care/v0/eligibility/search?patient=1013294025V219497&serviceType=PrimaryCare&extendedDriveMin=50" \
-  -a group="community-care" \
-  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
-
-# [Deprecated] Old CCE Backend Health Check 
-pingdom save-check \
-  --template https-public-200 \
-  -a name=production-community-care-eligibility-backend-health-old \
-  -a host=api.va.gov \
-  -a url="/services/community-care/v0/health" \
-  -a port="443" \
-  -a responsetime_threshold="30000" \
-  -a resolution="1" \
-  -a group="community-care" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
-
 #
 # Sandbox
 #
@@ -98,27 +74,4 @@ pingdom save-check \
   -a apikey="$COMMUNITY_CARE_DEV_API_KEY" \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
-
-# [Deprecated] CCE Primary Care
-pingdom save-check \
-  --template request-with-bearer-token \
-  -a name=sandbox-community-care-patient-primary-care \
-  -a host=sandbox-api.va.gov \
-  -a url="/services/community-care/v0/eligibility/search?patient=1017283148V813263&serviceType=PrimaryCare&extendedDriveMin=50" \
-  -a group="community-care" \
-  -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
-
-# [Deprecated] Old CCE Backend Health Check 
-pingdom save-check \
-  --template https-public-200 \
-  -a name=sandbox-community-care-eligibility-backend-health-old \
-  -a host=sandbox-api.va.gov \
-  -a url="/services/community-care/v0/health" \
-  -a port="443" \
-  -a responsetime_threshold="30000" \
-  -a resolution="1" \
-  -a group="community-care" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+  
