@@ -8,7 +8,7 @@ pingdom save-check \
   --template post-request-with-apikey \
   -a name=sandbox-address-validation \
   -a host=sandbox-api.va.gov \
-  -a url="/services/address_validation/v1/candidate" \
+  -a url="/services/address_validation/healthcheck" \
   -a group=address-validation \
   -a apikey="$SANDBOX_ADDRESS_VALIDATION_API_KEY" \
   -a postdata="$(escape-json '{"requestAddress": {"addressLine1": "1600 Pennsylvania Ave", "city": "Washington", "stateProvince": {"name": "DC"}, "requestCountry": {"countryName": "USA"}}}')" \
@@ -19,7 +19,7 @@ pingdom save-check \
   --template post-request-with-apikey \
   -a name=production-address-validation \
   -a host=api.va.gov \
-  -a url="/services/address_validation/v1/candidate" \
+  -a url="/services/address_validation/healthcheck" \
   -a group=address-validation \
   -a apikey="$PRODUCTION_ADDRESS_VALIDATION_API_KEY" \
   -a postdata="$(escape-json '{"requestAddress": {"addressLine1": "1600 Pennsylvania Ave", "city": "Washington", "stateProvince": {"name": "DC"}, "requestCountry": {"countryName": "USA"}}}')" \
