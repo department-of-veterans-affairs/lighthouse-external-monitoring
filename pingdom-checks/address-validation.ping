@@ -6,6 +6,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-address-validation \
   -a host=sandbox-api.va.gov \
+  -a port=443 \
   -a url="/services/address_validation/healthcheck" \
   -a group=address-validation \
   -a responsetime_threshold="30000" \
@@ -17,6 +18,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=production-address-validation \
   -a host=api.va.gov \
+  -a port=443 \
   -a url="/services/address_validation/healthcheck" \
   -a group=address-validation \
   -a responsetime_threshold="30000" \
