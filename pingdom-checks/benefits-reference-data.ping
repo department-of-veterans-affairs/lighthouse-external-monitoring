@@ -1,0 +1,14 @@
+# -*- sh -*-
+
+BENEFITS_REFERENCE_DATA_SLACK_ID="$SLACK_VASDVP_MONITORING,$SLACK_API_ALARMS_BENEFITS_REFERENCE_DATA"
+
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-benefits-reference-data-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/benefits-reference-data/healthcheck" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="benefits-reference-data" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$BENEFITS_REFERENCE_DATA_SLACK_ID,$PAGER_DUTY"
