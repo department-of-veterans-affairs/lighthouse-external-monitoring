@@ -7,7 +7,7 @@ BENEFITS_REFERENCE_DATA_BACKEND_SLACK_ID="${SLACK_LIGHTHOUSE_ALERTS},${SLACK_API
 # Sandbox
 #
 
-# Benefits Reference Data Healthcheck
+# Benefits Reference Data Health Check
 pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-benefits-reference-data-health \
@@ -17,10 +17,10 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="benefits-services" \
-  -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$BENEFITS_REFERENCE_DATA_SLACK_ID"
+  -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_REFERENCE_DATA_V1" \
+  -a integrationids_csv="$BENEFITS_REFERENCE_DATA_SLACK_ID,$PAGER_DUTY"
 
-# Benefits Reference Data Backend Healthcheck
+# Benefits Reference Data Backend Health Check
 pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-benefits-reference-data-backend-health \
@@ -31,4 +31,4 @@ pingdom save-check \
   -a resolution="1" \
   -a group="benefits-services" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$BENEFITS_REFERENCE_DATA_BACKEND_SLACK_ID"
+  -a integrationids_csv="$BENEFITS_REFERENCE_DATA_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
