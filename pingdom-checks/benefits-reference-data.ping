@@ -18,7 +18,7 @@ pingdom save-check \
   -a resolution="1" \
   -a group="benefits-services" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$BENEFITS_REFERENCE_DATA_SLACK_ID,$PAGER_DUTY"
+  -a integrationids_csv="$BENEFITS_REFERENCE_DATA_SLACK_ID"
 
 # Benefits Reference Data Backend Healthcheck
 pingdom save-check \
@@ -31,4 +31,4 @@ pingdom save-check \
   -a resolution="1" \
   -a group="benefits-services" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$BENEFITS_REFERENCE_DATA_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+  -a integrationids_csv="$BENEFITS_REFERENCE_DATA_BACKEND_SLACK_ID"
