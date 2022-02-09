@@ -209,6 +209,8 @@ can do this for you.
 ## How to determine integration and user IDs
 You are able to access the Pingdom Integration ID using its website.
 
+> Note: If you do not have access to Pingdom, open a [support ticket with DevOps](https://github.com/department-of-veterans-affairs/lighthouse-devops-support#lighthouse-devops-support) to request an integration ID.
+
 Prerequisites
 - Pingdom access
 
