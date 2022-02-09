@@ -17,7 +17,7 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="benefits-services" \
-  -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_REFERENCE_DATA_V1" \
+  -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$BENEFITS_REFERENCE_DATA_SLACK_ID,$PAGER_DUTY"
 
 # Benefits Reference Data Backend Health Check
@@ -30,5 +30,5 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group="benefits-services" \
-  -a userids_csv="$NO_USERS" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_REFERENCE_DATA_V1" \
   -a integrationids_csv="$BENEFITS_REFERENCE_DATA_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
