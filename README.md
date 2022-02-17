@@ -180,9 +180,11 @@ The following activities must be done by a human.
 - Secret management
 - Creating or modifying integrations with Pingdom, e.g. Slack or Statuspage.io
   _Must be performed by a Pingdom administrator_
-- Deleting checks
+- Deleting checks in Pingdom
   _Must be performed by a Pingdom administrator._
 - Determining integration and user IDs
+- Creating or modifying APIs in Statuspage.io
+  _Must be performed by a Statuspage.io administrator_
 
 ## Integrations and Users
 Integrations are a Pingdom concept that links Pingdom with other services, e.g. PagerDuty and Slack.
@@ -195,9 +197,11 @@ each will have a unique ID. PagerDuty services will be used to alert on-call per
 
 Each Slack channel is manually configured as a distinct integration in Pingdom and will also have
 unique IDs. Slack channels are used for situational awareness of the teams at large.
+> Note: Creating new Slack integrations is a manual process and requires access to Pingdom. If you need one, open a [support ticket with DevOps](https://github.com/department-of-veterans-affairs/lighthouse-devops-support#lighthouse-devops-support) to request a new Pingdom-Slack integration for a custom channel, which will result in a new integration ID being provided.
 
 Each Statuspage component will have a unique _Alert Contact_ user entry in Pingdom, which will be
 used to drive Statuspage.io updates. Alert contact users require manual configuration in Pingdom.
+> Note: Creating new Alert contact in Pingdom and a new component in Statuspage.io is a manual process and requires access to both Pingdom and Statuspage.io. If you need assistance with this, open a [support ticket with DevOps](https://github.com/department-of-veterans-affairs/lighthouse-devops-support#lighthouse-devops-support) to request a new Statuspage Integration, which will result in a new user ID being provided.
 
 
 ## Adding secrets
