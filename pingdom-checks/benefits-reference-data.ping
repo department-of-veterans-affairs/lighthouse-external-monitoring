@@ -4,6 +4,36 @@ BENEFITS_REFERENCE_DATA_SLACK_ID="${SLACK_VASDVP_MONITORING},${SLACK_API_ALARMS_
 BENEFITS_REFERENCE_DATA_BACKEND_SLACK_ID="${SLACK_LIGHTHOUSE_ALERTS},${SLACK_API_ALARMS_BENEFITS_SERVICES}"
 
 #
+# Production
+#
+
+# Benefits Reference Data Health Check
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-benefits-reference-data-health \
+  -a host=api.va.gov \
+  -a url="/services/benefits-reference-data/healthcheck/liveness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="benefits-services" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$BENEFITS_REFERENCE_DATA_SLACK_ID,$PAGER_DUTY"
+
+# Benefits Reference Data Backend Health Check
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-benefits-reference-data-backend-health \
+  -a host=api.va.gov \
+  -a url="/services/benefits-reference-data/healthcheck/readiness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="benefits-services" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_BENEFITS_REFERENCE_DATA_V1" \
+  -a integrationids_csv="$BENEFITS_REFERENCE_DATA_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+
+#
 # Sandbox
 #
 
