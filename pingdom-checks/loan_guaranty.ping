@@ -13,7 +13,7 @@ pingdom save-check \
   -a apikey="$PRODUCTION_LOAN_GUARANTY_KEY" \
   -a group="loan-guaranty" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_LOAN_GUARANTY_V1" \
-  -a integrationids_csv="$LOAN_GUARANTY_SLACK_ID"
+  -a integrationids_csv="$LOAN_GUARANTY_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
 pingdom save-check \
   --template request-with-apikey \
@@ -23,4 +23,4 @@ pingdom save-check \
   -a apikey="$SANDBOX_LOAN_GUARANTY_KEY" \
   -a group="loan-guaranty" \
   -a userids_csv="$STATUSPAGE_SANDBOX_LOAN_GUARANTY_V1" \
-  -a integrationids_csv="$LOAN_GUARANTY_SLACK_ID"
+  -a integrationids_csv="$LOAN_GUARANTY_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
