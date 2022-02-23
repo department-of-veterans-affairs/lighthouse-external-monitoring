@@ -12,7 +12,7 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a userids_csv="$STATUSPAGE_SANDBOX_ADDRESS_VALIDATION" \
-  -a integrationids_csv="$ADDRESS_VALIDATION_SLACK_ID"
+  -a integrationids_csv="$ADDRESS_VALIDATION_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
 pingdom save-check \
   --template https-public-200 \
@@ -24,4 +24,4 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_ADDRESS_VALIDATION" \
-  -a integrationids_csv="$ADDRESS_VALIDATION_SLACK_ID"
+  -a integrationids_csv="$ADDRESS_VALIDATION_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
