@@ -24,3 +24,15 @@ pingdom save-check \
   -a group="loan-guaranty" \
   -a userids_csv="$STATUSPAGE_SANDBOX_LOAN_GUARANTY_V1" \
   -a integrationids_csv="$LOAN_GUARANTY_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-guaranty-remittance-health-check \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/lgy-remittance/v0/healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="loan-guaranty" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_GUARANTY_REMITTANCE" \
+  -a integrationids_csv="$LOAN_GUARANTY_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
