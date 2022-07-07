@@ -12,7 +12,7 @@ pingdom save-check \
   -a url="/services/meta/v0/ping" \
   -a apikey="$PRODUCTION_API_GATEWAY_KEY" \
   -a group="api-gateway" \
-  -a userids_csv="$STATUSPAGE_PRODUCTION_API_GATEWAY" \
+  -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$GATEWAY_SLACK_ID,$PAGER_DUTY"
 
 pingdom save-check \
@@ -22,5 +22,5 @@ pingdom save-check \
   -a url="/services/meta/v0/ping" \
   -a apikey="$SANDBOX_API_GATEWAY_KEY" \
   -a group="api-gateway" \
-  -a userids_csv="$STATUSPAGE_SANDBOX_API_GATEWAY" \
+  -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$GATEWAY_SLACK_ID,$PAGER_DUTY"
