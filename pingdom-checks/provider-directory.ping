@@ -12,7 +12,7 @@ pingdom save-check \
   -a name=sandbox-provider-directory \
   -a host=sandbox-api.va.gov \
   -a url="/services/provider-directory/v0/health" \
-  -a group=data-query \
+  -a group=provider-directory \
   -a apikey="$SANDBOX_PROVIDER_DIRECTORY_API_KEY" \
   -a userids_csv="$STATUSPAGE_SANDBOX_PROVIDER_DIRECTORY" \
   -a integrationids_csv="$PROVIDER_DIRECTORY_SLACK_ID,$PAGER_DUTY"
