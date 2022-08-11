@@ -87,7 +87,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_PRODUCTION_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$METADATA_SLACK_ID"
+  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_COMMUNITY_CARE"
 
 
 #
@@ -175,4 +175,4 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_SANDBOX_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$METADATA_SLACK_ID"
+  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_COMMUNITY_CARE"
