@@ -15,7 +15,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID"
+  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -39,7 +39,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID"
+  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -63,7 +63,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID"
+  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -103,7 +103,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID"
+  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -127,7 +127,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID"
+  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -151,7 +151,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID"
+  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
