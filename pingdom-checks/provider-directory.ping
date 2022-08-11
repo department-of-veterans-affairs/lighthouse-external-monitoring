@@ -1,7 +1,22 @@
 # -*- sh -*-
 
+PRODUCTION_PROVIDER_DIRECTORY_API_KEY=$(get-secret "/dvp/production/provider-directory/api-key")
 SANDBOX_PROVIDER_DIRECTORY_API_KEY=$(get-secret "/dvp/lab/provider-directory/api-key")
 PROVIDER_DIRECTORY_SLACK_ID="${SLACK_VASDVP_MONITORING},${SLACK_API_ALARMS_PROVIDER_DIRECTORY}"
+
+#
+# Production
+#
+
+pingdom save-check \
+  --template request-with-apikey \
+  -a name=production-provider-directory \
+  -a host=api.va.gov \
+  -a url="/services/provider-directory/v0/health" \
+  -a group=provider-directory \
+  -a apikey="$PRODUCTION_PROVIDER_DIRECTORY_API_KEY" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_PROVIDER_DIRECTORY" \
+  -a integrationids_csv="$PROVIDER_DIRECTORY_SLACK_ID,$PAGER_DUTY"
 
 #
 # Sandbox
