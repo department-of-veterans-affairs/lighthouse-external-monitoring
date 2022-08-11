@@ -15,7 +15,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -27,7 +27,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -39,7 +39,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -51,7 +51,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -63,7 +63,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -75,7 +75,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -87,7 +87,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_PRODUCTION_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_COMMUNITY_CARE"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
 
 
 #
@@ -103,7 +103,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -115,7 +115,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -127,7 +127,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -139,7 +139,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -151,7 +151,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -163,7 +163,7 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_DATA_QUERY"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
 
 pingdom save-check \
   --template https-public-200 \
@@ -175,4 +175,4 @@ pingdom save-check \
   -a resolution=1 \
   -a group=metadata \
   -a userids_csv="$STATUSPAGE_SANDBOX_COMMUNITY_CARE_ELIGIBILITY" \
-  -a integrationids_csv="$METADATA_SLACK_ID,$SLACK_API_ALARMS_COMMUNITY_CARE"
+  -a integrationids_csv="$METADATA_SLACK_ID,$PAGER_DUTY_DEPENDENCIES,$SLACK_API_ALARMS_DATA_QUERY"
