@@ -1,0 +1,35 @@
+# -*- sh -*-
+
+VA_LETTER_GENERATOR_SLACK_ID="${SLACK_VASDVP_MONITORING}, ${SLACK_API_ALARMS_VA_LETTERS_GENERATOR}"
+VA_LETTER_GENERATOR_BACKEND_SLACK_ID="${SLACK_LIGHTHOUSE_ALERTS}, ${SLACK_API_ALARMS_VA_LETTERS_GENERATOR}"
+
+#
+# Sandbox
+#
+
+# VA Letter Generator Health Check
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-va-letter-generator-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/va-letter-generator/v1/healthcheck/liveness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="letter-services" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$VA_LETTER_GENERATOR_SLACK_ID,$PAGER_DUTY"
+
+# VA Letter Generator Backend Health Check
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-va-letter-generator-backend-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/va-letter-generator/v1/healthcheck/readiness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="letter-services" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_VA_LETTER_GENERATOR_V1" \
+  -a integrationids_csv="$VA_LETTER_GENERATOR_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+  
