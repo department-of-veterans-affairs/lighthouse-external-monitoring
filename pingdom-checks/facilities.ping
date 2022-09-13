@@ -78,7 +78,7 @@ pingdom save-check \
   -a group=facilities \
   -a apikey="$PRODUCTION_FACILITIES_API_KEY" \
   -a userids_csv="$NO_USERS" \
-  -a integrationids_csv="$FACILITIES_BACKEND_SLACK_ID"
+  -a integrationids_csv="$FACILITIES_BACKEND_SLACK_ID,$SLACK_API_ALARMS_DATAMART"
 
 pingdom save-check \
   --template request-with-apikey \
