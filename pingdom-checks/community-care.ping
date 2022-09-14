@@ -21,12 +21,36 @@ pingdom save-check \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
 
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-community-care-eligibility-health \
+  -a host=api.va.gov \
+  -a url="/services/community-care/actuator/health/liveness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
+
 # CCE Backend Healthcheck
 pingdom save-check \
   --template https-public-200 \
   -a name=production-community-care-eligibility-backend-health \
   -a host=api.va.gov \
   -a url="/services/community-care/v0/actuator/health/readiness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_COMMUNITY_CARE_ELIGIBILITY" \
+  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-community-care-eligibility-health-backend \
+  -a host=api.va.gov \
+  -a url="/services/community-care/actuator/health/readiness" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
@@ -51,12 +75,36 @@ pingdom save-check \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
 
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-community-care-eligibility-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/community-care/actuator/health/liveness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$COMMUNITY_CARE_SLACK_ID,$PAGER_DUTY"
+
 # CCE Backend Healthcheck
 pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-community-care-eligibility-backend-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/community-care/v0/actuator/health/readiness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="community-care" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_COMMUNITY_CARE_ELIGIBILITY" \
+  -a integrationids_csv="$COMMUNITY_CARE_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-community-care-eligibility-health-backend \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/community-care/actuator/health/readiness" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
