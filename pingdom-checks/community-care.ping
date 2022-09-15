@@ -13,7 +13,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=production-community-care-eligibiliy-health \
   -a host=api.va.gov \
-  -a url="/services/community-care/v0/actuator/health/liveness" \
+  -a url="/services/community-care/v0/eligibility/openapi.json" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
@@ -26,7 +26,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=production-community-care-eligibility-backend-health \
   -a host=api.va.gov \
-  -a url="/services/community-care/v0/actuator/health/readiness" \
+  -a url="/services/community-care/v0/eligibility/openapi.json" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
@@ -43,7 +43,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-community-care-eligibiliy-health \
   -a host=sandbox-api.va.gov \
-  -a url="/services/community-care/v0/actuator/health/liveness" \
+  -a url="/services/community-care/v0/eligibility/openapi.json" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
@@ -56,7 +56,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-community-care-eligibility-backend-health \
   -a host=sandbox-api.va.gov \
-  -a url="/services/community-care/v0/actuator/health/readiness" \
+  -a url="/services/community-care/v0/eligibility/openapi.json" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
