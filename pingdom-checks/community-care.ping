@@ -8,7 +8,7 @@ COMMUNITY_CARE_BACKEND_SLACK_ID="${SLACK_LIGHTHOUSE_ALERTS},${SLACK_API_ALARMS_C
 # Production
 #
 
-# CCE Healthcheck 
+# CCE Healthcheck
 pingdom save-check \
   --template https-public-200 \
   -a name=production-community-care-eligibiliy-health \
@@ -23,7 +23,7 @@ pingdom save-check \
 
 pingdom save-check \
   --template https-public-200 \
-  -a name=production-community-care-eligibility-health \
+  -a name=production-cce-health \
   -a host=api.va.gov \
   -a url="/services/community-care/actuator/health/liveness" \
   -a port="443" \
@@ -48,7 +48,7 @@ pingdom save-check \
 
 pingdom save-check \
   --template https-public-200 \
-  -a name=production-community-care-eligibility-health-backend \
+  -a name=production-cce-backend-health \
   -a host=api.va.gov \
   -a url="/services/community-care/actuator/health/readiness" \
   -a port="443" \
@@ -77,7 +77,7 @@ pingdom save-check \
 
 pingdom save-check \
   --template https-public-200 \
-  -a name=sandbox-community-care-eligibility-health \
+  -a name=sandbox-cce-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/community-care/actuator/health/liveness" \
   -a port="443" \
@@ -102,7 +102,7 @@ pingdom save-check \
 
 pingdom save-check \
   --template https-public-200 \
-  -a name=sandbox-community-care-eligibility-health-backend \
+  -a name=sandbox-cce-backend-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/community-care/actuator/health/readiness" \
   -a port="443" \
