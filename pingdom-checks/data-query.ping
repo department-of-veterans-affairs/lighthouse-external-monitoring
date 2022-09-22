@@ -29,6 +29,15 @@ pingdom save-check \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_FHIR" \
   -a integrationids_csv="$DATA_QUERY_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+  
+pingdom save-check \
+  --template fhir-resource \
+  -a name=production-dstu2-observation \
+  -a host=api.va.gov \
+  -a url="/services/fhir/v0/dstu2/Observation?patient=1011537977V693883" \
+  -a authorization_token="${HEALTH_APIS_STATIC_ACCESS_TOKEN}" \
+  -a userids_csv="${NO_USERS}" \
+  -a integrationids_csv="${DATA_QUERY_SLACK_ID},${PAGER_DUTY_DEPENDENCIES}"
 
 pingdom save-check \
   --template simple-resource \
@@ -84,3 +93,12 @@ pingdom save-check \
   -a authorization_token="$HEALTH_APIS_STATIC_ACCESS_TOKEN" \
   -a userids_csv="$STATUSPAGE_SANDBOX_FHIR" \
   -a integrationids_csv="$DATA_QUERY_SLACK_ID,$PAGER_DUTY"
+
+pingdom save-check \
+  --template fhir-resource \
+  -a name=sandbox-dstu2-observation \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/fhir/v0/dstu2/Observation?patient=1011537977V693883" \
+  -a authorization_token="${HEALTH_APIS_STATIC_ACCESS_TOKEN}" \
+  -a userids_csv="${NO_USERS}" \
+  -a integrationids_csv="${DATA_QUERY_SLACK_ID},${PAGER_DUTY}"
