@@ -30,7 +30,7 @@ pingdom save-check \
 #sandbox
 pingdom save-check \
   --template https-public-200 \
-  -a name=sandbox-veteran-verification-health \
+  -a name=sandbox-veteran-verification-v2-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/veteran_verification/v2/healthcheck/liveness" \
   -a port="443" \
@@ -43,7 +43,7 @@ pingdom save-check \
 #sandbox
 pingdom save-check \
   --template https-public-200 \
-  -a name=sandbox-veteran-verification-health \
+  -a name=sandbox-veteran-verification-v2-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/veteran_verification/v2/healthcheck/readiness" \
   -a port="443" \
