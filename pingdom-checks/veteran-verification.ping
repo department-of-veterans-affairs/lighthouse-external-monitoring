@@ -52,3 +52,29 @@ pingdom save-check \
   -a group=veteran-verification \
   -a userids_csv="$STATUSPAGE_SANDBOX_VETERAN_VERIFICATION_V2" \
   -a integrationids_csv="$VETERAN_VERIFICATION_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+
+#production
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-veteran-verification-v2-health \
+  -a host=api.va.gov \
+  -a url="/services/veteran_verification/v2/healthcheck/liveness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group=veteran-verification \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$VETERAN_VERIFICATION_SLACK_ID,$PAGER_DUTY"
+
+#production
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-veteran-verification-v2-backend-health \
+  -a host=api.va.gov \
+  -a url="/services/veteran_verification/v2/healthcheck/readiness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group=veteran-verification \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_VETERAN_VERIFICATION_V2" \
+  -a integrationids_csv="$VETERAN_VERIFICATION_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
