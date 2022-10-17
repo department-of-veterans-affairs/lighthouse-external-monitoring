@@ -37,7 +37,7 @@ pingdom save-check \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group=veteran-verification \
-  -a userids_csv="$STATUSPAGE_SANDBOX_VETERAN_VERIFICATION_V2" \
+  -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$VETERAN_VERIFICATION_SLACK_ID,$PAGER_DUTY"
 
 #sandbox
@@ -51,4 +51,4 @@ pingdom save-check \
   -a resolution="1" \
   -a group=veteran-verification \
   -a userids_csv="$STATUSPAGE_SANDBOX_VETERAN_VERIFICATION_V2" \
-  -a integrationids_csv="$VETERAN_VERIFICATION_BACKEND_SLACK_ID,$PAGER_DUTY"
+  -a integrationids_csv="$VETERAN_VERIFICATION_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
