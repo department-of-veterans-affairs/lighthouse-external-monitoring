@@ -31,10 +31,10 @@ pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-veteran-verification-health \
   -a host=sandbox-api.va.gov \
-  -a url="/services/veteran_verification/v1/health" \
+  -a url="/services/veteran_verification/v2/healthcheck/liveness" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a group=veteran-verification \
-  -a userids_csv="$STATUSPAGE_SANDBOX_VETERAN_VERIFICATION" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_VETERAN_VERIFICATION_V2" \
   -a integrationids_csv="$VETERAN_VERIFICATION_SLACK_ID,$PAGER_DUTY"
