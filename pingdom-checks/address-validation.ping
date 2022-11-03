@@ -1,26 +1,32 @@
 # -*- sh -*-
 
+SANDBOX_ADDRESS_VALIDATION_API_KEY=$(get-secret "/dvp/lab/address-validation/api-key")
+PRODUCTION_ADDRESS_VALIDATION_API_KEY=$(get-secret "/dvp/production/address-validation/api-key")
 ADDRESS_VALIDATION_SLACK_ID=$SLACK_LIGHTHOUSE_ALERTS
 
 pingdom save-check \
-  --template https-public-200 \
+  --template post-request-with-apikey \
   -a name=sandbox-address-validation \
   -a host=sandbox-api.va.gov \
   -a port=443 \
   -a url="/services/address_validation/healthcheck" \
   -a group=address-validation \
+  -a apikey="$SANDBOX_ADDRESS_VALIDATION_API_KEY" \
+  -a postdata="$(escape-json '{"requestAddress": {"addressLine1": "1600 Pennsylvania Ave", "city": "Washington", "stateProvince": {"name": "DC"}, "requestCountry": {"countryName": "USA"}}}')" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a userids_csv="$STATUSPAGE_SANDBOX_ADDRESS_VALIDATION" \
   -a integrationids_csv="$ADDRESS_VALIDATION_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
 pingdom save-check \
-  --template https-public-200 \
+  --template post-request-with-apikey \
   -a name=production-address-validation \
   -a host=api.va.gov \
   -a port=443 \
   -a url="/services/address_validation/healthcheck" \
   -a group=address-validation \
+  -a apikey="$PRODUCTION_ADDRESS_VALIDATION_API_KEY" \
+  -a postdata="$(escape-json '{"requestAddress": {"addressLine1": "1600 Pennsylvania Ave", "city": "Washington", "stateProvince": {"name": "DC"}, "requestCountry": {"countryName": "USA"}}}')" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
   -a userids_csv="$STATUSPAGE_PRODUCTION_ADDRESS_VALIDATION" \
