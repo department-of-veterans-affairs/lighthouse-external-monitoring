@@ -16,7 +16,7 @@ pingdom save-check \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
-  -a group="direct-deposit" \
+  -a group="direct-deposit-management" \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$DIRECT_DEPOSIT_MANAGEMENT_SLACK_ID,$PAGER_DUTY"
 
@@ -29,7 +29,7 @@ pingdom save-check \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
-  -a group="direct-deposit" \
+  -a group="direct-deposit-management" \
   -a userids_csv="$STATUSPAGE_SANDBOX_DIRECT_DEPOSIT_MANAGEMENT" \
   -a integrationids_csv="$DIRECT_DEPOSIT_MANAGEMENT_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
   
