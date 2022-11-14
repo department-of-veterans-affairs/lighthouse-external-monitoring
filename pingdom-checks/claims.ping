@@ -15,7 +15,7 @@ pingdom save-check \
   -a group="claims" \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$CLAIMS_SLACK_ID,$PAGER_DUTY"
-  
+
 pingdom save-check \
   --template https-public-200 \
   -a name=production-claims-v1-backend-health \
@@ -39,7 +39,7 @@ pingdom save-check \
   -a group="claims" \
   -a userids_csv="$NO_USERS" \
   -a integrationids_csv="$CLAIMS_SLACK_ID,$PAGER_DUTY"
-  
+
 pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-claims-v1-backend-health \
@@ -50,4 +50,29 @@ pingdom save-check \
   -a resolution="1" \
   -a group="claims" \
   -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_CLAIMS_V1" \
+  -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+
+#v2
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-claims-v2-health-check \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/claims/v2/healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="claims" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$CLAIMS_SLACK_ID,$PAGER_DUTY"
+
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-claims-v2-backend-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/claims/v2/upstream_healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="claims" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_CLAIMS_V2" \
   -a integrationids_csv="$CLAIMS_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
