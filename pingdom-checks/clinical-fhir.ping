@@ -9,7 +9,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-clinical-fhir-health \
   -a host=sandbox-api.va.gov \
-  -a url="/services/clinical-fhir/v0/health" \
+  -a url="/services/clinical-fhir/v0/r4/health" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
@@ -22,7 +22,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-clinical-fhir-dq-health \
   -a host=sandbox-api.va.gov \
-  -a url="/services/clinical-fhir/v0/data-query/health" \
+  -a url="/services/clinical-fhir/v0/r4/data-query/health" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
@@ -35,7 +35,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-clinical-fhir-vfq-health \
   -a host=sandbox-api.va.gov \
-  -a url="/services/clinical-fhir/v0/vista-fhir-query/health" \
+  -a url="/services/clinical-fhir/v0/r4/vista-fhir-query/health" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
@@ -48,7 +48,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-clinical-fhir-vfq-backend-health \
   -a host=sandbox-api.va.gov \
-  -a url="/services/clinical-fhir/v0/vista-fhir-query/backend/health" \
+  -a url="/services/clinical-fhir/v0/r4/vista-fhir-query/backend/health" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
@@ -96,7 +96,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=production-clinical-fhir-health \
   -a host=api.va.gov \
-  -a url="/services/clinical-fhir/v0/health" \
+  -a url="/services/clinical-fhir/v0/r4/health" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
@@ -109,7 +109,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=production-clinical-fhir-dq-health \
   -a host=api.va.gov \
-  -a url="/services/clinical-fhir/v0/data-query/health" \
+  -a url="/services/clinical-fhir/v0/r4/data-query/health" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
@@ -122,7 +122,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=production-clinical-fhir-vfq-health \
   -a host=api.va.gov \
-  -a url="/services/clinical-fhir/v0/vista-fhir-query/health" \
+  -a url="/services/clinical-fhir/v0/r4/vista-fhir-query/health" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
@@ -135,7 +135,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=production-clinical-fhir-vfq-backend-health \
   -a host=api.va.gov \
-  -a url="/services/clinical-fhir/v0/vista-fhir-query/backend/health" \
+  -a url="/services/clinical-fhir/v0/r4/vista-fhir-query/backend/health" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
