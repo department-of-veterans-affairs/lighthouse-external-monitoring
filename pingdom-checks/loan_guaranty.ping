@@ -48,3 +48,15 @@ pingdom save-check \
   -a group="loan-guaranty" \
   -a userids_csv="$STATUSPAGE_SANDBOX_LOAN_REVIEW" \
   -a integrationids_csv="$LOAN_GUARANTY_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-loan-review-health-check \
+  -a host=api.va.gov \
+  -a url="/services/loan-review/v1/healthcheck" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="loan-guaranty" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_LOAN_REVIEW" \
+  -a integrationids_csv="$LOAN_GUARANTY_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
