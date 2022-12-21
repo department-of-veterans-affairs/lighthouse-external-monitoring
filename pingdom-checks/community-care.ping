@@ -11,7 +11,7 @@ COMMUNITY_CARE_BACKEND_SLACK_ID="${SLACK_LIGHTHOUSE_ALERTS},${SLACK_API_ALARMS_C
 # CCE Healthcheck
 pingdom save-check \
   --template https-public-200 \
-  -a name=production-community-care-eligibiliy-health \
+  -a name=production-community-care-eligibility-health \
   -a host=api.va.gov \
   -a url="/services/community-care/v0/healthcheck/liveness" \
   -a port="443" \
@@ -41,7 +41,7 @@ pingdom save-check \
 # CCE Healthcheck
 pingdom save-check \
   --template https-public-200 \
-  -a name=sandbox-community-care-eligibiliy-health \
+  -a name=sandbox-community-care-eligibility-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/community-care/v0/healthcheck/liveness" \
   -a port="443" \
