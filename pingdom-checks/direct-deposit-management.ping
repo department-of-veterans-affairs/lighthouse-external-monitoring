@@ -33,7 +33,6 @@ pingdom save-check \
   -a userids_csv="$STATUSPAGE_PRODUCTION_DIRECT_DEPOSIT_MANAGEMENT" \
   -a integrationids_csv="$DIRECT_DEPOSIT_MANAGEMENT_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
 
-
 #
 # Sandbox
 #
