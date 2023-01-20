@@ -4,6 +4,36 @@ DIRECT_DEPOSIT_MANAGEMENT_SLACK_ID="${SLACK_VASDVP_MONITORING}, ${SLACK_API_ALAR
 DIRECT_DEPOSIT_MANAGEMENT_BACKEND_SLACK_ID="${SLACK_LIGHTHOUSE_ALERTS}, ${SLACK_API_ALARMS_DIRECT_DEPOSIT_MANAGEMENT}"
 
 #
+# Production
+#
+
+# Direct Deposit Management Health Check
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-direct-deposit-management-health \
+  -a host=api.va.gov \
+  -a url="/services/direct-deposit-management/v1/healthcheck/liveness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="direct-deposit-management" \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$DIRECT_DEPOSIT_MANAGEMENT_SLACK_ID,$PAGER_DUTY"
+
+# Direct Deposit Management Backend Health Check
+pingdom save-check \
+  --template https-public-200 \
+  -a name=production-direct-deposit-management-backend-health \
+  -a host=api.va.gov \
+  -a url="/services/direct-deposit-management/v1/healthcheck/readiness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="direct-deposit-management" \
+  -a userids_csv="$STATUSPAGE_PRODUCTION_DIRECT_DEPOSIT_MANAGEMENT" \
+  -a integrationids_csv="$DIRECT_DEPOSIT_MANAGEMENT_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
+
+#
 # Sandbox
 #
 
@@ -32,4 +62,3 @@ pingdom save-check \
   -a group="direct-deposit-management" \
   -a userids_csv="$STATUSPAGE_SANDBOX_DIRECT_DEPOSIT_MANAGEMENT" \
   -a integrationids_csv="$DIRECT_DEPOSIT_MANAGEMENT_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
-  
