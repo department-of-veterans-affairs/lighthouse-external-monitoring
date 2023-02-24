@@ -3,6 +3,8 @@ SANDBOX_VETERAN_CONFIRMATION_API_KEY=$(get-secret "/dvp/lab/veteran-confirmation
 DEV_VETERAN_CONFIRMATION_API_KEY=$(get-secret "/dvp/qa/veteran-confirmation/api-key")
 
 VETERAN_CONFIRMATION_SLACK_ID=$SLACK_VASDVP_MONITORING
+VETERAN_CONFIRMATION_V1_SLACK_ID="${SLACK_VASDVP_MONITORING}, ${SLACK_API_ALARMS_VETERAN_CONFIRMATION_V1}"
+VETERAN_CONFIRMATION_V1_BACKEND_SLACK_ID="${SLACK_LIGHTHOUSE_ALERTS}, ${SLACK_API_ALARMS_VETERAN_CONFIRMATION_V1}"
 
 #production
 pingdom save-check \
@@ -25,3 +27,23 @@ pingdom save-check \
   -a group=veteran-confirmation \
   -a userids_csv="$STATUSPAGE_SANDBOX_VETERAN_CONFIRMATION" \
   -a integrationids_csv="$VETERAN_CONFIRMATION_SLACK_ID,$PAGER_DUTY"
+
+# Veteran Confirmation V1 Health Check for Sandbox
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-veteran-confirmation-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/veteran-confirmation/v1/healthcheck/liveness" \
+  -a group=veteran-confirmation \
+  -a userids_csv="$NO_USERS" \
+  -a integrationids_csv="$VETERAN_CONFIRMATION_V1_SLACK_ID,$PAGER_DUTY"
+
+# Veteran Confirmation V1 Backend Health Check for Sandbox
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-veteran-confirmation-health \
+  -a host=sandbox-api.va.gov \
+  -a url="/services/veteran-confirmation/v1/healthcheck/readiness" \
+  -a group=veteran-confirmation \
+  -a userids_csv="$STATUSPAGE_SANDBOX_VETERAN_CONFIRMATION_V1" \
+  -a integrationids_csv="$VETERAN_CONFIRMATION_V1_BACKEND_SLACK_ID,$PAGER_DUTY"
