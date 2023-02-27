@@ -31,7 +31,7 @@ pingdom save-check \
 # Veteran Confirmation V1 Health Check for Sandbox
 pingdom save-check \
   --template https-public-200 \
-  -a name=sandbox-veteran-confirmation-health \
+  -a name=sandbox-veteran-confirmation-v1-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/veteran-confirmation/v1/healthcheck/liveness" \
   -a group=veteran-confirmation \
@@ -41,9 +41,9 @@ pingdom save-check \
 # Veteran Confirmation V1 Backend Health Check for Sandbox
 pingdom save-check \
   --template https-public-200 \
-  -a name=sandbox-veteran-confirmation-health \
+  -a name=sandbox-veteran-confirmation-v1-backend-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/veteran-confirmation/v1/healthcheck/readiness" \
   -a group=veteran-confirmation \
   -a userids_csv="$STATUSPAGE_SANDBOX_VETERAN_CONFIRMATION_V1" \
-  -a integrationids_csv="$VETERAN_CONFIRMATION_V1_BACKEND_SLACK_ID,$PAGER_DUTY"
+  -a integrationids_csv="$VETERAN_CONFIRMATION_V1_BACKEND_SLACK_ID,$PAGER_DUTY_DEPENDENCIES"
