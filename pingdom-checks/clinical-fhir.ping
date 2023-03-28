@@ -7,7 +7,7 @@ CLINICAL_FHIR_SLACK_ID="${SLACK_VASDVP_MONITORING},${SLACK_API_ALARMS_CLINICAL_F
 # Nginx Proxy Health (Liveness)
 pingdom save-check \
   --template https-public-200 \
-  -a name=sandbox-clinical-fhir-liveness \
+  -a name=sandbox-clinical-fhir-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/clinical-fhir/v0/r4/liveness" \
   -a port="443" \
@@ -20,7 +20,7 @@ pingdom save-check \
 # Proxy -> DQ Health (Readiness) Check 
 pingdom save-check \
   --template https-public-200 \
-  -a name=sandbox-clinical-fhir-dq-readiness \
+  -a name=sandbox-clinical-fhir-dq-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/clinical-fhir/v0/r4/data-query/readiness" \
   -a port="443" \
@@ -33,7 +33,7 @@ pingdom save-check \
 # Proxy -> VFQ Health (Liveness) Check
 pingdom save-check \
   --template https-public-200 \
-  -a name=sandbox-clinical-fhir-vfq-liveness \
+  -a name=sandbox-clinical-fhir-vfq-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/clinical-fhir/v0/r4/vista-fhir-query/liveness" \
   -a port="443" \
@@ -46,7 +46,7 @@ pingdom save-check \
 # Proxy -> VFQ Backend Health (Readiness) Check (Charon)
 pingdom save-check \
   --template https-public-200 \
-  -a name=sandbox-clinical-fhir-vfq-readiness \
+  -a name=sandbox-clinical-fhir-vfq-backend-health \
   -a host=sandbox-api.va.gov \
   -a url="/services/clinical-fhir/v0/r4/vista-fhir-query/readiness" \
   -a port="443" \
