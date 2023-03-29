@@ -26,7 +26,7 @@ pingdom save-check \
   --template request-with-apikey \
   -a name=sandbox-provider-directory \
   -a host=sandbox-api.va.gov \
-  -a url="/services/provider-directory/v0/health" \
+  -a url="/services/provider-directory/v0/liveness" \
   -a group=provider-directory \
   -a apikey="$SANDBOX_PROVIDER_DIRECTORY_API_KEY" \
   -a userids_csv="$STATUSPAGE_SANDBOX_PROVIDER_DIRECTORY" \
