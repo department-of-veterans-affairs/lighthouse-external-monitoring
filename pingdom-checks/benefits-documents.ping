@@ -1,0 +1,20 @@
+# -*- sh -*-
+
+BENEFITS_DOCUMENTS_SLACK_ID="${SLACK_VASDVP_MONITORING},${SLACK_API_ALARMS_BENEFITS_DOCUMENTS}"
+
+#
+# Sandbox
+#
+
+# Benefits Documents V1 Health Check
+pingdom save-check \
+  --template https-public-200 \
+  -a name=sandbox-benefits-documents-v1 \
+  -a host=sandbox-api.va.gov \
+  -a url="/benefits-documents/v1/health/liveness" \
+  -a port="443" \
+  -a responsetime_threshold="30000" \
+  -a resolution="1" \
+  -a group="benefits-documents" \
+  -a userids_csv="$STATUSPAGE_SANDBOX_BENEFITS_DOCUMENTS_V1" \
+  -a integrationids_csv="$BENEFITS_DOCUMENTS_SLACK_ID,$PAGER_DUTY"
