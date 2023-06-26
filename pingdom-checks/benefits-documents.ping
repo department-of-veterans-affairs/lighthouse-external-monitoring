@@ -11,7 +11,7 @@ pingdom save-check \
   --template https-public-200 \
   -a name=sandbox-benefits-documents-v1 \
   -a host=sandbox-api.va.gov \
-  -a url="/benefits-documents/v1/health/liveness" \
+  -a url="/services/benefits-documents/v1/health/liveness" \
   -a port="443" \
   -a responsetime_threshold="30000" \
   -a resolution="1" \
