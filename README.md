@@ -1,5 +1,13 @@
 # lighthouse-external-monitoring
 
+EXTERNAL MONITORING USING PINGDOM HAS BEEN DECOMMISSIONED AND REPLACED WITH DATADOG.
+PLEASE SEE https://github.com/department-of-veterans-affairs/lighthouse-argus/blob/main/datadog/README.md
+
+
+
+
+---
+
 Configuration and tooling for automated configuration for monitoring APIs from an external perspective.
 
 #### Requirements
